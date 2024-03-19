@@ -44,3 +44,33 @@ class HTMLSafetyMonitor(SafetyMonitor):
             safe = False
 
         return safe
+
+    @property
+    def DriverVersion(self):
+        logger.debug(f"""HTMLSafetyMonitor.DriverVersion property called""")
+        return "1.0"
+
+    @property
+    def DriverInfo(self):
+        logger.debug(f"""HTMLSafetyMonitor.DriverInfo property called""")
+        return "HTML Safety Monitor"
+
+    @property
+    def InterfaceVersion(self):
+        logger.debug(f"""HTMLSafetyMonitor.InterfaceVersion property called""")
+        return "1.0"
+
+    @property
+    def Description(self):
+        logger.debug(f"""HTMLSafetyMonitor.Description property called""")
+        return "HTML Safety Monitor"
+
+    @property
+    def SupportedActions(self):
+        logger.debug(f"""HTMLSafetyMonitor.SupportedActions property called""")
+        return []
+
+    @property
+    def Name(self):
+        logger.debug(f"""HTMLSafetyMonitor.Name property called""")
+        return self._url

@@ -115,7 +115,20 @@ class ASCOMDome(ASCOMDevice, Dome):
     @property
     def ShutterStatus(self):
         logger.debug(f"ASCOMDome.ShutterStatus property called")
-        return self._device.ShutterStatus
+        shutter_status = self._device.ShutterStatus
+        if shutter_status == 0:
+            shutter_status_text = "Open"
+        elif shutter_status == 1:
+            shutter_status_text = "Closed"
+        elif shutter_status == 2:
+            shutter_status_text = "Opening"
+        elif shutter_status == 3:
+            shutter_status_text = "Closing"
+        elif shutter_status == 4:
+            shutter_status_text = "Error"
+        else:
+            shutter_status_text = "Unknown"
+        return shutter_status_text
 
     @property
     def Slaved(self):

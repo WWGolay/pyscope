@@ -1,7 +1,9 @@
 import configparser
+import datetime
 import importlib
 import json
 import logging
+import os
 import shutil
 import sys
 import tempfile
@@ -14,6 +16,7 @@ import numpy as np
 from astropy import coordinates as coord
 from astropy import time as astrotime
 from astropy import units as u
+from astropy import wcs as astropywcs
 from astropy.io import fits
 from astroquery.mpc import MPC
 
@@ -34,6 +37,7 @@ class Observatory:
         logger.debug("config_path: %s" % config_path)
         logger.debug("kwargs: %s" % kwargs)
 
+        # TODO: Add allowed_overwrite keys to config file and parser to check which keys can be overwritten (especially from MaxIm).
         self._config = configparser.ConfigParser()
         self._config["site"] = {}
         self._config["camera"] = {}
@@ -234,7 +238,7 @@ class Observatory:
                         "MaxIm DL must be used as the camera driver when using MaxIm DL as the filter wheel driver."
                     )
                 logger.info("Using MaxIm DL as the filter wheel driver")
-                self._filter_wheel = self._maxim.filter_wheel
+                self._filter_wheel = self._maxim._filter_wheel
             else:
                 self._filter_wheel = _import_driver(
                     self.filter_wheel_driver,
@@ -505,9 +509,9 @@ class Observatory:
             self._config["cover_calibrator"][
                 "cover_calibrator_driver"
             ] = self._cover_calibrator_driver
-            self._config["cover_calibrator"][
-                "cover_calibrator_kwargs"
-            ] = _kwargs_to_config(self._cover_calibrator_kwargs)
+            self._config["cover_calibrator"]["cover_calibrator_kwargs"] = (
+                _kwargs_to_config(self._cover_calibrator_kwargs)
+            )
 
         # Dome
         self._dome = kwargs.get("dome", self._dome)
@@ -561,9 +565,9 @@ class Observatory:
             self._config["observing_conditions"][
                 "observing_conditions_driver"
             ] = self._observing_conditions_driver
-            self._config["observing_conditions"][
-                "observing_conditions_kwargs"
-            ] = _kwargs_to_config(self._observing_conditions_kwargs)
+            self._config["observing_conditions"]["observing_conditions_kwargs"] = (
+                _kwargs_to_config(self._observing_conditions_kwargs)
+            )
 
         # Rotator
         self._rotator = kwargs.get("rotator", self._rotator)
@@ -733,6 +737,8 @@ class Observatory:
             logger.warning("Camera failed to connect")
         if self.camera.CanSetCCDTemperature:
             self.cooler_setpoint = self._cooler_setpoint
+            print("Turning cooler on")
+            self.camera.CoolerOn = True
 
         if self.cover_calibrator is not None:
             self.cover_calibrator.Connected = True
@@ -806,7 +812,9 @@ class Observatory:
         """Disconnects from the observatory"""
 
         logger.debug("Observatory.disconnect_all() called")
-
+        # TODO: Implement safe warmup procedure
+        if self.camera.CoolerOn:
+            self.camera.CoolerOn = False
         self.camera.Connected = False
         if not self.camera.Connected:
             logger.info("Camera disconnected")
@@ -1022,7 +1030,7 @@ class Observatory:
         if t is None:
             t = self.observatory_time
         else:
-            t = Time(t)
+            t = astrotime.Time(t)
 
         sun = coord.get_sun(t).transform_to(
             coord.AltAz(obstime=t, location=self.observatory_location)
@@ -1038,7 +1046,7 @@ class Observatory:
         if t is None:
             t = self.observatory_time
         else:
-            t = Time(t)
+            t = astrotime.Time(t)
 
         moon = coord.get_body("moon", t).transform_to(
             coord.AltAz(obstime=t, location=self.observatory_location)
@@ -1150,6 +1158,107 @@ class Observatory:
             )
         return obj
 
+    def generate_header_dict(self):
+        """Generates the header information for the observatory as a dictionary
+
+        Returns
+        -------
+        dict
+            The header information
+        """
+        hdr_dict = {}
+        hdr_dict.update(self.observatory_info)
+        hdr_dict.update(self.camera_info)
+        hdr_dict.update(self.telescope_info)
+        hdr_dict.update(self.cover_calibrator_info)
+        hdr_dict.update(self.dome_info)
+        hdr_dict.update(self.filter_wheel_info)
+        hdr_dict.update(self.focuser_info)
+        hdr_dict.update(self.observing_conditions_info)
+        hdr_dict.update(self.rotator_info)
+        hdr_dict.update(self.safety_monitor_info)
+        hdr_dict.update(self.switch_info)
+        hdr_dict.update(self.threads_info)
+        hdr_dict.update(self.autofocus_info)
+        hdr_dict.update(self.wcs_info)
+
+        return hdr_dict
+
+    def generate_header_info(
+        self,
+        filename,
+        frametyp=None,
+        custom_header=None,
+        history=None,
+        maxim=False,
+        allowed_overwrite=[],
+    ):
+        """Generates the header information for the observatory"""
+        if not maxim:
+            hdr = fits.Header()
+        else:
+            logger.info("Getting header from MaxIm image")
+            hdr = fits.getheader(filename)
+
+        # The commented out part is unnecessary, as the fits header is automatically generated
+        # when the image is saved.
+        # hdr["SIMPLE"] = True
+        # hdr["BITPIX"] = (16, "8 unsigned int, 16 & 32 int, -32 & -64 real")
+        # hdr["NAXIS"] = (2, "number of axes")
+        # hdr["NAXIS1"] = (len(img_array), "fastest changing axis")
+        # hdr["NAXIS2"] = (
+        #     len(img_array[0]),
+        #     "next to fastest changing axis",
+        # )
+        hdr["BSCALE"] = (1, "physical=BZERO + BSCALE*array_value")
+        hdr["BZERO"] = (32768, "physical=BZERO + BSCALE*array_value")
+        if maxim:
+            hdr["SWUPDATE"] = ("pyscope", "Software used to update file")
+            hdr["SWVERSIO"] = (__version__, "Version of software used to update file")
+        else:
+            hdr["SWCREATE"] = ("pyscope", "Software used to create file")
+            hdr["SWVERSIO"] = (__version__, "Version of software used to create file")
+        hdr["ROWORDER"] = ("TOP-DOWN", "Row order of image")
+
+        if frametyp is not None:
+            hdr["FRAMETYP"] = (frametyp, "Frame type")
+        elif self.last_camera_shutter_status:
+            hdr["FRAMETYP"] = ("Light", "Frame type")
+        elif not self.last_camera_shutter_status:
+            hdr["FRAMETYP"] = ("Dark", "Frame type")
+
+        hdr_dict = self.generate_header_dict()
+
+        if custom_header is not None:
+            hdr_dict.update(custom_header)
+
+        self.safe_update_header(
+            hdr, hdr_dict, maxim=maxim, allowed_overwrite=allowed_overwrite
+        )
+
+        if history is not None:
+            if type(history) is str:
+                history = [history]
+            for hist in history:
+                hdr["HISTORY"] = hist
+
+        return hdr
+
+    def safe_update_header(self, hdr, hdr_dict, maxim=False, allowed_overwrite=[]):
+        """Safely updates the header information"""
+        logger.debug(f"Observatory.safe_update_header called")
+        if maxim:
+            # Only keep the allowed_overwrite keys in the hdr_dict
+            # First get keys in existing header
+            existing_keys = hdr.keys()
+            # If the key is in the existing header, and not in the allowed_overwrite list, remove it
+            for key in existing_keys:
+                if key not in allowed_overwrite:
+                    hdr_dict.pop(key, None)
+
+        # hdr_dict = {k: v for k, v in hdr_dict.items() if k in allowed_overwrite}
+        hdr.update(hdr_dict)
+
     def save_last_image(
         self,
         filename,
@@ -1159,6 +1268,7 @@ class Observatory:
         overwrite=False,
         custom_header=None,
         history=None,
+        allowed_overwrite=[],
         **kwargs,
     ):
         """Saves the current image"""
@@ -1171,59 +1281,87 @@ class Observatory:
             logger.exception("Image is not ready, cannot be saved")
             return False
 
-        # Read out the image array
-        img_array = self.camera.ImageArray
+        maxim = self.camera_driver.lower() in ("maxim", "maximdl", "_maximcamera")
+        # print(self.camera_driver.lower())
 
-        if img_array is None or len(img_array) == 0 or len(img_array) == 0:
-            logger.exception("Image array is empty, cannot be saved")
-            return False
+        # If camera driver is Maxim, use Maxim to save the image
+        # This is because Maxim does not pass some of the header information
+        # to the camera object, so it is not available to be saved.
+        if not maxim:
+            # Read out the image array
+            img_array = self.camera.ImageArray
 
-        hdr = fits.Header()
+            if img_array is None or len(img_array) == 0 or len(img_array) == 0:
+                logger.exception("Image array is empty, cannot be saved")
+                return False
+        else:
+            # print("Using Maxim to save image")
+            logger.info("Using Maxim to save image")
+            allowed_overwrite = [
+                "AIRMASS",
+                "OBJECT",
+                "TELESCOP",
+                "INSTRUME",
+                "OBSERVER",
+            ]
+            logger.info(f"Overwrite allowed for header keys {allowed_overwrite}")
+            self.camera.VerifyLatestExposure()
+            # TODO: Below should be updated to the filepath we want to save to
+            filepath = os.path.join(os.getcwd(), filename)
+            self.camera.SaveImageAsFits(filepath)
+            img_array = fits.getdata(filename)
 
-        hdr["SIMPLE"] = True
-        hdr["BITPIX"] = (16, "8 unsigned int, 16 & 32 int, -32 & -64 real")
-        hdr["NAXIS"] = (2, "number of axes")
-        hdr["NAXIS1"] = (len(img_array), "fastest changing axis")
-        hdr["NAXIS2"] = (
-            len(img_array[0]),
-            "next to fastest changing axis",
+        # Moved below to separate function
+        # hdr = fits.Header()
+
+        # hdr["SIMPLE"] = True
+        # hdr["BITPIX"] = (16, "8 unsigned int, 16 & 32 int, -32 & -64 real")
+        # hdr["NAXIS"] = (2, "number of axes")
+        # hdr["NAXIS1"] = (len(img_array), "fastest changing axis")
+        # hdr["NAXIS2"] = (
+        #     len(img_array[0]),
+        #     "next to fastest changing axis",
+        # )
+        # hdr["BSCALE"] = (1, "physical=BZERO + BSCALE*array_value")
+        # hdr["BZERO"] = (32768, "physical=BZERO + BSCALE*array_value")
+        # hdr["SWCREATE"] = ("pyscope", "Software used to create file")
+        # hdr["SWVERSIO"] = (__version__, "Version of software used to create file")
+        # hdr["ROWORDER"] = ("TOP-DOWN", "Row order of image")
+
+        # if frametyp is not None:
+        #     hdr["FRAMETYP"] = (frametyp, "Frame type")
+        # elif self.last_camera_shutter_status:
+        #     hdr["FRAMETYP"] = ("Light", "Frame type")
+        # elif not self.last_camera_shutter_status:
+        #     hdr["FRAMETYP"] = ("Dark", "Frame type")
+
+        # hdr.update(self.observatory_info)
+        # hdr.update(self.camera_info)
+        # hdr.update(self.telescope_info)
+        # hdr.update(self.cover_calibrator_info)
+        # hdr.update(self.dome_info)
+        # hdr.update(self.filter_wheel_info)
+        # hdr.update(self.focuser_info)
+        # hdr.update(self.observing_conditions_info)
+        # hdr.update(self.rotator_info)
+        # hdr.update(self.safety_monitor_info)
+        # hdr.update(self.switch_info)
+        # hdr.update(self.threads_info)
+        # hdr.update(self.autofocus_info)
+        # hdr.update(self.wcs_info)
+
+        # if custom_header is not None:
+        #     hdr.update(custom_header)
+
+        # if history is not None:
+        #     if type(history) is str:
+        #         history = [history]
+        #     for hist in history:
+        #         hdr["HISTORY"] = hist
+
+        hdr = self.generate_header_info(
+            filename, frametyp, custom_header, history, maxim, allowed_overwrite
         )
-        hdr["BSCALE"] = (1, "physical=BZERO + BSCALE*array_value")
-        hdr["BZERO"] = (32768, "physical=BZERO + BSCALE*array_value")
-        hdr["SWCREATE"] = ("pyscope", "Software used to create file")
-        hdr["SWVERSIO"] = (__version__, "Version of software used to create file")
-        hdr["ROWORDER"] = ("TOP-DOWN", "Row order of image")
-
-        if frametyp is not None:
-            hdr["FRAMETYP"] = (frametyp, "Frame type")
-        elif self.last_camera_shutter_status:
-            hdr["FRAMETYP"] = ("Light", "Frame type")
-        elif not self.last_camera_shutter_status:
-            hdr["FRAMETYP"] = ("Dark", "Frame type")
-
-        hdr.update(self.observatory_info)
-        hdr.update(self.camera_info)
-        hdr.update(self.telescope_info)
-        hdr.update(self.cover_calibrator_info)
-        hdr.update(self.dome_info)
-        hdr.update(self.filter_wheel_info)
-        hdr.update(self.focuser_info)
-        hdr.update(self.observing_conditions_info)
-        hdr.update(self.rotator_info)
-        hdr.update(self.safety_monitor_info)
-        hdr.update(self.switch_info)
-        hdr.update(self.threads_info)
-        hdr.update(self.autofocus_info)
-        hdr.update(self.wcs_info)
-
-        if custom_header is not None:
-            hdr.update(custom_header)
-
-        if history is not None:
-            if type(history) is str:
-                history = [history]
-            for hist in history:
-                hdr["HISTORY"] = hist
 
         hdu = fits.PrimaryHDU(img_array, header=hdr)
         hdu.writeto(filename, overwrite=overwrite)
@@ -1441,7 +1579,7 @@ class Observatory:
             raise ObservatoryException("The telescope cannot slew to coordinates.")
 
         if control_dome and self.dome is not None:
-            if self.dome.ShutterStatus != 0 and self.dome.CanSetShutter:
+            if self.dome.ShutterStatus != "Open" and self.dome.CanSetShutter:
                 if self.dome.CanFindHome:
                     logger.info("Finding the dome home...")
                     self.dome.FindHome()
@@ -1848,6 +1986,8 @@ class Observatory:
             check_and_refine is False.
         exposure : float, optional
             The exposure time in seconds to use for the centering images. Default is 10.
+        readout : int, optional
+            The readout mode to use for the centering images. Default is 0.
         save_images : bool, optional
             Whether or not to save the centering images. Default is False.
         save_path : str, optional
@@ -1917,14 +2057,16 @@ class Observatory:
             logger.info("Settling for %.2f seconds" % self.settle_time)
             time.sleep(self.settle_time)
 
-            if not check_and_refine and attempt_number > 0:
+            if not check_and_refine and attempt > 0:
                 logger.info(
                     "Check and recenter is off, single-shot recentering complete"
                 )
                 return True
 
             logger.info("Taking %.2f second exposure" % exposure)
-            self.camera.ReadoutMode = self.camera.ReadoutModes[readout]
+            self.camera.ReadoutMode = (
+                readout  # self.camera.ReadoutModes[readout] <== This breaks maxim
+            )
             self.camera.StartExposure(exposure, True)
             while not self.camera.ImageReady:
                 time.sleep(0.1)
@@ -1939,7 +2081,7 @@ class Observatory:
             logger.info("Searching for a WCS solution...")
             if type(self._wcs) is WCS:
                 self._wcs.Solve(
-                    filename,
+                    temp_image,
                     ra_key="TELRAIC",
                     dec_key="TELDECIC",
                     ra_dec_units=("hour", "deg"),
@@ -1954,7 +2096,7 @@ class Observatory:
             else:
                 for i, wcs in enumerate(self._wcs):
                     solution_found = wcs.Solve(
-                        filename,
+                        temp_image,
                         ra_key="TELRAIC",
                         dec_key="TELDECIC",
                         ra_dec_units=("hour", "deg"),
@@ -1982,7 +2124,7 @@ class Observatory:
             )
             try:
                 hdulist = fits.open(temp_image)
-                w = astropy.wcs.WCS(hdulist[0].header)
+                w = astropywcs.WCS(hdulist[0].header)
 
                 center_coord = w.pixel_to_world(
                     int(self.camera.CameraXSize / 2), int(self.camera.CameraYSize / 2)
@@ -2037,7 +2179,7 @@ class Observatory:
             logger.debug("Error in x pixels is %.2f" % error_x_pixels)
             logger.debug("Error in y pixels is %.2f" % error_y_pixels)
 
-            if max(error_x_pixels, error_y_pixels) <= max_pixel_error:
+            if max(error_x_pixels, error_y_pixels) <= tolerance:
                 break
 
             logger.info("Offsetting next slew coordinates")
@@ -2469,9 +2611,9 @@ class Observatory:
             "CAMERA": (self.camera.Name, "Name of camera"),
             "CAMDRVER": (self.camera.DriverVersion, "Camera driver version"),
             "CAMDRV": (self.camera.DriverInfo[0], "Camera driver info"),
-            "CAMINTF": (self.camera.InterfaceVersion, "Camera interface version"),
+            "CAMINTF": (None, "Camera interface version"),
             "CAMDESC": (self.camera.Description, "Camera description"),
-            "SENSOR": (self.camera.SensorName, "Name of sensor"),
+            "SENSOR": (None, "Name of sensor"),
             "WIDTH": (self.camera.CameraXSize, "Width of sensor in pixels"),
             "HEIGHT": (self.camera.CameraYSize, "Height of sensor in pixels"),
             "XPIXSIZE": (self.camera.PixelSizeX, "Pixel width in microns"),
@@ -2484,10 +2626,10 @@ class Observatory:
                 self.camera.HasShutter,
                 "Whether a camera mechanical shutter is present",
             ),
-            "MINEXP": (self.camera.ExposureMin, "Minimum exposure time [seconds]"),
-            "MAXEXP": (self.camera.ExposureMax, "Maximum exposure time [seconds]"),
+            "MINEXP": (None, "Minimum exposure time [seconds]"),
+            "MAXEXP": (None, "Maximum exposure time [seconds]"),
             "EXPRESL": (
-                self.camera.ExposureResolution,
+                None,
                 "Exposure time resolution [seconds]",
             ),
             "MAXBINSX": (self.camera.MaxBinX, "Maximum binning factor in width"),
@@ -2501,11 +2643,11 @@ class Observatory:
                 "Can camera set temperature",
             ),
             "CANPULSE": (self.camera.CanPulseGuide, "Can camera pulse guide"),
-            "FULLWELL": (self.camera.FullWellCapacity, "Full well capacity [e-]"),
-            "MAXADU": (self.camera.MaxADU, "Camera maximum ADU value possible"),
-            "E-ADU": (self.camera.ElectronsPerADU, "Gain [e- per ADU]"),
+            "FULLWELL": (None, "Full well capacity [e-]"),
+            "MAXADU": (None, "Camera maximum ADU value possible"),
+            "E-ADU": (None, "Gain [e- per ADU]"),
             "EGAIN": (None, "Electronic gain"),
-            "CANFASTR": (self.camera.CanFastReadout, "Can camera fast readout"),
+            "CANFASTR": (None, "Can camera fast readout"),
             "READMDS": (None, "Possible readout modes"),
             "GAINS": (None, "Possible electronic gains"),
             "GAINMIN": (None, "Minimum possible electronic gain"),
@@ -2513,7 +2655,7 @@ class Observatory:
             "OFFSETS": (None, "Possible offsets"),
             "OFFSETMN": (None, "Minimum possible offset"),
             "OFFSETMX": (None, "Maximum possible offset"),
-            "CAMSUPAC": (str(self.camera.SupportedActions), "Camera supported actions"),
+            "CAMSUPAC": (None, "Camera supported actions"),
         }
         try:
             info["PCNTCOMP"] = (self.camera.PercentCompleted, info["PCNTCOMP"][1])
@@ -2618,7 +2760,44 @@ class Observatory:
         except:
             pass
         try:
+            info["CANINTF"] = (self.camera.InterfaceVersion, info["CANINTF"][1])
+        except:
+            pass
+        try:
+            info["SENSOR"] = (self.camera.SensorName, info["SENSOR"][1])
+        except:
+            pass
+        try:
+            info["MINEXP"] = (self.camera.ExposureMin, info["MINEXP"][1])
+            info["MAXEXP"] = (self.camera.ExposureMax, info["MAXEXP"][1])
+        except:
+            pass
+        try:
+            info["EXPRESL"] = (self.camera.ExposureResolution, info["EXPRESL"][1])
+        except:
+            pass
+        try:
+            info["FULLWELL"] = (self.camera.FullWellCapacity, info["FULLWELL"][1])
+        except:
+            pass
+        try:
+            info["MAXADU"] = (self.camera.MaxADU, info["MAXADU"][1])
+        except:
+            pass
+        try:
+            info["E-ADU"] = (self.camera.ElectronsPerADU, info["E-ADU"][1])
+        except:
+            pass
+        try:
             info["EGAIN"] = (self.camera.Gain, info["EGAIN"][1])
+        except:
+            pass
+        try:
+            info["CANFASTR"] = (self.camera.CanFastReadout, info["CANFASTR"][1])
+        except:
+            pass
+        try:
+            info["CAMSUPAC"] = (str(self.camera.SupportedActions), info["CAMSUPAC"][1])
         except:
             pass
 
@@ -2755,33 +2934,82 @@ class Observatory:
                     "Filter name (from pyscope observatory object configuration)",
                 ),
                 "FOCOFFCG": (
-                    self.filter_wheel.FocusOffsets[self.filter_wheel.Position],
+                    None,
                     "Filter focus offset (from filter wheel object configuration)",
                 ),
                 "FWNAME": (self.filter_wheel.Name, "Filter wheel name"),
                 "FWDRVER": (
-                    self.filter_wheel.DriverVersion,
+                    None,
                     "Filter wheel driver version",
                 ),
                 "FWDRV": (
-                    str(self.filter_wheel.DriverInfo),
+                    None,
                     "Filter wheel driver info",
                 ),
                 "FWINTF": (
-                    self.filter_wheel.InterfaceVersion,
+                    None,
                     "Filter wheel interface version",
                 ),
-                "FWDESC": (self.filter_wheel.Description, "Filter wheel description"),
+                "FWDESC": (None, "Filter wheel description"),
                 "FWALLNAM": (str(self.filter_wheel.Names), "Filter wheel names"),
                 "FWALLOFF": (
-                    str(self.filter_wheel.FocusOffsets),
+                    None,
                     "Filter wheel focus offsets",
                 ),
                 "FWSUPAC": (
-                    str(self.filter_wheel.SupportedActions),
+                    None,
                     "Filter wheel supported actions",
                 ),
             }
+            try:
+                info["FOCOFFCG"] = (
+                    self.filter_wheel.FocusOffsets[self.filter_wheel.Position],
+                    info["FOCOFFCG"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWDRVER"] = (
+                    self.filter_wheel.DriverVersion,
+                    info["FWDRVER"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWDRV"] = (
+                    str(self.filter_wheel.DriverInfo),
+                    info["FWDRV"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWINTF"] = (
+                    self.filter_wheel.InterfaceVersion,
+                    info["FWINTF"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWDESC"] = (
+                    self.filter_wheel.Description,
+                    info["FWDESC"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWSUPAC"] = (
+                    str(self.filter_wheel.SupportedActions),
+                    info["FWSUPAC"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWALLOFF"] = (
+                    str(self.filter_wheel.FocusOffsets),
+                    info["FWALLOFF"][1],
+                )
+            except:
+                pass
             return info
         else:
             return {"FWCONN": (False, "Filter wheel connected")}
@@ -3446,10 +3674,20 @@ class Observatory:
             ),
             "TELTRCKS": (str(self.telescope.TrackingRates), "Telescope tracking rates"),
             "TELSUPAC": (
-                str(self.telescope.SupportedActions),
+                None,
                 "Telescope supported actions",
             ),
         }
+        # Sometimes, TELDRV has /r or /n in it and it breaks
+        # This is a hack to fix that
+        info["TELDRV"] = (
+            info["TELDRV"][0].replace("\r", "\\r").replace("\n", "\\n"),
+            info["TELDRV"][1],
+        )
+        info["TELDRV"] = (
+            "".join([i if ord(i) < 128 else " " for i in info["TELDRV"][0]]),
+            info["TELDRV"][1],
+        )
         try:
             info["TELALT"] = (self.telescope.Altitude, info["TELALT"][1])
         except:
@@ -3607,6 +3845,13 @@ class Observatory:
             info["TELALN"] = (
                 ["AltAz", "Polar", "GermanPolar"][self.telescope.AlignmentMode],
                 info["TELALN"][1],
+            )
+        except:
+            pass
+        try:
+            info["TELSUPAC"] = (
+                str(self.telescope.SupportedActions),
+                info["TELSUPAC"][1],
             )
         except:
             pass
@@ -3971,7 +4216,7 @@ class Observatory:
             )
         else:
             self._filters[position] = (
-                char(value) if value is not None or value != "" else None
+                chr(value) if value is not None or value != "" else None
             )
         self._config["filter_wheel"]["filters"] = (
             ", ".join(self._filters) if self._filters is not None else ""

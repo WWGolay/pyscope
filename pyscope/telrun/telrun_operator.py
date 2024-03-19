@@ -295,7 +295,14 @@ class TelrunOperator:
             case None | "None" | "none":
                 logger.info("dome_type is None, setting to None")
                 self._dome_type = "None"
-            case "dome" | "safety-monitor" | "safety_monitor" | "safetymonitor" | "safety monitor" | "both":
+            case (
+                "dome"
+                | "safety-monitor"
+                | "safety_monitor"
+                | "safetymonitor"
+                | "safety monitor"
+                | "both"
+            ):
                 pass
             case _:
                 raise TelrunException(
@@ -637,7 +644,9 @@ class TelrunOperator:
                         self.observatory.dome.FindHome()
                         self._dome_status = "Idle"
                         logger.info("Found.")
-            case "safety-monitor" | "safety_monitor" | "safetymonitor" | "safety monitor":
+            case (
+                "safety-monitor" | "safety_monitor" | "safetymonitor" | "safety monitor"
+            ):
                 logger.info("Designating first safety monitor state as dome...")
                 if self.observatory.safety_monitor is not None:
                     status = False
@@ -951,7 +960,9 @@ class TelrunOperator:
                             ] = "Dome shutter is not open"
                         return ("F", "Dome shutter is not open", block)
 
-            case "safety-monitor" | "safety_monitor" | "safetymonitor" | "safety monitor":
+            case (
+                "safety-monitor" | "safety_monitor" | "safetymonitor" | "safety monitor"
+            ):
                 if self.observatory.safety_monitor is not None:
                     status = False
                     if self.observatory.safety_monitor is not (iter, tuple, list):
@@ -1550,11 +1561,12 @@ class TelrunOperator:
             self._current_block = None
             if self.update_block_status:
                 block["configuration"]["status"] = "F"
-                block["configuration"][
-                    "message"
-                ] = "Requested starty and numy of %i, %i is not supported" % (
-                    block["configuration"]["frame_position"][1],
-                    block["configuration"]["frame_size"][1],
+                block["configuration"]["message"] = (
+                    "Requested starty and numy of %i, %i is not supported"
+                    % (
+                        block["configuration"]["frame_position"][1],
+                        block["configuration"]["frame_size"][1],
+                    )
                 )
             return (
                 "F",

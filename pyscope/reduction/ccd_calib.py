@@ -133,7 +133,7 @@ def ccd_calib_cli(
             logger.debug(f"Bias frame exposure time: {bias_exptime}")
             logger.debug(f"Bias frame X binning: {bias_xbin}")
             logger.debug(f"Bias frame Y binning: {bias_ybin}")
-            logger.debug(f"Bias frame pedestal: {bias_pedestal}")
+            # logger.debug(f"Bias frame pedestal: {bias_pedestal}")
     elif camera_type == "cmos":
         if flat_dark_frame is not None:
             logger.info(f"Loading flat-dark frame: {flat_dark_frame}")
@@ -196,7 +196,7 @@ def ccd_calib_cli(
             dark_xbin = hdr["XBIN"]
 
         try:
-            ark_ybin = hdr["YBINNING"]
+            dark_ybin = hdr["YBINNING"]
         except:
             dark_ybin = hdr["YBIN"]
 
@@ -257,9 +257,9 @@ def ccd_calib_cli(
             image_filter = ""
 
         try:
-            image_readout_mode = hdr["READOUTM"]
+            image_readout_mode = hdr["READOUTM"].replace(" ", "")
         except KeyError:
-            image_readout_mode = hdr["READOUT"]
+            image_readout_mode = hdr["READOUT"].replace(" ", "")
 
         try:
             image_exptime = round(hdr["EXPTIME"], 3)
@@ -441,14 +441,13 @@ def ccd_calib_cli(
 
         logger.info("Writing calibrated status to header...")
         hdr["CALSTAT"] = True
-
         if in_place:
             logger.info(f"Overwriting {fname}")
             fits.writeto(fname, cal_image, hdr, overwrite=True)
         else:
             logger.info(f"Writing calibrated image to {fname}")
             fits.writeto(
-                fname.split(".")[:-1] + "_cal.fts", cal_image, hdr, overwrite=True
+                fname.split(".")[:-1][0] + "_cal.fts", cal_image, hdr, overwrite=True
             )
 
         logger.info("Done!")

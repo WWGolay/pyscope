@@ -3,7 +3,9 @@ import glob
 import logging
 import os
 import shutil
+import pathlib
 
+# i will be working on this
 import click
 from astropy.io import fits
 
@@ -108,18 +110,42 @@ logger = logging.getLogger(__name__)
 )
 @click.version_option()
 def calib_images_cli(
-    camera_type,
-    image_dir,
-    calib_dir,
-    raw_archive_dir,
-    in_place,
-    astro_scrappy,
-    bad_columns,
-    wcs,
-    zmag,
-    verbose,
-    fnames,
+    camera_type="ccd",
+    image_dir="./images/",
+    calib_dir=None,
+    raw_archive_dir="./images/raw/",
+    in_place=False,
+    astro_scrappy=(1, 3),
+    bad_columns="",
+    wcs=False,
+    zmag=False,
+    verbose=False,
+    fnames=[],
 ):
+    """Calibrate a set of images by recursively selecting the
+    appropriate flat, dark, and bias frame and then calling
+    ccd_calib to do the actual calibration.
+
+    Notes: Vaving an example set up of this function would be helpful.
+    This would allow for me to know what the environment looks like when
+    calling this function.
+
+    Args:
+        camera_type (_type_): _description_
+        image_dir (_type_): _description_
+        calib_dir (_type_): _description_
+        raw_archive_dir (_type_): _description_
+        in_place (_type_): _description_
+        astro_scrappy (_type_): _description_
+        bad_columns (_type_): _description_
+        wcs (_type_): _description_
+        zmag (_type_): _description_
+        verbose (_type_): _description_
+        fnames (_type_): _description_
+
+    Raises:
+        click.BadParameter: _description_
+    """
     if verbose:
         logger.setLevel(logging.DEBUG)
 
@@ -164,9 +190,10 @@ def calib_images_cli(
             filt = ""
 
         try:
-            readout = hdr["READOUTM"]
+            readout = hdr["READOUTM"].replace(" ", "")
         except KeyError:
-            readout = hdr["READOUT"]
+            readout = hdr["READOUT"].replace(" ", "")
+
 
         try:
             exptime = round(hdr["EXPTIME"], 3)
@@ -183,19 +210,75 @@ def calib_images_cli(
         except:
             ybin = hdr["YBIN"]
 
-        # TODO: Update these names, recursively search for latest set
-        flat_frame = (
-            f"{calib_dir}/master_flat_{filt}_{readout}_{exptime}_{xbin}x{ybin}.fts"
-        )
-        dark_frame = f"{calib_dir}/master_dark_{readout}_{exptime}_{xbin}x{ybin}.fts"
 
-        if camera_type == "ccd":
-            bias_frame = f"{calib_dir}/master_bias_{readout}_{xbin}x{ybin}.fts"
-        elif camera_type == "cmos":
-            flat_dark_frame = (
-                f"{calib_dir}/master_flat_dark_{readout}_{exptime}_{xbin}x{ybin}.fts"
+        observatory_home = os.getenv("observatory_home")
+        masters_dir = pathlib.Path(observatory_home + "/images/masters")
+        flat_frame = None
+        dark_frame = None
+        bias_frame = None
+        flat_dark_frame = None
+        if calib_dir is None:
+            files = glob.glob(f"{masters_dir}/*", recursive=True)
+            for filename in files:
+                # find flat_frame, dark_frame, bias_frame, flat_dark_frame
+                with fits.open(filename) as h:
+                    hdrf = h[0].header
+                    # if the corresponding header values match, then set the appropriate frame
+                    if (
+                        "master_flat" in filename and "master_flat_dark" not in filename
+                        and hdrf["FILTER"] == filt
+                        and hdrf["READOUTM"] == readout
+                        and hdrf["EXPTIME"] == exptime
+                        and hdrf["XBINNING"] == xbin
+                        and hdrf["YBINNING"] == ybin
+                    ):
+                        flat_frame = pathlib.Path(filename)
+                    elif (
+                        "master_dark" in filename
+                        and hdrf["READOUTM"] == readout
+                        and hdrf["EXPTIME"] == exptime
+                        and hdrf["XBINNING"] == xbin
+                        and hdrf["YBINNING"] == ybin
+                        ):
+                        dark_frame = pathlib.Path(filename)
+                    elif (
+                        "master_bias" in filename
+                        and hdrf["READOUTM"] == readout
+                        and hdrf["XBINNING"] == xbin
+                        and hdrf["YBINNING"] == ybin
+                    ):
+                        bias_frame = pathlib.Path(filename)
+                    elif (
+                        "master_flat_dark" in filename
+                        and hdrf["READOUTM"] == readout
+                        and hdrf["EXPTIME"] == exptime
+                        and hdrf["XBINNING"] == xbin
+                        and hdrf["YBINNING"] == ybin
+                    ):
+                        flat_dark_frame = pathlib.Path(filename)
+                h.close()
+
+            # given a camera type, set the appropriate frame; bias for CCD, flat dark for CMOS
+            if camera_type == "ccd":
+                bias_frame = bias_frame
+            elif camera_type == "cmos":
+                flat_dark_frame = flat_dark_frame
+
+        else:  # use the calib_dir passed by the user
+            flat_frame = (
+                pathlib.Path(f"{calib_dir}/master_flat_{filt}_{readout}_{exptime}_{xbin}x{ybin}.fts")
+            )
+            dark_frame = (
+                pathlib.Path(f"{calib_dir}/master_dark_{readout}_{exptime}_{xbin}x{ybin}.fts")
             )
 
+            # given a camera type, set the appropriate frame; bias for CCD, flat dark for CMOS
+            if camera_type == "ccd":
+                bias_frame = pathlib.Path(f"{calib_dir}/master_bias_{readout}_{xbin}x{ybin}.fts")
+            elif camera_type == "cmos":
+                flat_dark_frame = pathlib.Path(f"{calib_dir}/master_flat_dark_{readout}_{exptime}_{xbin}x{ybin}.fts")
+
+        # for each image, print out the calibration frames being used
         logger.debug("Using calibration frames:")
         logger.debug(f"Flat: {flat_frame}")
         logger.debug(f"Dark: {dark_frame}")
@@ -204,6 +287,7 @@ def calib_images_cli(
         elif camera_type == "cmos":
             logger.debug(f"Flat dark: {flat_dark_frame}")
 
+        # After gethering all the required parameters, run ccd_calib
         logger.debug("Running ccd_calib...")
         ccd_calib(
             camera_type=camera_type,
@@ -214,9 +298,11 @@ def calib_images_cli(
             astro_scrappy=astro_scrappy,
             bad_columns=bad_columns,
             in_place=in_place,
-            fnames=fname,
+            verbose=verbose,
+            fnames=[fname],
         )
 
+        # world coordinate system
         if wcs:
             logger.debug("Running Astrometry.net WCS solver...")
             solver = AstrometryNetWCS()
@@ -224,6 +310,7 @@ def calib_images_cli(
 
         logger.debug("Done!")
 
+    # outside for loop
     if zmag:
         logger.info("Calculating zero-point magnitudes...")
         calc_zmag(fnames=fnames)

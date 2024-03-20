@@ -1,0 +1,57 @@
+ASCOMObservingConditions
+========================
+
+.. currentmodule:: pyscope.observatory
+
+.. autoclass:: ASCOMObservingConditions
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~ASCOMObservingConditions.AveragePeriod
+      ~ASCOMObservingConditions.CloudCover
+      ~ASCOMObservingConditions.DewPoint
+      ~ASCOMObservingConditions.Humidity
+      ~ASCOMObservingConditions.Pressure
+      ~ASCOMObservingConditions.RainRate
+      ~ASCOMObservingConditions.SkyBrightness
+      ~ASCOMObservingConditions.SkyQuality
+      ~ASCOMObservingConditions.SkyTemperature
+      ~ASCOMObservingConditions.StarFWHM
+      ~ASCOMObservingConditions.Temperature
+      ~ASCOMObservingConditions.WindDirection
+      ~ASCOMObservingConditions.WindGust
+      ~ASCOMObservingConditions.WindSpeed
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~ASCOMObservingConditions.Refresh
+      ~ASCOMObservingConditions.SensorDescription
+      ~ASCOMObservingConditions.TimeSinceLastUpdate
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: AveragePeriod
+   .. autoattribute:: CloudCover
+   .. autoattribute:: DewPoint
+   .. autoattribute:: Humidity
+   .. autoattribute:: Pressure
+   .. autoattribute:: RainRate
+   .. autoattribute:: SkyBrightness
+   .. autoattribute:: SkyQuality
+   .. autoattribute:: SkyTemperature
+   .. autoattribute:: StarFWHM
+   .. autoattribute:: Temperature
+   .. autoattribute:: WindDirection
+   .. autoattribute:: WindGust
+   .. autoattribute:: WindSpeed
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: Refresh
+   .. automethod:: SensorDescription
+   .. automethod:: TimeSinceLastUpdate

@@ -1,0 +1,1729 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <link href="../../_static/logo16.png" sizes="16x16" rel="icon" type="image/png">
+    <link href="../../_static/logo32.png" sizes="32x32" rel="icon" type="image/png">
+    <link href="../../_static/logo48.png" sizes="48x48" rel="icon" type="image/png">
+    <link href="../../_static/logo128.png" sizes="128x128" rel="icon" type="image/png">
+    <link href="../../_static/logo256.png" sizes="256x256" rel="icon" type="image/png">
+    <link href="../../_static/pyscopeIcon.svg" rel="icon" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../../_static/logo180.png" sizes="180x180" type="image/png">
+    <title>Observatory &#8212; pyscope 0.1.6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=79d558ae"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=30646c52"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Observatory';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ObservingConditions" href="pyscope.observatory.ObservingConditions.html" />
+    <link rel="prev" title="ObservatoryException" href="pyscope.observatory.ObservatoryException.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyscope_logo_small_gray.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/pyscope_logo_small.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../development/index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../development/index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../pyscope.observatory.html">observatory Module</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMCamera.html">ASCOMCamera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMCoverCalibrator.html">ASCOMCoverCalibrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMDevice.html">ASCOMDevice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMDome.html">ASCOMDome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMFilterWheel.html">ASCOMFilterWheel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMFocuser.html">ASCOMFocuser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMObservingConditions.html">ASCOMObservingConditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMRotator.html">ASCOMRotator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMSwitch.html">ASCOMSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMTelescope.html">ASCOMTelescope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.AstrometryNetWCS.html">AstrometryNetWCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Autofocus.html">Autofocus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.CoverCalibrator.html">CoverCalibrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Device.html">Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Dome.html">Dome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.FilterWheel.html">FilterWheel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Focuser.html">Focuser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.HTMLObservingConditions.html">HTMLObservingConditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.HTMLSafetyMonitor.html">HTMLSafetyMonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.IPCoverCalibrator.html">IPCoverCalibrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Maxim.html">Maxim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ObservatoryException.html">ObservatoryException</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Observatory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ObservingConditions.html">ObservingConditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.PinpointWCS.html">PinpointWCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.PWIAutofocus.html">PWIAutofocus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Rotator.html">Rotator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.SafetyMonitor.html">SafetyMonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Telescope.html">Telescope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.WCS.html">WCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.SimulatorServer.html">SimulatorServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.collect_calibration_set.html">collect_calibration_set</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.telrun.html">telrun Module</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.TelrunBlock.html">TelrunBlock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.TelrunOperator.html">TelrunOperator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.TelrunException.html">TelrunException</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.exoplanet_transits.html">exoplanet_transits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.init_telrun_dir.html">init_telrun_dir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.init_remote_dir.html">init_remote_dir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.mk_mosaic_schedule.html">mk_mosaic_schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.rst.html">rst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.schedtel.html">schedtel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.plot_schedule_gantt.html">plot_schedule_gantt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.start_telrun.html">start_telrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.start_syncfiles.html">start_syncfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.syncfiles.html">syncfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.reduction.html">reduction Module</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.avg_fits.html">avg_fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.calib_images.html">calib_images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.ccd_calib.html">ccd_calib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.fitslist.html">fitslist</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.analysis.html">analysis Module</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.analysis.calc_zmag.html">calc_zmag</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.utils.html">utils Module</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.utils.PyscopeException.html">PyscopeException</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.utils.airmass.html">airmass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.utils.pinpoint_solve.html">pinpoint_solve</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../pyscope.observatory.html" class="nav-link">observatory Module</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Observatory</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="observatory">
+<h1>Observatory<a class="headerlink" href="#observatory" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyscope.observatory.</span></span><span class="sig-name descname"><span class="pre">Observatory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L31-L4247"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-1">Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p class="rubric">Attributes Summary</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.autofocus" title="pyscope.observatory.Observatory.autofocus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autofocus</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.autofocus_driver" title="pyscope.observatory.Observatory.autofocus_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autofocus_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.autofocus_info" title="pyscope.observatory.Observatory.autofocus_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autofocus_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.autofocus_kwargs" title="pyscope.observatory.Observatory.autofocus_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autofocus_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.camera" title="pyscope.observatory.Observatory.camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">camera</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.camera_driver" title="pyscope.observatory.Observatory.camera_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">camera_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.camera_info" title="pyscope.observatory.Observatory.camera_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">camera_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.camera_kwargs" title="pyscope.observatory.Observatory.camera_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">camera_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cooler_setpoint" title="pyscope.observatory.Observatory.cooler_setpoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cooler_setpoint</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cooler_tolerance" title="pyscope.observatory.Observatory.cooler_tolerance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cooler_tolerance</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cover_calibrator" title="pyscope.observatory.Observatory.cover_calibrator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cover_calibrator</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cover_calibrator_alt" title="pyscope.observatory.Observatory.cover_calibrator_alt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cover_calibrator_alt</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cover_calibrator_az" title="pyscope.observatory.Observatory.cover_calibrator_az"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cover_calibrator_az</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cover_calibrator_driver" title="pyscope.observatory.Observatory.cover_calibrator_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cover_calibrator_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cover_calibrator_info" title="pyscope.observatory.Observatory.cover_calibrator_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cover_calibrator_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.cover_calibrator_kwargs" title="pyscope.observatory.Observatory.cover_calibrator_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cover_calibrator_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.current_focus_offset" title="pyscope.observatory.Observatory.current_focus_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">current_focus_offset</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.diameter" title="pyscope.observatory.Observatory.diameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diameter</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.dome" title="pyscope.observatory.Observatory.dome"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dome</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.dome_driver" title="pyscope.observatory.Observatory.dome_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dome_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.dome_info" title="pyscope.observatory.Observatory.dome_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dome_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.dome_kwargs" title="pyscope.observatory.Observatory.dome_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dome_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.elevation" title="pyscope.observatory.Observatory.elevation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">elevation</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.filter_focus_offsets" title="pyscope.observatory.Observatory.filter_focus_offsets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_focus_offsets</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.filter_wheel" title="pyscope.observatory.Observatory.filter_wheel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_wheel</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.filter_wheel_driver" title="pyscope.observatory.Observatory.filter_wheel_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_wheel_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.filter_wheel_info" title="pyscope.observatory.Observatory.filter_wheel_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_wheel_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.filter_wheel_kwargs" title="pyscope.observatory.Observatory.filter_wheel_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter_wheel_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.filters" title="pyscope.observatory.Observatory.filters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filters</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.focal_length" title="pyscope.observatory.Observatory.focal_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focal_length</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.focuser" title="pyscope.observatory.Observatory.focuser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focuser</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.focuser_driver" title="pyscope.observatory.Observatory.focuser_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focuser_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.focuser_info" title="pyscope.observatory.Observatory.focuser_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focuser_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.focuser_kwargs" title="pyscope.observatory.Observatory.focuser_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">focuser_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.instrument_description" title="pyscope.observatory.Observatory.instrument_description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">instrument_description</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.instrument_name" title="pyscope.observatory.Observatory.instrument_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">instrument_name</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.instrument_reconfiguration_times" title="pyscope.observatory.Observatory.instrument_reconfiguration_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">instrument_reconfiguration_times</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.last_camera_shutter_status" title="pyscope.observatory.Observatory.last_camera_shutter_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">last_camera_shutter_status</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.latitude" title="pyscope.observatory.Observatory.latitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.longitude" title="pyscope.observatory.Observatory.longitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.max_dimension" title="pyscope.observatory.Observatory.max_dimension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_dimension</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.maxim" title="pyscope.observatory.Observatory.maxim"><code class="xref py py-obj docutils literal notranslate"><span class="pre">maxim</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.min_altitude" title="pyscope.observatory.Observatory.min_altitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_altitude</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.observatory_info" title="pyscope.observatory.Observatory.observatory_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observatory_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.observatory_location" title="pyscope.observatory.Observatory.observatory_location"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observatory_location</span></code></a></p></td>
+<td><p class="linemarker linemarker-1">Returns the EarthLocation object for the observatory</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.observatory_time" title="pyscope.observatory.Observatory.observatory_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observatory_time</span></code></a></p></td>
+<td><p class="linemarker linemarker-1">Returns the current observatory time</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.observing_conditions" title="pyscope.observatory.Observatory.observing_conditions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observing_conditions</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.observing_conditions_driver" title="pyscope.observatory.Observatory.observing_conditions_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observing_conditions_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.observing_conditions_info" title="pyscope.observatory.Observatory.observing_conditions_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observing_conditions_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.observing_conditions_kwargs" title="pyscope.observatory.Observatory.observing_conditions_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observing_conditions_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.pixel_scale" title="pyscope.observatory.Observatory.pixel_scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pixel_scale</span></code></a></p></td>
+<td><p class="linemarker linemarker-1">Returns the pixel scale of the camera</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.plate_scale" title="pyscope.observatory.Observatory.plate_scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plate_scale</span></code></a></p></td>
+<td><p class="linemarker linemarker-1">Returns the plate scale of the telescope in arcsec/mm</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.rotator" title="pyscope.observatory.Observatory.rotator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotator</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.rotator_driver" title="pyscope.observatory.Observatory.rotator_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotator_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.rotator_info" title="pyscope.observatory.Observatory.rotator_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotator_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.rotator_kwargs" title="pyscope.observatory.Observatory.rotator_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotator_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.rotator_max_angle" title="pyscope.observatory.Observatory.rotator_max_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotator_max_angle</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.rotator_min_angle" title="pyscope.observatory.Observatory.rotator_min_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotator_min_angle</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.rotator_reverse" title="pyscope.observatory.Observatory.rotator_reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotator_reverse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.safety_monitor" title="pyscope.observatory.Observatory.safety_monitor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safety_monitor</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.safety_monitor_driver" title="pyscope.observatory.Observatory.safety_monitor_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safety_monitor_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.safety_monitor_info" title="pyscope.observatory.Observatory.safety_monitor_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safety_monitor_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.safety_monitor_kwargs" title="pyscope.observatory.Observatory.safety_monitor_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safety_monitor_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.settle_time" title="pyscope.observatory.Observatory.settle_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settle_time</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.site_name" title="pyscope.observatory.Observatory.site_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">site_name</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.slew_rate" title="pyscope.observatory.Observatory.slew_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">slew_rate</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.switch" title="pyscope.observatory.Observatory.switch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">switch</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.switch_driver" title="pyscope.observatory.Observatory.switch_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">switch_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.switch_info" title="pyscope.observatory.Observatory.switch_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">switch_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.switch_kwargs" title="pyscope.observatory.Observatory.switch_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">switch_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.telescope" title="pyscope.observatory.Observatory.telescope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">telescope</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.telescope_driver" title="pyscope.observatory.Observatory.telescope_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">telescope_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.telescope_info" title="pyscope.observatory.Observatory.telescope_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">telescope_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.telescope_kwargs" title="pyscope.observatory.Observatory.telescope_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">telescope_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.threads_info" title="pyscope.observatory.Observatory.threads_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">threads_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.wcs_driver" title="pyscope.observatory.Observatory.wcs_driver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wcs_driver</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.wcs_info" title="pyscope.observatory.Observatory.wcs_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wcs_info</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.wcs_kwargs" title="pyscope.observatory.Observatory.wcs_kwargs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wcs_kwargs</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.connect_all" title="pyscope.observatory.Observatory.connect_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect_all</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.disconnect_all" title="pyscope.observatory.Observatory.disconnect_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disconnect_all</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Disconnects from the observatory</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.get_current_object" title="pyscope.observatory.Observatory.get_current_object"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_object</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Returns the current pointing of the telescope in ICRS</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.get_object_altaz" title="pyscope.observatory.Observatory.get_object_altaz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_object_altaz</span></code></a>([obj, ra, dec, unit, frame, t])</p></td>
+<td><p class="linemarker linemarker-1">Returns the altitude and azimuth of the requested object at the requested time</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.get_object_slew" title="pyscope.observatory.Observatory.get_object_slew"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_object_slew</span></code></a>([obj, ra, dec, unit, frame, t])</p></td>
+<td><p class="linemarker linemarker-1">Determines the slew coordinates of the requested object at the requested time</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.lst" title="pyscope.observatory.Observatory.lst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lst</span></code></a>([t])</p></td>
+<td><p class="linemarker linemarker-1">Returns the local sidereal time</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.moon_altaz" title="pyscope.observatory.Observatory.moon_altaz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moon_altaz</span></code></a>([t])</p></td>
+<td><p class="linemarker linemarker-1">Returns the current altitude of the moon</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.moon_illumination" title="pyscope.observatory.Observatory.moon_illumination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">moon_illumination</span></code></a>([t])</p></td>
+<td><p class="linemarker linemarker-1">Returns the current illumination of the moon</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.recenter" title="pyscope.observatory.Observatory.recenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recenter</span></code></a>([obj, ra, dec, unit, frame, ...])</p></td>
+<td><p class="linemarker linemarker-1">Attempts to place the requested right ascension and declination at the requested pixel location on the detector.</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.run_autofocus" title="pyscope.observatory.Observatory.run_autofocus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_autofocus</span></code></a>([exposure, midpoint, nsteps, ...])</p></td>
+<td><p class="linemarker linemarker-1">Runs the autofocus routine</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.safety_status" title="pyscope.observatory.Observatory.safety_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safety_status</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Returns the status of the safety monitors</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.save_config" title="pyscope.observatory.Observatory.save_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_config</span></code></a>(filename)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.save_last_image" title="pyscope.observatory.Observatory.save_last_image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_last_image</span></code></a>(filename[, frametyp, ...])</p></td>
+<td><p class="linemarker linemarker-1">Saves the current image</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.set_filter_offset_focuser" title="pyscope.observatory.Observatory.set_filter_offset_focuser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_filter_offset_focuser</span></code></a>([filter_index, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.shutdown" title="pyscope.observatory.Observatory.shutdown"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shutdown</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Shuts down the observatory</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.slew_to_coordinates" title="pyscope.observatory.Observatory.slew_to_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">slew_to_coordinates</span></code></a>([obj, ra, dec, unit, ...])</p></td>
+<td><p class="linemarker linemarker-1">Slews the telescope to a given ra and dec</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.start_derotation_thread" title="pyscope.observatory.Observatory.start_derotation_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_derotation_thread</span></code></a>([update_interval])</p></td>
+<td><p class="linemarker linemarker-1">Begin a derotation thread for the current ra and dec</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.start_observing_conditions_thread" title="pyscope.observatory.Observatory.start_observing_conditions_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_observing_conditions_thread</span></code></a>([...])</p></td>
+<td><p class="linemarker linemarker-1">Starts the observing conditions updating thread</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.start_safety_monitor_thread" title="pyscope.observatory.Observatory.start_safety_monitor_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_safety_monitor_thread</span></code></a>([on_fail, ...])</p></td>
+<td><p class="linemarker linemarker-1">Starts the safety monitor updating thread</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.stop_derotation_thread" title="pyscope.observatory.Observatory.stop_derotation_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_derotation_thread</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Stops the derotation thread</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.stop_observing_conditions_thread" title="pyscope.observatory.Observatory.stop_observing_conditions_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_observing_conditions_thread</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Stops the observing conditions updating thread</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.stop_safety_monitor_thread" title="pyscope.observatory.Observatory.stop_safety_monitor_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_safety_monitor_thread</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Stops the safety monitor updating thread</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.sun_altaz" title="pyscope.observatory.Observatory.sun_altaz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sun_altaz</span></code></a>([t])</p></td>
+<td><p class="linemarker linemarker-1">Returns the altitude of the sun</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.switch_status" title="pyscope.observatory.Observatory.switch_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">switch_status</span></code></a>()</p></td>
+<td><p class="linemarker linemarker-1">Returns the status of the switches</p></td>
+</tr>
+<tr class="row-odd"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.take_darks" title="pyscope.observatory.Observatory.take_darks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take_darks</span></code></a>(exposures, readouts, binnings[, ...])</p></td>
+<td><p class="linemarker linemarker-1">Takes a sequence of dark frames</p></td>
+</tr>
+<tr class="row-even"><td><p class="linemarker linemarker-1"><a class="reference internal" href="#pyscope.observatory.Observatory.take_flats" title="pyscope.observatory.Observatory.take_flats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">take_flats</span></code></a>(filter_exposure[, ...])</p></td>
+<td><p class="linemarker linemarker-1">Takes a sequence of flat frames</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.autofocus">
+<span class="sig-name descname"><span class="pre">autofocus</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.autofocus" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.autofocus_driver">
+<span class="sig-name descname"><span class="pre">autofocus_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.autofocus_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.autofocus_info">
+<span class="sig-name descname"><span class="pre">autofocus_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.autofocus_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.autofocus_kwargs">
+<span class="sig-name descname"><span class="pre">autofocus_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.autofocus_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.camera">
+<span class="sig-name descname"><span class="pre">camera</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.camera" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.camera_driver">
+<span class="sig-name descname"><span class="pre">camera_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.camera_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.camera_info">
+<span class="sig-name descname"><span class="pre">camera_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.camera_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.camera_kwargs">
+<span class="sig-name descname"><span class="pre">camera_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.camera_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cooler_setpoint">
+<span class="sig-name descname"><span class="pre">cooler_setpoint</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cooler_setpoint" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cooler_tolerance">
+<span class="sig-name descname"><span class="pre">cooler_tolerance</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cooler_tolerance" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cover_calibrator">
+<span class="sig-name descname"><span class="pre">cover_calibrator</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cover_calibrator" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cover_calibrator_alt">
+<span class="sig-name descname"><span class="pre">cover_calibrator_alt</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cover_calibrator_alt" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cover_calibrator_az">
+<span class="sig-name descname"><span class="pre">cover_calibrator_az</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cover_calibrator_az" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cover_calibrator_driver">
+<span class="sig-name descname"><span class="pre">cover_calibrator_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cover_calibrator_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cover_calibrator_info">
+<span class="sig-name descname"><span class="pre">cover_calibrator_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cover_calibrator_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.cover_calibrator_kwargs">
+<span class="sig-name descname"><span class="pre">cover_calibrator_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.cover_calibrator_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.current_focus_offset">
+<span class="sig-name descname"><span class="pre">current_focus_offset</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.current_focus_offset" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.diameter">
+<span class="sig-name descname"><span class="pre">diameter</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.diameter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.dome">
+<span class="sig-name descname"><span class="pre">dome</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.dome" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.dome_driver">
+<span class="sig-name descname"><span class="pre">dome_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.dome_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.dome_info">
+<span class="sig-name descname"><span class="pre">dome_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.dome_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.dome_kwargs">
+<span class="sig-name descname"><span class="pre">dome_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.dome_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.elevation">
+<span class="sig-name descname"><span class="pre">elevation</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.elevation" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.filter_focus_offsets">
+<span class="sig-name descname"><span class="pre">filter_focus_offsets</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.filter_focus_offsets" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.filter_wheel">
+<span class="sig-name descname"><span class="pre">filter_wheel</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.filter_wheel" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.filter_wheel_driver">
+<span class="sig-name descname"><span class="pre">filter_wheel_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.filter_wheel_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.filter_wheel_info">
+<span class="sig-name descname"><span class="pre">filter_wheel_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.filter_wheel_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.filter_wheel_kwargs">
+<span class="sig-name descname"><span class="pre">filter_wheel_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.filter_wheel_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.filters">
+<span class="sig-name descname"><span class="pre">filters</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.filters" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.focal_length">
+<span class="sig-name descname"><span class="pre">focal_length</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.focal_length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.focuser">
+<span class="sig-name descname"><span class="pre">focuser</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.focuser" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.focuser_driver">
+<span class="sig-name descname"><span class="pre">focuser_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.focuser_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.focuser_info">
+<span class="sig-name descname"><span class="pre">focuser_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.focuser_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.focuser_kwargs">
+<span class="sig-name descname"><span class="pre">focuser_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.focuser_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.instrument_description">
+<span class="sig-name descname"><span class="pre">instrument_description</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.instrument_description" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.instrument_name">
+<span class="sig-name descname"><span class="pre">instrument_name</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.instrument_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.instrument_reconfiguration_times">
+<span class="sig-name descname"><span class="pre">instrument_reconfiguration_times</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.instrument_reconfiguration_times" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.last_camera_shutter_status">
+<span class="sig-name descname"><span class="pre">last_camera_shutter_status</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.last_camera_shutter_status" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.latitude">
+<span class="sig-name descname"><span class="pre">latitude</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.latitude" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.longitude">
+<span class="sig-name descname"><span class="pre">longitude</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.longitude" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.max_dimension">
+<span class="sig-name descname"><span class="pre">max_dimension</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.max_dimension" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.maxim">
+<span class="sig-name descname"><span class="pre">maxim</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.maxim" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.min_altitude">
+<span class="sig-name descname"><span class="pre">min_altitude</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.min_altitude" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.observatory_info">
+<span class="sig-name descname"><span class="pre">observatory_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.observatory_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.observatory_location">
+<span class="sig-name descname"><span class="pre">observatory_location</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.observatory_location" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the EarthLocation object for the observatory</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.observatory_time">
+<span class="sig-name descname"><span class="pre">observatory_time</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.observatory_time" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the current observatory time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.observing_conditions">
+<span class="sig-name descname"><span class="pre">observing_conditions</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.observing_conditions" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.observing_conditions_driver">
+<span class="sig-name descname"><span class="pre">observing_conditions_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.observing_conditions_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.observing_conditions_info">
+<span class="sig-name descname"><span class="pre">observing_conditions_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.observing_conditions_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.observing_conditions_kwargs">
+<span class="sig-name descname"><span class="pre">observing_conditions_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.observing_conditions_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.pixel_scale">
+<span class="sig-name descname"><span class="pre">pixel_scale</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.pixel_scale" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the pixel scale of the camera</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.plate_scale">
+<span class="sig-name descname"><span class="pre">plate_scale</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.plate_scale" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the plate scale of the telescope in arcsec/mm</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.rotator">
+<span class="sig-name descname"><span class="pre">rotator</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.rotator" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.rotator_driver">
+<span class="sig-name descname"><span class="pre">rotator_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.rotator_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.rotator_info">
+<span class="sig-name descname"><span class="pre">rotator_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.rotator_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.rotator_kwargs">
+<span class="sig-name descname"><span class="pre">rotator_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.rotator_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.rotator_max_angle">
+<span class="sig-name descname"><span class="pre">rotator_max_angle</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.rotator_max_angle" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.rotator_min_angle">
+<span class="sig-name descname"><span class="pre">rotator_min_angle</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.rotator_min_angle" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.rotator_reverse">
+<span class="sig-name descname"><span class="pre">rotator_reverse</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.rotator_reverse" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.safety_monitor">
+<span class="sig-name descname"><span class="pre">safety_monitor</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.safety_monitor" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.safety_monitor_driver">
+<span class="sig-name descname"><span class="pre">safety_monitor_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.safety_monitor_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.safety_monitor_info">
+<span class="sig-name descname"><span class="pre">safety_monitor_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.safety_monitor_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.safety_monitor_kwargs">
+<span class="sig-name descname"><span class="pre">safety_monitor_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.safety_monitor_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.settle_time">
+<span class="sig-name descname"><span class="pre">settle_time</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.settle_time" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.site_name">
+<span class="sig-name descname"><span class="pre">site_name</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.site_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.slew_rate">
+<span class="sig-name descname"><span class="pre">slew_rate</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.slew_rate" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.switch">
+<span class="sig-name descname"><span class="pre">switch</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.switch" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.switch_driver">
+<span class="sig-name descname"><span class="pre">switch_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.switch_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.switch_info">
+<span class="sig-name descname"><span class="pre">switch_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.switch_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.switch_kwargs">
+<span class="sig-name descname"><span class="pre">switch_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.switch_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.telescope">
+<span class="sig-name descname"><span class="pre">telescope</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.telescope" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.telescope_driver">
+<span class="sig-name descname"><span class="pre">telescope_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.telescope_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.telescope_info">
+<span class="sig-name descname"><span class="pre">telescope_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.telescope_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.telescope_kwargs">
+<span class="sig-name descname"><span class="pre">telescope_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.telescope_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.threads_info">
+<span class="sig-name descname"><span class="pre">threads_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.threads_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.wcs_driver">
+<span class="sig-name descname"><span class="pre">wcs_driver</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.wcs_driver" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.wcs_info">
+<span class="sig-name descname"><span class="pre">wcs_info</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.wcs_info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.wcs_kwargs">
+<span class="sig-name descname"><span class="pre">wcs_kwargs</span></span><a class="headerlink" href="#pyscope.observatory.Observatory.wcs_kwargs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.connect_all">
+<span class="sig-name descname"><span class="pre">connect_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L726-L803"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.connect_all" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.disconnect_all">
+<span class="sig-name descname"><span class="pre">disconnect_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L805-L882"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.disconnect_all" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Disconnects from the observatory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.get_current_object">
+<span class="sig-name descname"><span class="pre">get_current_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1121-L1151"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.get_current_object" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the current pointing of the telescope in ICRS</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.get_object_altaz">
+<span class="sig-name descname"><span class="pre">get_object_altaz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('hr',</span> <span class="pre">'deg')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'icrs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1068-L1084"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.get_object_altaz" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the altitude and azimuth of the requested object at the requested time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.get_object_slew">
+<span class="sig-name descname"><span class="pre">get_object_slew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('hr',</span> <span class="pre">'deg')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'icrs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1086-L1119"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.get_object_slew" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Determines the slew coordinates of the requested object at the requested time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.lst">
+<span class="sig-name descname"><span class="pre">lst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1004-L1015"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.lst" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the local sidereal time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.moon_altaz">
+<span class="sig-name descname"><span class="pre">moon_altaz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1033-L1047"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.moon_altaz" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the current altitude of the moon</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.moon_illumination">
+<span class="sig-name descname"><span class="pre">moon_illumination</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1049-L1066"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.moon_illumination" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the current illumination of the moon</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.recenter">
+<span class="sig-name descname"><span class="pre">recenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('hr',</span> <span class="pre">'deg')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'icrs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_x_pixel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_y_pixel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_offset_dec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_and_refine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exposure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_mount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_initial_slew</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1795-L2070"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.recenter" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Attempts to place the requested right ascension and declination at the requested pixel location
+on the detector.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>obj</strong><span class="classifier">str or <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SkyCoord</span></code></a>, optional</span></dt><dd><p class="linemarker linemarker-9">The name of the target or a <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SkyCoord</span></code></a> object of the target. If a string,
+a query will be made to the SIMBAD database to get the coordinates. If a <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SkyCoord</span></code></a>
+object, the coordinates will be used directly. If None, the ra and dec parameters must be specified.</p>
+</dd>
+<dt><strong>ra</strong><span class="classifier"><a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.Longitude.html#astropy.coordinates.Longitude" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Longitude</span></code></a>-like, optional</span></dt><dd><p class="linemarker linemarker-14">The ICRS J2000 right ascension of the target that will initialize a <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SkyCoord</span></code></a>
+object. This will override the ra value in the object parameter.</p>
+</dd>
+<dt><strong>dec</strong><span class="classifier"><a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.Latitude.html#astropy.coordinates.Latitude" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Latitude</span></code></a>-like, optional</span></dt><dd><p class="linemarker linemarker-18">The ICRS J2000 declination of the target that will initialize a <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SkyCoord</span></code></a>
+object. This will override the dec value in the object parameter.</p>
+</dd>
+<dt><strong>unit</strong><span class="classifier">tuple, optional</span></dt><dd><p class="linemarker linemarker-22">The units of the ra and dec parameters. Default is (‘hr’, ‘deg’).</p>
+</dd>
+<dt><strong>frame</strong><span class="classifier">str, optional</span></dt><dd><p class="linemarker linemarker-25">The coordinate frame of the ra and dec parameters. Default is ‘icrs’.</p>
+</dd>
+<dt><strong>target_x_pixel</strong><span class="classifier">float, optional</span></dt><dd><p class="linemarker linemarker-28">The desired x pixel location of the target.</p>
+</dd>
+<dt><strong>target_y_pixel</strong><span class="classifier">float, optional</span></dt><dd><p class="linemarker linemarker-31">The desired y pixel location of the target.</p>
+</dd>
+<dt><strong>initial_offset_dec</strong><span class="classifier">float, optional</span></dt><dd><p class="linemarker linemarker-34">The initial offset of declination in arcseconds to use for the slew. Default is 0. Ignored if
+do_initial_slew is False.</p>
+</dd>
+<dt><strong>check_and_refine</strong><span class="classifier">bool, optional</span></dt><dd><p class="linemarker linemarker-38">Whether or not to check the offset and refine the slew. Default is True.</p>
+</dd>
+<dt><strong>max_attempts</strong><span class="classifier">int, optional</span></dt><dd><p class="linemarker linemarker-41">The maximum number of attempts to make to center the target. Default is 5. Ignored if
+check_and_refine is False.</p>
+</dd>
+<dt><strong>tolerance</strong><span class="classifier">float, optional</span></dt><dd><p class="linemarker linemarker-45">The tolerance in pixels to consider the target centered. Default is 3. Ignored if
+check_and_refine is False.</p>
+</dd>
+<dt><strong>exposure</strong><span class="classifier">float, optional</span></dt><dd><p class="linemarker linemarker-49">The exposure time in seconds to use for the centering images. Default is 10.</p>
+</dd>
+<dt><strong>save_images</strong><span class="classifier">bool, optional</span></dt><dd><p class="linemarker linemarker-52">Whether or not to save the centering images. Default is False.</p>
+</dd>
+<dt><strong>save_path</strong><span class="classifier">str, optional</span></dt><dd><p class="linemarker linemarker-55">The path to save the centering images to. Default is the current directory. Ignored if
+save_images is False.</p>
+</dd>
+<dt><strong>sync_mount</strong><span class="classifier">bool, optional</span></dt><dd><p class="linemarker linemarker-59">Whether or not to sync the mount after the target is centered. Default is False. Note that
+if the target pixel location is not the center of the detector, the mount will be synced
+to this offset for all future slews.</p>
+</dd>
+<dt><strong>settle_time</strong><span class="classifier">float, optional</span></dt><dd><p class="linemarker linemarker-64">The time in seconds to wait after the slew before checking the offset. Default is 5.</p>
+</dd>
+<dt><strong>do_initial_slew</strong><span class="classifier">bool, optional</span></dt><dd><p class="linemarker linemarker-67">Whether or not to do the initial slew to the target. Default is True. If False, the current
+telescope position will be used as the starting point for the centering routine.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>success</strong><span class="classifier">bool</span></dt><dd><p class="linemarker linemarker-73">True if the target was successfully centered, False otherwise.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.run_autofocus">
+<span class="sig-name descname"><span class="pre">run_autofocus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exposure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">midpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_current_pointing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1699-L1793"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.run_autofocus" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Runs the autofocus routine</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.safety_status">
+<span class="sig-name descname"><span class="pre">safety_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1674-L1683"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.safety_status" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the status of the safety monitors</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.save_config">
+<span class="sig-name descname"><span class="pre">save_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L2305-L2308"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.save_config" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.save_last_image">
+<span class="sig-name descname"><span class="pre">save_last_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frametyp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_wcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_fwhm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1153-L1292"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.save_last_image" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Saves the current image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.set_filter_offset_focuser">
+<span class="sig-name descname"><span class="pre">set_filter_offset_focuser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1294-L1363"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.set_filter_offset_focuser" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.shutdown">
+<span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L884-L1002"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.shutdown" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Shuts down the observatory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.slew_to_coordinates">
+<span class="sig-name descname"><span class="pre">slew_to_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('hr',</span> <span class="pre">'deg')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'icrs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_dome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_rotator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">home_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_slew</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">track</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1365-L1497"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.slew_to_coordinates" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Slews the telescope to a given ra and dec</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.start_derotation_thread">
+<span class="sig-name descname"><span class="pre">start_derotation_thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1600-L1623"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.start_derotation_thread" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Begin a derotation thread for the current ra and dec</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.start_observing_conditions_thread">
+<span class="sig-name descname"><span class="pre">start_observing_conditions_thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">update_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1499-L1516"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.start_observing_conditions_thread" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Starts the observing conditions updating thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.start_safety_monitor_thread">
+<span class="sig-name descname"><span class="pre">start_safety_monitor_thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on_fail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1541-L1567"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.start_safety_monitor_thread" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Starts the safety monitor updating thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.stop_derotation_thread">
+<span class="sig-name descname"><span class="pre">stop_derotation_thread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1625-L1639"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.stop_derotation_thread" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Stops the derotation thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.stop_observing_conditions_thread">
+<span class="sig-name descname"><span class="pre">stop_observing_conditions_thread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1518-L1532"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.stop_observing_conditions_thread" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Stops the observing conditions updating thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.stop_safety_monitor_thread">
+<span class="sig-name descname"><span class="pre">stop_safety_monitor_thread</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1569-L1583"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.stop_safety_monitor_thread" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Stops the safety monitor updating thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.sun_altaz">
+<span class="sig-name descname"><span class="pre">sun_altaz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1017-L1031"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.sun_altaz" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the altitude of the sun</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.switch_status">
+<span class="sig-name descname"><span class="pre">switch_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L1685-L1697"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.switch_status" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Returns the status of the switches</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.take_darks">
+<span class="sig-name descname"><span class="pre">take_darks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exposures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readouts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binnings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L2241-L2303"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.take_darks" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Takes a sequence of dark frames</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyscope.observatory.Observatory.take_flats">
+<span class="sig-name descname"><span class="pre">take_flats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter_exposure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readouts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binnings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['1x1']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">home_telescope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_telescope_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no</span> <span class="pre">change'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/observatory/observatory.py#L2072-L2239"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.observatory.Observatory.take_flats" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Takes a sequence of flat frames</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pyscope.observatory.ObservatoryException.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">ObservatoryException</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pyscope.observatory.ObservingConditions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">ObservingConditions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory"><code class="docutils literal notranslate"><span class="pre">Observatory</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.autofocus"><code class="docutils literal notranslate"><span class="pre">Observatory.autofocus</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.autofocus_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.autofocus_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.autofocus_info"><code class="docutils literal notranslate"><span class="pre">Observatory.autofocus_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.autofocus_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.autofocus_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.camera"><code class="docutils literal notranslate"><span class="pre">Observatory.camera</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.camera_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.camera_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.camera_info"><code class="docutils literal notranslate"><span class="pre">Observatory.camera_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.camera_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.camera_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cooler_setpoint"><code class="docutils literal notranslate"><span class="pre">Observatory.cooler_setpoint</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cooler_tolerance"><code class="docutils literal notranslate"><span class="pre">Observatory.cooler_tolerance</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cover_calibrator"><code class="docutils literal notranslate"><span class="pre">Observatory.cover_calibrator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cover_calibrator_alt"><code class="docutils literal notranslate"><span class="pre">Observatory.cover_calibrator_alt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cover_calibrator_az"><code class="docutils literal notranslate"><span class="pre">Observatory.cover_calibrator_az</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cover_calibrator_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.cover_calibrator_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cover_calibrator_info"><code class="docutils literal notranslate"><span class="pre">Observatory.cover_calibrator_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.cover_calibrator_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.cover_calibrator_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.current_focus_offset"><code class="docutils literal notranslate"><span class="pre">Observatory.current_focus_offset</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.diameter"><code class="docutils literal notranslate"><span class="pre">Observatory.diameter</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.dome"><code class="docutils literal notranslate"><span class="pre">Observatory.dome</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.dome_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.dome_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.dome_info"><code class="docutils literal notranslate"><span class="pre">Observatory.dome_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.dome_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.dome_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.elevation"><code class="docutils literal notranslate"><span class="pre">Observatory.elevation</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.filter_focus_offsets"><code class="docutils literal notranslate"><span class="pre">Observatory.filter_focus_offsets</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.filter_wheel"><code class="docutils literal notranslate"><span class="pre">Observatory.filter_wheel</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.filter_wheel_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.filter_wheel_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.filter_wheel_info"><code class="docutils literal notranslate"><span class="pre">Observatory.filter_wheel_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.filter_wheel_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.filter_wheel_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.filters"><code class="docutils literal notranslate"><span class="pre">Observatory.filters</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.focal_length"><code class="docutils literal notranslate"><span class="pre">Observatory.focal_length</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.focuser"><code class="docutils literal notranslate"><span class="pre">Observatory.focuser</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.focuser_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.focuser_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.focuser_info"><code class="docutils literal notranslate"><span class="pre">Observatory.focuser_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.focuser_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.focuser_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.instrument_description"><code class="docutils literal notranslate"><span class="pre">Observatory.instrument_description</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.instrument_name"><code class="docutils literal notranslate"><span class="pre">Observatory.instrument_name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.instrument_reconfiguration_times"><code class="docutils literal notranslate"><span class="pre">Observatory.instrument_reconfiguration_times</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.last_camera_shutter_status"><code class="docutils literal notranslate"><span class="pre">Observatory.last_camera_shutter_status</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.latitude"><code class="docutils literal notranslate"><span class="pre">Observatory.latitude</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.longitude"><code class="docutils literal notranslate"><span class="pre">Observatory.longitude</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.max_dimension"><code class="docutils literal notranslate"><span class="pre">Observatory.max_dimension</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.maxim"><code class="docutils literal notranslate"><span class="pre">Observatory.maxim</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.min_altitude"><code class="docutils literal notranslate"><span class="pre">Observatory.min_altitude</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.observatory_info"><code class="docutils literal notranslate"><span class="pre">Observatory.observatory_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.observatory_location"><code class="docutils literal notranslate"><span class="pre">Observatory.observatory_location</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.observatory_time"><code class="docutils literal notranslate"><span class="pre">Observatory.observatory_time</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.observing_conditions"><code class="docutils literal notranslate"><span class="pre">Observatory.observing_conditions</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.observing_conditions_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.observing_conditions_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.observing_conditions_info"><code class="docutils literal notranslate"><span class="pre">Observatory.observing_conditions_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.observing_conditions_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.observing_conditions_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.pixel_scale"><code class="docutils literal notranslate"><span class="pre">Observatory.pixel_scale</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.plate_scale"><code class="docutils literal notranslate"><span class="pre">Observatory.plate_scale</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.rotator"><code class="docutils literal notranslate"><span class="pre">Observatory.rotator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.rotator_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.rotator_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.rotator_info"><code class="docutils literal notranslate"><span class="pre">Observatory.rotator_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.rotator_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.rotator_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.rotator_max_angle"><code class="docutils literal notranslate"><span class="pre">Observatory.rotator_max_angle</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.rotator_min_angle"><code class="docutils literal notranslate"><span class="pre">Observatory.rotator_min_angle</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.rotator_reverse"><code class="docutils literal notranslate"><span class="pre">Observatory.rotator_reverse</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.safety_monitor"><code class="docutils literal notranslate"><span class="pre">Observatory.safety_monitor</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.safety_monitor_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.safety_monitor_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.safety_monitor_info"><code class="docutils literal notranslate"><span class="pre">Observatory.safety_monitor_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.safety_monitor_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.safety_monitor_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.settle_time"><code class="docutils literal notranslate"><span class="pre">Observatory.settle_time</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.site_name"><code class="docutils literal notranslate"><span class="pre">Observatory.site_name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.slew_rate"><code class="docutils literal notranslate"><span class="pre">Observatory.slew_rate</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.switch"><code class="docutils literal notranslate"><span class="pre">Observatory.switch</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.switch_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.switch_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.switch_info"><code class="docutils literal notranslate"><span class="pre">Observatory.switch_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.switch_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.switch_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.telescope"><code class="docutils literal notranslate"><span class="pre">Observatory.telescope</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.telescope_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.telescope_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.telescope_info"><code class="docutils literal notranslate"><span class="pre">Observatory.telescope_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.telescope_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.telescope_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.threads_info"><code class="docutils literal notranslate"><span class="pre">Observatory.threads_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.wcs_driver"><code class="docutils literal notranslate"><span class="pre">Observatory.wcs_driver</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.wcs_info"><code class="docutils literal notranslate"><span class="pre">Observatory.wcs_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.wcs_kwargs"><code class="docutils literal notranslate"><span class="pre">Observatory.wcs_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.connect_all"><code class="docutils literal notranslate"><span class="pre">Observatory.connect_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.disconnect_all"><code class="docutils literal notranslate"><span class="pre">Observatory.disconnect_all()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.get_current_object"><code class="docutils literal notranslate"><span class="pre">Observatory.get_current_object()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.get_object_altaz"><code class="docutils literal notranslate"><span class="pre">Observatory.get_object_altaz()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.get_object_slew"><code class="docutils literal notranslate"><span class="pre">Observatory.get_object_slew()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.lst"><code class="docutils literal notranslate"><span class="pre">Observatory.lst()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.moon_altaz"><code class="docutils literal notranslate"><span class="pre">Observatory.moon_altaz()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.moon_illumination"><code class="docutils literal notranslate"><span class="pre">Observatory.moon_illumination()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.recenter"><code class="docutils literal notranslate"><span class="pre">Observatory.recenter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.run_autofocus"><code class="docutils literal notranslate"><span class="pre">Observatory.run_autofocus()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.safety_status"><code class="docutils literal notranslate"><span class="pre">Observatory.safety_status()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.save_config"><code class="docutils literal notranslate"><span class="pre">Observatory.save_config()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.save_last_image"><code class="docutils literal notranslate"><span class="pre">Observatory.save_last_image()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.set_filter_offset_focuser"><code class="docutils literal notranslate"><span class="pre">Observatory.set_filter_offset_focuser()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.shutdown"><code class="docutils literal notranslate"><span class="pre">Observatory.shutdown()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.slew_to_coordinates"><code class="docutils literal notranslate"><span class="pre">Observatory.slew_to_coordinates()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.start_derotation_thread"><code class="docutils literal notranslate"><span class="pre">Observatory.start_derotation_thread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.start_observing_conditions_thread"><code class="docutils literal notranslate"><span class="pre">Observatory.start_observing_conditions_thread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.start_safety_monitor_thread"><code class="docutils literal notranslate"><span class="pre">Observatory.start_safety_monitor_thread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.stop_derotation_thread"><code class="docutils literal notranslate"><span class="pre">Observatory.stop_derotation_thread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.stop_observing_conditions_thread"><code class="docutils literal notranslate"><span class="pre">Observatory.stop_observing_conditions_thread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.stop_safety_monitor_thread"><code class="docutils literal notranslate"><span class="pre">Observatory.stop_safety_monitor_thread()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.sun_altaz"><code class="docutils literal notranslate"><span class="pre">Observatory.sun_altaz()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.switch_status"><code class="docutils literal notranslate"><span class="pre">Observatory.switch_status()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.take_darks"><code class="docutils literal notranslate"><span class="pre">Observatory.take_darks()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.observatory.Observatory.take_flats"><code class="docutils literal notranslate"><span class="pre">Observatory.take_flats()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/api/auto_api/pyscope.observatory.Observatory.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Walter Golay.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.5.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

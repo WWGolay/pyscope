@@ -1,0 +1,7 @@
+TelrunBlock
+===========
+
+.. currentmodule:: pyscope.telrun
+
+.. autoclass:: TelrunBlock
+   :show-inheritance:

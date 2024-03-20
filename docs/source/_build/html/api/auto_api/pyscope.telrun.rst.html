@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <link href="../../_static/logo16.png" sizes="16x16" rel="icon" type="image/png">
+    <link href="../../_static/logo32.png" sizes="32x32" rel="icon" type="image/png">
+    <link href="../../_static/logo48.png" sizes="48x48" rel="icon" type="image/png">
+    <link href="../../_static/logo128.png" sizes="128x128" rel="icon" type="image/png">
+    <link href="../../_static/logo256.png" sizes="256x256" rel="icon" type="image/png">
+    <link href="../../_static/pyscopeIcon.svg" rel="icon" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../../_static/logo180.png" sizes="180x180" type="image/png">
+    <title>rst &#8212; pyscope 0.1.6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=79d558ae"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=30646c52"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.rst';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="schedtel" href="pyscope.telrun.schedtel.html" />
+    <link rel="prev" title="mk_mosaic_schedule" href="pyscope.telrun.mk_mosaic_schedule.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyscope_logo_small_gray.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/pyscope_logo_small.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../development/index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../development/index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.observatory.html">observatory Module</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMCamera.html">ASCOMCamera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMCoverCalibrator.html">ASCOMCoverCalibrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMDevice.html">ASCOMDevice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMDome.html">ASCOMDome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMFilterWheel.html">ASCOMFilterWheel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMFocuser.html">ASCOMFocuser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMObservingConditions.html">ASCOMObservingConditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMRotator.html">ASCOMRotator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMSwitch.html">ASCOMSwitch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ASCOMTelescope.html">ASCOMTelescope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.AstrometryNetWCS.html">AstrometryNetWCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Autofocus.html">Autofocus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.CoverCalibrator.html">CoverCalibrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Device.html">Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Dome.html">Dome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.FilterWheel.html">FilterWheel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Focuser.html">Focuser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.HTMLObservingConditions.html">HTMLObservingConditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.HTMLSafetyMonitor.html">HTMLSafetyMonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.IPCoverCalibrator.html">IPCoverCalibrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Maxim.html">Maxim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ObservatoryException.html">ObservatoryException</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Observatory.html">Observatory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.ObservingConditions.html">ObservingConditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.PinpointWCS.html">PinpointWCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.PWIAutofocus.html">PWIAutofocus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Rotator.html">Rotator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.SafetyMonitor.html">SafetyMonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Switch.html">Switch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.Telescope.html">Telescope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.WCS.html">WCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.SimulatorServer.html">SimulatorServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.observatory.collect_calibration_set.html">collect_calibration_set</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../pyscope.telrun.html">telrun Module</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.TelrunBlock.html">TelrunBlock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.TelrunOperator.html">TelrunOperator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.TelrunException.html">TelrunException</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.exoplanet_transits.html">exoplanet_transits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.init_telrun_dir.html">init_telrun_dir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.init_remote_dir.html">init_remote_dir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.mk_mosaic_schedule.html">mk_mosaic_schedule</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">rst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.schedtel.html">schedtel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.plot_schedule_gantt.html">plot_schedule_gantt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.start_telrun.html">start_telrun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.start_syncfiles.html">start_syncfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.telrun.syncfiles.html">syncfiles</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.reduction.html">reduction Module</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.avg_fits.html">avg_fits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.calib_images.html">calib_images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.ccd_calib.html">ccd_calib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.reduction.fitslist.html">fitslist</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.analysis.html">analysis Module</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.analysis.calc_zmag.html">calc_zmag</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pyscope.utils.html">utils Module</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.utils.PyscopeException.html">PyscopeException</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.utils.airmass.html">airmass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyscope.utils.pinpoint_solve.html">pinpoint_solve</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../pyscope.telrun.html" class="nav-link">telrun Module</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">rst</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="rst">
+<h1>rst<a class="headerlink" href="#rst" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyscope.telrun.rst">
+<span class="sig-prename descclassname"><span class="pre">pyscope.telrun.</span></span><span class="sig-name descname"><span class="pre">rst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observatory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./config/observatory.cfg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/WWGolay/pyscope/blob/main/pyscope/telrun/rst.py#L23-L354"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyscope.telrun.rst" title="Link to this definition">#</a></dt>
+<dd><p class="linemarker linemarker-2">Calculate the rise, set, and transit times for a given source or dusk and
+dawn times for the observatory.</p>
+<p class="linemarker linemarker-5">The observatory configuration file is required to calculate the rise, set, and
+transit times for a given source. If no source is given, then the dusk and dawn
+times are calculated for the observatory. If no date is given, then the current
+date at the location of the observatory is used. The source is first resolved
+by <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord.from_name" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">astropy.coordinates.SkyCoord.from_name</span></code></a> and if not found, the <a class="reference external" href="https://astroquery.readthedocs.io/en/latest/api/astroquery.mpc.MPCClass.html#astroquery.mpc.MPCClass" title="(in astroquery v0.4.7.dev287)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">astroquery.mpc.MPCClass</span></code></a>
+is used. Finally, if the source is not found, then <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.get_body.html#astropy.coordinates.get_body" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">astropy.coordinates.get_body</span></code></a> is used
+for solar system bodies. If the source is still not found, then the program exits with an
+error message.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p class="linemarker linemarker-15">The rise, set, and transit times may be inaccurate for high proper motion
+bodies and solar system bodies. Other sources are generally accurate to
+within a few minutes.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>source</strong><span class="classifier">str, optional</span></dt><dd><p class="linemarker linemarker-22">Source name.</p>
+</dd>
+<dt><strong>date</strong><span class="classifier">str [YYYY-MM-DD], optional</span></dt><dd><p class="linemarker linemarker-25">Date of observation. If none is given, the current date at the observatory is used.</p>
+</dd>
+<dt><strong>observatory</strong><span class="classifier">str or <a class="reference internal" href="pyscope.observatory.Observatory.html#pyscope.observatory.Observatory" title="pyscope.observatory.Observatory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Observatory</span></code></a>, default=’./config/observatory.cfg’</span></dt><dd><p class="linemarker linemarker-28">Observatory configuration file or <a class="reference internal" href="pyscope.observatory.Observatory.html#pyscope.observatory.Observatory" title="pyscope.observatory.Observatory"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observatory</span></code></a> object.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">int, {-1, 0, 1}, default=-1</span></dt><dd><p class="linemarker linemarker-31">Verbosity level. 0: no debug messages, 1: debug messages. Default set to -1
+for API use and 0 for CLI use.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>events: list</dt><dd><p class="linemarker linemarker-37">List of tuples containing the event name and a <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.time.Time.html#astropy.time.Time" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Time</span></code></a> object.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference external" href="https://click.palletsprojects.com/en/8.1.x/api/#click.BadParameter" title="(in Click v8.1.x)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">click.BadParameter</span></code></a></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pyscope.telrun.exoplanet_transits.html#pyscope.telrun.exoplanet_transits" title="pyscope.telrun.exoplanet_transits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyscope.telrun.exoplanet_transits</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="pyscope.telrun.schedtel.html#pyscope.telrun.schedtel" title="pyscope.telrun.schedtel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyscope.telrun.schedtel</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord.from_name" title="(in Astropy v6.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">astropy.coordinates.SkyCoord.from_name</span></code></a></dt><dd></dd>
+<dt><a class="reference external" href="https://astroquery.readthedocs.io/en/latest/api/astroquery.mpc.MPCClass.html#astroquery.mpc.MPCClass.get_ephemeris" title="(in astroquery v0.4.7.dev287)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">astroquery.mpc.MPCClass.get_ephemeris</span></code></a></dt><dd></dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p class="linemarker linemarker-65">Compute the rise, set, and transit times for M64 on 2024-01-30.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyscope.telrun</span> <span class="kn">import</span> <span class="n">rst</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tbl</span> <span class="o">=</span> <span class="n">rst</span><span class="p">(</span><span class="n">observatory</span><span class="o">=</span><span class="s2">&quot;../tests/observatory.cfg&quot;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s2">&quot;M64&quot;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s2">&quot;2024-01-30&quot;</span><span class="p">)</span>
+<span class="go">Times from: 2024-01-30 12:00 (MST), 2024-01-30 19:00 (UTC)</span>
+<span class="go">+-----------------------------+-------+-------+-------+</span>
+<span class="go">|                        Time | Local |  UTC  |  LST  |</span>
+<span class="go">+-----------------------------+-------+-------+-------+</span>
+<span class="go">|                      Sunset | 17:50 | 00:50 |  2:07 |</span>
+<span class="go">|        Civil Twilight Start | 18:20 | 01:20 |  2:37 |</span>
+<span class="go">|     Nautical Twilight Start | 18:49 | 01:49 |  3:06 |</span>
+<span class="go">| Astronomical Twilight Start | 19:18 | 02:18 |  3:35 |</span>
+<span class="go">|                    M64 Rise | 21:44 | 04:44 |  6:02 |</span>
+<span class="go">|                 M64 Transit | 04:39 | 11:39 | 12:58 |</span>
+<span class="go">|   Astronomical Twilight End | 05:52 | 12:52 | 14:11 |</span>
+<span class="go">|       Nautical Twilight End | 06:21 | 13:21 | 14:40 |</span>
+<span class="go">|          Civil Twilight End | 06:50 | 13:50 | 15:09 |</span>
+<span class="go">|                     Sunrise | 07:20 | 14:20 | 15:39 |</span>
+<span class="go">|                     M64 Set | 11:34 | 18:34 | 19:54 |</span>
+<span class="go">+-----------------------------+-------+-------+-------+</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-88">Perform the same calculation, but on the command line.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rst<span class="w"> </span>-o<span class="w"> </span>../tests/observatory.cfg<span class="w"> </span>-s<span class="w"> </span>M64<span class="w"> </span>-d<span class="w"> </span><span class="m">2024</span>-01-30
+Times<span class="w"> </span>from:<span class="w"> </span><span class="m">2024</span>-01-30<span class="w"> </span><span class="m">12</span>:00<span class="w"> </span><span class="o">(</span>MST<span class="o">)</span>,<span class="w"> </span><span class="m">2024</span>-01-30<span class="w"> </span><span class="m">19</span>:00<span class="w"> </span><span class="o">(</span>UTC<span class="o">)</span>
++-----------------------------+-------+-------+-------+
+<span class="p">|</span><span class="w">                        </span>Time<span class="w"> </span><span class="p">|</span><span class="w"> </span>Local<span class="w"> </span><span class="p">|</span><span class="w">  </span>UTC<span class="w">  </span><span class="p">|</span><span class="w">  </span>LST<span class="w">  </span><span class="p">|</span>
++-----------------------------+-------+-------+-------+
+<span class="p">|</span><span class="w">                      </span>Sunset<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">17</span>:50<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">00</span>:50<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">2</span>:07<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">        </span>Civil<span class="w"> </span>Twilight<span class="w"> </span>Start<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">18</span>:20<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">01</span>:20<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">2</span>:37<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">     </span>Nautical<span class="w"> </span>Twilight<span class="w"> </span>Start<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">18</span>:49<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">01</span>:49<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">3</span>:06<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>Astronomical<span class="w"> </span>Twilight<span class="w"> </span>Start<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">19</span>:18<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">02</span>:18<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">3</span>:35<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                    </span>M64<span class="w"> </span>Rise<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">21</span>:44<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">04</span>:44<span class="w"> </span><span class="p">|</span><span class="w">  </span><span class="m">6</span>:02<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                 </span>M64<span class="w"> </span>Transit<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">04</span>:39<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">11</span>:39<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">12</span>:58<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">   </span>Astronomical<span class="w"> </span>Twilight<span class="w"> </span>End<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">05</span>:52<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">12</span>:52<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">14</span>:11<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">       </span>Nautical<span class="w"> </span>Twilight<span class="w"> </span>End<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">06</span>:21<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">13</span>:21<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">14</span>:40<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">          </span>Civil<span class="w"> </span>Twilight<span class="w"> </span>End<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">06</span>:50<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">13</span>:50<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">15</span>:09<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                     </span>Sunrise<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">07</span>:20<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">14</span>:20<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">15</span>:39<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w">                     </span>M64<span class="w"> </span>Set<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">11</span>:34<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">18</span>:34<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">19</span>:54<span class="w"> </span><span class="p">|</span>
++-----------------------------+-------+-------+-------+
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pyscope.telrun.mk_mosaic_schedule.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">mk_mosaic_schedule</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pyscope.telrun.schedtel.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">schedtel</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyscope.telrun.rst"><code class="docutils literal notranslate"><span class="pre">rst()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/api/auto_api/pyscope.telrun.rst.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Walter Golay.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.5.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

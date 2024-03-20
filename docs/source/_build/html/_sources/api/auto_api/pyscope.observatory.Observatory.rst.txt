@@ -1,0 +1,231 @@
+Observatory
+===========
+
+.. currentmodule:: pyscope.observatory
+
+.. autoclass:: Observatory
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~Observatory.autofocus
+      ~Observatory.autofocus_driver
+      ~Observatory.autofocus_info
+      ~Observatory.autofocus_kwargs
+      ~Observatory.camera
+      ~Observatory.camera_driver
+      ~Observatory.camera_info
+      ~Observatory.camera_kwargs
+      ~Observatory.cooler_setpoint
+      ~Observatory.cooler_tolerance
+      ~Observatory.cover_calibrator
+      ~Observatory.cover_calibrator_alt
+      ~Observatory.cover_calibrator_az
+      ~Observatory.cover_calibrator_driver
+      ~Observatory.cover_calibrator_info
+      ~Observatory.cover_calibrator_kwargs
+      ~Observatory.current_focus_offset
+      ~Observatory.diameter
+      ~Observatory.dome
+      ~Observatory.dome_driver
+      ~Observatory.dome_info
+      ~Observatory.dome_kwargs
+      ~Observatory.elevation
+      ~Observatory.filter_focus_offsets
+      ~Observatory.filter_wheel
+      ~Observatory.filter_wheel_driver
+      ~Observatory.filter_wheel_info
+      ~Observatory.filter_wheel_kwargs
+      ~Observatory.filters
+      ~Observatory.focal_length
+      ~Observatory.focuser
+      ~Observatory.focuser_driver
+      ~Observatory.focuser_info
+      ~Observatory.focuser_kwargs
+      ~Observatory.instrument_description
+      ~Observatory.instrument_name
+      ~Observatory.instrument_reconfiguration_times
+      ~Observatory.last_camera_shutter_status
+      ~Observatory.latitude
+      ~Observatory.longitude
+      ~Observatory.max_dimension
+      ~Observatory.maxim
+      ~Observatory.min_altitude
+      ~Observatory.observatory_info
+      ~Observatory.observatory_location
+      ~Observatory.observatory_time
+      ~Observatory.observing_conditions
+      ~Observatory.observing_conditions_driver
+      ~Observatory.observing_conditions_info
+      ~Observatory.observing_conditions_kwargs
+      ~Observatory.pixel_scale
+      ~Observatory.plate_scale
+      ~Observatory.rotator
+      ~Observatory.rotator_driver
+      ~Observatory.rotator_info
+      ~Observatory.rotator_kwargs
+      ~Observatory.rotator_max_angle
+      ~Observatory.rotator_min_angle
+      ~Observatory.rotator_reverse
+      ~Observatory.safety_monitor
+      ~Observatory.safety_monitor_driver
+      ~Observatory.safety_monitor_info
+      ~Observatory.safety_monitor_kwargs
+      ~Observatory.settle_time
+      ~Observatory.site_name
+      ~Observatory.slew_rate
+      ~Observatory.switch
+      ~Observatory.switch_driver
+      ~Observatory.switch_info
+      ~Observatory.switch_kwargs
+      ~Observatory.telescope
+      ~Observatory.telescope_driver
+      ~Observatory.telescope_info
+      ~Observatory.telescope_kwargs
+      ~Observatory.threads_info
+      ~Observatory.wcs_driver
+      ~Observatory.wcs_info
+      ~Observatory.wcs_kwargs
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~Observatory.connect_all
+      ~Observatory.disconnect_all
+      ~Observatory.get_current_object
+      ~Observatory.get_object_altaz
+      ~Observatory.get_object_slew
+      ~Observatory.lst
+      ~Observatory.moon_altaz
+      ~Observatory.moon_illumination
+      ~Observatory.recenter
+      ~Observatory.run_autofocus
+      ~Observatory.safety_status
+      ~Observatory.save_config
+      ~Observatory.save_last_image
+      ~Observatory.set_filter_offset_focuser
+      ~Observatory.shutdown
+      ~Observatory.slew_to_coordinates
+      ~Observatory.start_derotation_thread
+      ~Observatory.start_observing_conditions_thread
+      ~Observatory.start_safety_monitor_thread
+      ~Observatory.stop_derotation_thread
+      ~Observatory.stop_observing_conditions_thread
+      ~Observatory.stop_safety_monitor_thread
+      ~Observatory.sun_altaz
+      ~Observatory.switch_status
+      ~Observatory.take_darks
+      ~Observatory.take_flats
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: autofocus
+   .. autoattribute:: autofocus_driver
+   .. autoattribute:: autofocus_info
+   .. autoattribute:: autofocus_kwargs
+   .. autoattribute:: camera
+   .. autoattribute:: camera_driver
+   .. autoattribute:: camera_info
+   .. autoattribute:: camera_kwargs
+   .. autoattribute:: cooler_setpoint
+   .. autoattribute:: cooler_tolerance
+   .. autoattribute:: cover_calibrator
+   .. autoattribute:: cover_calibrator_alt
+   .. autoattribute:: cover_calibrator_az
+   .. autoattribute:: cover_calibrator_driver
+   .. autoattribute:: cover_calibrator_info
+   .. autoattribute:: cover_calibrator_kwargs
+   .. autoattribute:: current_focus_offset
+   .. autoattribute:: diameter
+   .. autoattribute:: dome
+   .. autoattribute:: dome_driver
+   .. autoattribute:: dome_info
+   .. autoattribute:: dome_kwargs
+   .. autoattribute:: elevation
+   .. autoattribute:: filter_focus_offsets
+   .. autoattribute:: filter_wheel
+   .. autoattribute:: filter_wheel_driver
+   .. autoattribute:: filter_wheel_info
+   .. autoattribute:: filter_wheel_kwargs
+   .. autoattribute:: filters
+   .. autoattribute:: focal_length
+   .. autoattribute:: focuser
+   .. autoattribute:: focuser_driver
+   .. autoattribute:: focuser_info
+   .. autoattribute:: focuser_kwargs
+   .. autoattribute:: instrument_description
+   .. autoattribute:: instrument_name
+   .. autoattribute:: instrument_reconfiguration_times
+   .. autoattribute:: last_camera_shutter_status
+   .. autoattribute:: latitude
+   .. autoattribute:: longitude
+   .. autoattribute:: max_dimension
+   .. autoattribute:: maxim
+   .. autoattribute:: min_altitude
+   .. autoattribute:: observatory_info
+   .. autoattribute:: observatory_location
+   .. autoattribute:: observatory_time
+   .. autoattribute:: observing_conditions
+   .. autoattribute:: observing_conditions_driver
+   .. autoattribute:: observing_conditions_info
+   .. autoattribute:: observing_conditions_kwargs
+   .. autoattribute:: pixel_scale
+   .. autoattribute:: plate_scale
+   .. autoattribute:: rotator
+   .. autoattribute:: rotator_driver
+   .. autoattribute:: rotator_info
+   .. autoattribute:: rotator_kwargs
+   .. autoattribute:: rotator_max_angle
+   .. autoattribute:: rotator_min_angle
+   .. autoattribute:: rotator_reverse
+   .. autoattribute:: safety_monitor
+   .. autoattribute:: safety_monitor_driver
+   .. autoattribute:: safety_monitor_info
+   .. autoattribute:: safety_monitor_kwargs
+   .. autoattribute:: settle_time
+   .. autoattribute:: site_name
+   .. autoattribute:: slew_rate
+   .. autoattribute:: switch
+   .. autoattribute:: switch_driver
+   .. autoattribute:: switch_info
+   .. autoattribute:: switch_kwargs
+   .. autoattribute:: telescope
+   .. autoattribute:: telescope_driver
+   .. autoattribute:: telescope_info
+   .. autoattribute:: telescope_kwargs
+   .. autoattribute:: threads_info
+   .. autoattribute:: wcs_driver
+   .. autoattribute:: wcs_info
+   .. autoattribute:: wcs_kwargs
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: connect_all
+   .. automethod:: disconnect_all
+   .. automethod:: get_current_object
+   .. automethod:: get_object_altaz
+   .. automethod:: get_object_slew
+   .. automethod:: lst
+   .. automethod:: moon_altaz
+   .. automethod:: moon_illumination
+   .. automethod:: recenter
+   .. automethod:: run_autofocus
+   .. automethod:: safety_status
+   .. automethod:: save_config
+   .. automethod:: save_last_image
+   .. automethod:: set_filter_offset_focuser
+   .. automethod:: shutdown
+   .. automethod:: slew_to_coordinates
+   .. automethod:: start_derotation_thread
+   .. automethod:: start_observing_conditions_thread
+   .. automethod:: start_safety_monitor_thread
+   .. automethod:: stop_derotation_thread
+   .. automethod:: stop_observing_conditions_thread
+   .. automethod:: stop_safety_monitor_thread
+   .. automethod:: sun_altaz
+   .. automethod:: switch_status
+   .. automethod:: take_darks
+   .. automethod:: take_flats

@@ -17,36 +17,40 @@ import sys
 import astropy.io.fits as pyfits
 
 # make list of FITS file names in current directory
-fnames = glob.glob('*.fts')
+fnames = glob.glob("*.fts")
 
 # Spin through files, renaming and putting into subfolders
 for fname in fnames:
+    # Get info from FITS header
+    try:
+        hdr = pyfits.getheader(fname)
+    except:
+        print("Could not read %s, skipping" % fname)
+        continue
+    filter = hdr["FILTER"]
+    source = hdr["OBJECT"]
+    date, ut = hdr["DATE-OBS"].split("T")
+    ut = ut[:-3]
 
-	# Get info from FITS header
-	try:
-		hdr = pyfits.getheader(fname)
-	except:
-		print('Could not read %s, skipping' % fname)
-		continue
-	filter = hdr['FILTER']; source = hdr['OBJECT']
-	date,ut = hdr['DATE-OBS'].split('T'); ut = ut[:-3]
+    # Clean up source name if needed (no /'s, spaces)
+    source = source.replace(" ", "")
+    source = source.replace("/", "_")
+    date = date.replace("-", "_")
+    filter = filter[0]
+    # Remove colons from UT
+    ut = ut.replace(":", "")
+    folder = "%s/%s" % (source, filter)
 
-	# Clean up source name if needed (no /'s, spaces)
-	source = source.replace(' ','') ; source = source.replace('/','_')
-	date = date.replace('-','_')
-	filter = filter[0]
-	# Remove colons from UT
-	ut = ut.replace(':','')
-	folder = '%s/%s' % (source,filter)
+    # Create subfolder named by object and filter
+    if not os.path.exists(source):
+        os.mkdir(source)
+    if not os.path.exists(folder):
+        os.mkdir(folder)
 
-	# Create subfolder named by object and filter
-	if not os.path.exists(source): os.mkdir(source)
-	if not os.path.exists(folder): os.mkdir(folder)
+    # Make new filename from date,ut,filter,focus strings
+    fnew_name = "%s_%s_%s_%s.fts" % (source, date, ut, filter)
 
-	# Make new filename from date,ut,filter,focus strings
-	fnew_name = '%s_%s_%s_%s.fts' % (source,date,ut,filter)
-
-	# Move newly named file to appropriate subfolder
-	print('Moving %s => %s to subfolder %s' % (fname, fnew_name, folder))
-	fnew = folder + '/' + fnew_name
-	shutil.move(fname, fnew)
+    # Move newly named file to appropriate subfolder
+    print("Moving %s => %s to subfolder %s" % (fname, fnew_name, folder))
+    fnew = folder + "/" + fnew_name
+    shutil.move(fname, fnew)

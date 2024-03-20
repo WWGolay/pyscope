@@ -1,0 +1,2623 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; pyscope 0.1.6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=79d558ae"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=30646c52"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.analysis.calc_zmag';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMCamera';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMCoverCalibrator';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMDevice';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMDome';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMFilterWheel';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMFocuser';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMObservingConditions';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMRotator';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMSwitch';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ASCOMTelescope';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.AstrometryNetWCS';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Autofocus';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Camera';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.CoverCalibrator';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Device';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Dome';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.FilterWheel';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Focuser';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.HTMLObservingConditions';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.HTMLSafetyMonitor';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.IPCoverCalibrator';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Maxim';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Observatory';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ObservatoryException';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.ObservingConditions';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.PWIAutofocus';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.PinpointWCS';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Rotator';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.SafetyMonitor';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.SimulatorServer';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Switch';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.Telescope';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.WCS';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.observatory.collect_calibration_set';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.reduction.avg_fits';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.reduction.calib_images';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.reduction.ccd_calib';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.reduction.fitslist';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.TelrunBlock';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.TelrunException';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.TelrunOperator';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.exoplanet_transits';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.init_remote_dir';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.init_telrun_dir';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.mk_mosaic_schedule';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.plot_schedule_gantt';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.rst';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.schedtel';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.start_syncfiles';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.start_telrun';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.telrun.syncfiles';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.utils.PyscopeException';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.utils.airmass';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/auto_api/pyscope.utils.pinpoint_solve';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/pyscope.analysis';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/pyscope.observatory';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/pyscope.reduction';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/pyscope.telrun';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/pyscope.utils';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cite';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/contributing_scripts';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/setup';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/workflow';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'installation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'license';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/config';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/examples';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/header';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/help';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/logging';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'py-modindex';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pyscope_logo_small_gray.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/pyscope_logo_small.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="development/index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="development/index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.Autofocus.html#pyscope.observatory.Autofocus.Abort">Abort() (pyscope.observatory.Autofocus method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.PWIAutofocus.html#pyscope.observatory.PWIAutofocus.Abort">(pyscope.observatory.PWIAutofocus method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.AbortExposure">AbortExposure() (pyscope.observatory.ASCOMCamera method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.AbortExposure">(pyscope.observatory.Camera method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.AbortSlew">AbortSlew() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.AbortSlew">(pyscope.observatory.ASCOMTelescope method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.AbortSlew">(pyscope.observatory.Dome method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.AbortSlew">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.Absolute">Absolute (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.Absolute">(pyscope.observatory.Focuser attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.Action">Action() (pyscope.observatory.ASCOMDevice method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.utils.airmass.html#pyscope.utils.airmass">airmass() (in module pyscope.utils)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.AlignmentMode">AlignmentMode (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.AlignmentMode">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.Altitude">Altitude (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.Altitude">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.Altitude">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.Altitude">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.ApertureArea">ApertureArea (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.ApertureArea">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.ApertureDiameter">ApertureDiameter (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.ApertureDiameter">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Maxim.html#pyscope.observatory.Maxim.app">app (pyscope.observatory.Maxim attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera">ASCOMCamera (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator">ASCOMCoverCalibrator (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice">ASCOMDevice (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome">ASCOMDome (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFilterWheel.html#pyscope.observatory.ASCOMFilterWheel">ASCOMFilterWheel (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser">ASCOMFocuser (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions">ASCOMObservingConditions (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator">ASCOMRotator (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch">ASCOMSwitch (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope">ASCOMTelescope (class in pyscope.observatory)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.AstrometryNetWCS.html#pyscope.observatory.AstrometryNetWCS">AstrometryNetWCS (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.AtHome">AtHome (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.AtHome">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.AtHome">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.AtHome">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.AtPark">AtPark (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.AtPark">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.AtPark">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.AtPark">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Autofocus.html#pyscope.observatory.Autofocus">Autofocus (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Maxim.html#pyscope.observatory.Maxim.autofocus">autofocus (pyscope.observatory.Maxim attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.autofocus">(pyscope.observatory.Observatory attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.autofocus_driver">autofocus_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_exposure">autofocus_exposure (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_filters">autofocus_filters (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.autofocus_info">autofocus_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_interval">autofocus_interval (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.autofocus_kwargs">autofocus_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_midpoint">autofocus_midpoint (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_nsteps">autofocus_nsteps (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_status">autofocus_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_step_size">autofocus_step_size (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_timeout">autofocus_timeout (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.autofocus_use_current_pointing">autofocus_use_current_pointing (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.AveragePeriod">AveragePeriod (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.AveragePeriod">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.AveragePeriod">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.reduction.avg_fits.html#pyscope.reduction.avg_fits">avg_fits() (in module pyscope.reduction)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.AxisRates">AxisRates() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.AxisRates">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.Azimuth">Azimuth (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.Azimuth">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.Azimuth">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.Azimuth">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.BayerOffsetX">BayerOffsetX (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.BayerOffsetX">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.BayerOffsetY">BayerOffsetY (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.BayerOffsetY">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.BinX">BinX (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.BinX">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.BinY">BinY (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.BinY">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.Brightness">Brightness (pyscope.observatory.ASCOMCoverCalibrator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.Brightness">(pyscope.observatory.CoverCalibrator attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.Brightness">(pyscope.observatory.IPCoverCalibrator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.buffer_size">buffer_size (pyscope.observatory.IPCoverCalibrator attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.analysis.calc_zmag.html#pyscope.analysis.calc_zmag">calc_zmag() (in module pyscope.analysis)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.reduction.calib_images.html#pyscope.reduction.calib_images">calib_images() (in module pyscope.reduction)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.CalibratorOff">CalibratorOff() (pyscope.observatory.ASCOMCoverCalibrator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.CalibratorOff">(pyscope.observatory.CoverCalibrator method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.CalibratorOff">(pyscope.observatory.IPCoverCalibrator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.CalibratorOn">CalibratorOn() (pyscope.observatory.ASCOMCoverCalibrator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.CalibratorOn">(pyscope.observatory.CoverCalibrator method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.CalibratorOn">(pyscope.observatory.IPCoverCalibrator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.CalibratorState">CalibratorState (pyscope.observatory.ASCOMCoverCalibrator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.CalibratorState">(pyscope.observatory.CoverCalibrator attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.CalibratorState">(pyscope.observatory.IPCoverCalibrator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera">Camera (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Maxim.html#pyscope.observatory.Maxim.camera">camera (pyscope.observatory.Maxim attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.camera">(pyscope.observatory.Observatory attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.camera_driver">camera_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.camera_info">camera_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.camera_kwargs">camera_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.camera_status">camera_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CameraState">CameraState (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CameraState">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CameraTime">CameraTime (pyscope.observatory.ASCOMCamera attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CameraXSize">CameraXSize (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CameraXSize">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CameraYSize">CameraYSize (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CameraYSize">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CanAbortExposure">CanAbortExposure (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CanAbortExposure">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CanAsymmetricBin">CanAsymmetricBin (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CanAsymmetricBin">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CanFastReadout">CanFastReadout (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CanFastReadout">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanFindHome">CanFindHome (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanFindHome">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanFindHome">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanFindHome">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CanGetCoolerPower">CanGetCoolerPower (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CanGetCoolerPower">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanMoveAxis">CanMoveAxis() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanMoveAxis">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanPark">CanPark (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanPark">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanPark">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanPark">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CanPulseGuide">CanPulseGuide (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CanPulseGuide">(pyscope.observatory.Camera attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanPulseGuide">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanPulseGuide">CanPulseGuide() (pyscope.observatory.ASCOMTelescope method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.CanReverse">CanReverse (pyscope.observatory.ASCOMRotator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.CanReverse">(pyscope.observatory.Rotator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanSetAltitude">CanSetAltitude (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanSetAltitude">(pyscope.observatory.Dome attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanSetAzimuth">CanSetAzimuth (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanSetAzimuth">(pyscope.observatory.Dome attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CanSetCCDTemperature">CanSetCCDTemperature (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CanSetCCDTemperature">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSetDeclinationRate">CanSetDeclinationRate (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSetDeclinationRate">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSetGuideRates">CanSetGuideRates (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSetGuideRates">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanSetPark">CanSetPark (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSetPark">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanSetPark">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSetPark">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSetPierSide">CanSetPierSide (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSetPierSide">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSetRightAscensionRate">CanSetRightAscensionRate (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSetRightAscensionRate">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanSetShutter">CanSetShutter (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanSetShutter">(pyscope.observatory.Dome attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSetTracking">CanSetTracking (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSetTracking">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanSlave">CanSlave (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanSlave">(pyscope.observatory.Dome attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSlew">CanSlew (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSlew">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSlewAltAz">CanSlewAltAz (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSlewAltAz">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSlewAltAzAsync">CanSlewAltAzAsync (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSlewAltAzAsync">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSlewAsync">CanSlewAsync (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSlewAsync">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CanStopExposure">CanStopExposure (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CanStopExposure">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSync">CanSync (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSync">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanSyncAltAz">CanSyncAltAz (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanSyncAltAz">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CanSyncAzimuth">CanSyncAzimuth (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CanSyncAzimuth">(pyscope.observatory.Dome attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.CanUnpark">CanUnpark (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.CanUnpark">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.CanWrite">CanWrite() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.CanWrite">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.reduction.ccd_calib.html#pyscope.reduction.ccd_calib">ccd_calib() (in module pyscope.reduction)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CCDTemperature">CCDTemperature (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CCDTemperature">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.check_block_status">check_block_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.check_safety_monitors">check_safety_monitors (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.CloseCover">CloseCover() (pyscope.observatory.ASCOMCoverCalibrator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.CloseCover">(pyscope.observatory.CoverCalibrator method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.CloseCover">(pyscope.observatory.IPCoverCalibrator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.CloseShutter">CloseShutter() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.CloseShutter">(pyscope.observatory.Dome method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.CloudCover">CloudCover (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.CloudCover">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.CloudCover">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.collect_calibration_set.html#pyscope.observatory.collect_calibration_set">collect_calibration_set() (in module pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.CommandBlind">CommandBlind() (pyscope.observatory.ASCOMDevice method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.CommandBool">CommandBool() (pyscope.observatory.ASCOMDevice method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.CommandString">CommandString() (pyscope.observatory.ASCOMDevice method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.connect_all">connect_all() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.Connected">Connected (pyscope.observatory.ASCOMDevice attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Device.html#pyscope.observatory.Device.Connected">(pyscope.observatory.Device attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Maxim.html#pyscope.observatory.Maxim.Connected">(pyscope.observatory.Maxim attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cooler_setpoint">cooler_setpoint (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cooler_tolerance">cooler_tolerance (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CoolerOn">CoolerOn (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CoolerOn">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.CoolerPower">CoolerPower (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.CoolerPower">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cover_calibrator">cover_calibrator (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cover_calibrator_alt">cover_calibrator_alt (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cover_calibrator_az">cover_calibrator_az (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cover_calibrator_driver">cover_calibrator_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cover_calibrator_info">cover_calibrator_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.cover_calibrator_kwargs">cover_calibrator_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.cover_calibrator_status">cover_calibrator_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator">CoverCalibrator (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.CoverState">CoverState (pyscope.observatory.ASCOMCoverCalibrator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.CoverState">(pyscope.observatory.CoverCalibrator attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.CoverState">(pyscope.observatory.IPCoverCalibrator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.current_block">current_block (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.current_focus_offset">current_focus_offset (pyscope.observatory.Observatory attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.Declination">Declination (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.Declination">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.DeclinationRate">DeclinationRate (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.DeclinationRate">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.default_readout">default_readout (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.Description">Description (pyscope.observatory.ASCOMDevice attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.DestinationSideOfPier">DestinationSideOfPier() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.DestinationSideOfPier">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Device.html#pyscope.observatory.Device">Device (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.DewPoint">DewPoint (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.DewPoint">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.DewPoint">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.diameter">diameter (pyscope.observatory.Observatory attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.disconnect_all">disconnect_all() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.do_periodic_autofocus">do_periodic_autofocus (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.DoesRefraction">DoesRefraction (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.DoesRefraction">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome">Dome (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.dome">dome (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.dome_driver">dome_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.dome_info">dome_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.dome_kwargs">dome_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.dome_status">dome_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.dome_type">dome_type (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.DriverInfo">DriverInfo (pyscope.observatory.ASCOMDevice attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.DriverVersion">DriverVersion (pyscope.observatory.ASCOMDevice attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ElectronsPerADU">ElectronsPerADU (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ElectronsPerADU">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.elevation">elevation (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.EquatorialSystem">EquatorialSystem (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.EquatorialSystem">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.execute_block">execute_block() (pyscope.telrun.TelrunOperator method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.execute_schedule">execute_schedule() (pyscope.telrun.TelrunOperator method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.telrun.exoplanet_transits.html#pyscope.telrun.exoplanet_transits">exoplanet_transits() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ExposureMax">ExposureMax (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ExposureMax">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ExposureMin">ExposureMin (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ExposureMin">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ExposureResolution">ExposureResolution (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ExposureResolution">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.FastReadout">FastReadout (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.FastReadout">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.filter_focus_offsets">filter_focus_offsets (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.filter_wheel">filter_wheel (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.filter_wheel_driver">filter_wheel_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.filter_wheel_info">filter_wheel_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.filter_wheel_kwargs">filter_wheel_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.filter_wheel_status">filter_wheel_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.filters">filters (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.FilterWheel.html#pyscope.observatory.FilterWheel">FilterWheel (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.FindHome">FindHome() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.FindHome">(pyscope.observatory.ASCOMTelescope method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.FindHome">(pyscope.observatory.Dome method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.FindHome">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.reduction.fitslist.html#pyscope.reduction.fitslist">fitslist() (in module pyscope.reduction)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.focal_length">focal_length (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.FocalLength">FocalLength (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.FocalLength">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser">Focuser (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.focuser">focuser (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.focuser_driver">focuser_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.focuser_info">focuser_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.focuser_kwargs">focuser_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.focuser_status">focuser_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFilterWheel.html#pyscope.observatory.ASCOMFilterWheel.FocusOffsets">FocusOffsets (pyscope.observatory.ASCOMFilterWheel attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.FilterWheel.html#pyscope.observatory.FilterWheel.FocusOffsets">(pyscope.observatory.FilterWheel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.FullWellCapacity">FullWellCapacity (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.FullWellCapacity">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.Gain">Gain (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.Gain">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.GainMax">GainMax (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.GainMax">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.GainMin">GainMin (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.GainMin">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.Gains">Gains (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.Gains">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.get_current_object">get_current_object() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.get_object_altaz">get_object_altaz() (pyscope.observatory.Observatory method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.get_object_slew">get_object_slew() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.GetSwitch">GetSwitch() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.GetSwitch">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.GetSwitchDescription">GetSwitchDescription() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.GetSwitchDescription">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.GetSwitchName">GetSwitchName() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.GetSwitchName">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.GuideRateDeclination">GuideRateDeclination (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.GuideRateDeclination">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.GuideRateRightAscension">GuideRateRightAscension (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.GuideRateRightAscension">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.Halt">Halt() (pyscope.observatory.ASCOMFocuser method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.Halt">(pyscope.observatory.ASCOMRotator method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.Halt">(pyscope.observatory.Focuser method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.Halt">(pyscope.observatory.Rotator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.HaltCover">HaltCover() (pyscope.observatory.ASCOMCoverCalibrator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.HaltCover">(pyscope.observatory.CoverCalibrator method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.HaltCover">(pyscope.observatory.IPCoverCalibrator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.hardware_timeout">hardware_timeout (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.HasShutter">HasShutter (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.HasShutter">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.HeatSinkTemperature">HeatSinkTemperature (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.HeatSinkTemperature">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions">HTMLObservingConditions (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.HTMLSafetyMonitor.html#pyscope.observatory.HTMLSafetyMonitor">HTMLSafetyMonitor (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.Humidity">Humidity (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.Humidity">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.Humidity">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ImageArray">ImageArray (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ImageArray">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ImageReady">ImageReady (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ImageReady">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.init_remote_dir.html#pyscope.telrun.init_remote_dir">init_remote_dir() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.init_telrun_dir.html#pyscope.telrun.init_telrun_dir">init_telrun_dir() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.initial_autofocus">initial_autofocus (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.initial_home">initial_home (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.instrument_description">instrument_description (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.instrument_name">instrument_name (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.instrument_reconfiguration_times">instrument_reconfiguration_times (pyscope.observatory.Observatory attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.InterfaceVersion">InterfaceVersion (pyscope.observatory.ASCOMDevice attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator">IPCoverCalibrator (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.IsMoving">IsMoving (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.IsMoving">(pyscope.observatory.ASCOMRotator attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.IsMoving">(pyscope.observatory.Focuser attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.IsMoving">(pyscope.observatory.Rotator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.IsPulseGuiding">IsPulseGuiding (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.IsPulseGuiding">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.IsPulseGuiding">(pyscope.observatory.Camera attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.IsPulseGuiding">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.HTMLSafetyMonitor.html#pyscope.observatory.HTMLSafetyMonitor.IsSafe">IsSafe (pyscope.observatory.HTMLSafetyMonitor attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.SafetyMonitor.html#pyscope.observatory.SafetyMonitor.IsSafe">(pyscope.observatory.SafetyMonitor attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.last_autofocus_time">last_autofocus_time (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.last_camera_shutter_status">last_camera_shutter_status (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.LastExposureDuration">LastExposureDuration (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.LastExposureDuration">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.LastExposureStartTime">LastExposureStartTime (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.LastExposureStartTime">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.LastInputExposureDuration">LastInputExposureDuration (pyscope.observatory.ASCOMCamera attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.LastUpdated">LastUpdated (pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.latitude">latitude (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.longitude">longitude (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.lst">lst() (pyscope.observatory.Observatory method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.mainloop">mainloop() (pyscope.telrun.TelrunOperator method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.max_block_late_time">max_block_late_time (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.max_dimension">max_dimension (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.max_solar_elev">max_solar_elev (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.MaxADU">MaxADU (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.MaxADU">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.MaxBinX">MaxBinX (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.MaxBinX">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.MaxBinY">MaxBinY (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.MaxBinY">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.MaxBrightness">MaxBrightness (pyscope.observatory.ASCOMCoverCalibrator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.MaxBrightness">(pyscope.observatory.CoverCalibrator attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.MaxBrightness">(pyscope.observatory.IPCoverCalibrator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Maxim.html#pyscope.observatory.Maxim">Maxim (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.maxim">maxim (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.MaxIncrement">MaxIncrement (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.MaxIncrement">(pyscope.observatory.Focuser attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.MaxStep">MaxStep (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.MaxStep">(pyscope.observatory.Focuser attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.MaxSwitch">MaxSwitch (pyscope.observatory.ASCOMSwitch attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.MaxSwitch">(pyscope.observatory.Switch attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.MaxSwitchValue">MaxSwitchValue() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.MaxSwitchValue">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.MechanicalPosition">MechanicalPosition (pyscope.observatory.ASCOMRotator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.MechanicalPosition">(pyscope.observatory.Rotator attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.min_altitude">min_altitude (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.MinSwitchValue">MinSwitchValue() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.MinSwitchValue">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.mk_mosaic_schedule.html#pyscope.telrun.mk_mosaic_schedule">mk_mosaic_schedule() (in module pyscope.telrun)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="index.html#module-pyscope">pyscope</a>
+</li>
+        <li><a href="api/pyscope.analysis.html#module-pyscope.analysis">pyscope.analysis</a>
+</li>
+        <li><a href="api/pyscope.observatory.html#module-pyscope.observatory">pyscope.observatory</a>
+</li>
+        <li><a href="api/pyscope.reduction.html#module-pyscope.reduction">pyscope.reduction</a>
+</li>
+        <li><a href="api/pyscope.telrun.html#module-pyscope.telrun">pyscope.telrun</a>
+</li>
+        <li><a href="api/pyscope.utils.html#module-pyscope.utils">pyscope.utils</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.moon_altaz">moon_altaz() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.moon_illumination">moon_illumination() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.Move">Move() (pyscope.observatory.ASCOMFocuser method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.Move">(pyscope.observatory.ASCOMRotator method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.Move">(pyscope.observatory.Focuser method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.Move">(pyscope.observatory.Rotator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.MoveAbsolute">MoveAbsolute() (pyscope.observatory.ASCOMRotator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.MoveAbsolute">(pyscope.observatory.Rotator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.MoveAxis">MoveAxis() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.MoveAxis">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.MoveMechanical">MoveMechanical() (pyscope.observatory.ASCOMRotator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.MoveMechanical">(pyscope.observatory.Rotator method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.Name">Name (pyscope.observatory.ASCOMDevice attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Device.html#pyscope.observatory.Device.Name">(pyscope.observatory.Device attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Maxim.html#pyscope.observatory.Maxim.Name">(pyscope.observatory.Maxim attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFilterWheel.html#pyscope.observatory.ASCOMFilterWheel.Names">Names (pyscope.observatory.ASCOMFilterWheel attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.FilterWheel.html#pyscope.observatory.FilterWheel.Names">(pyscope.observatory.FilterWheel attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.next_block">next_block (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.NumX">NumX (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.NumX">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.NumY">NumY (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.NumY">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory">Observatory (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.observatory">observatory (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.observatory_info">observatory_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.observatory_location">observatory_location (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.observatory_time">observatory_time (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ObservatoryException.html#pyscope.observatory.ObservatoryException">ObservatoryException</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.observing_conditions">observing_conditions (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.observing_conditions_driver">observing_conditions_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.observing_conditions_info">observing_conditions_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.observing_conditions_kwargs">observing_conditions_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.observing_conditions_status">observing_conditions_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions">ObservingConditions (class in pyscope.observatory)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.Offset">Offset (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.Offset">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.OffsetMax">OffsetMax (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.OffsetMax">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.OffsetMin">OffsetMin (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.OffsetMin">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.Offsets">Offsets (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.Offsets">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCoverCalibrator.html#pyscope.observatory.ASCOMCoverCalibrator.OpenCover">OpenCover() (pyscope.observatory.ASCOMCoverCalibrator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.CoverCalibrator.html#pyscope.observatory.CoverCalibrator.OpenCover">(pyscope.observatory.CoverCalibrator method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.OpenCover">(pyscope.observatory.IPCoverCalibrator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.OpenShutter">OpenShutter() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.OpenShutter">(pyscope.observatory.Dome method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.Park">Park() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.Park">(pyscope.observatory.ASCOMTelescope method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.Park">(pyscope.observatory.Dome method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.Park">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.PercentCompleted">PercentCompleted (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.PercentCompleted">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.utils.pinpoint_solve.html#pyscope.utils.pinpoint_solve">pinpoint_solve() (in module pyscope.utils)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.PinpointWCS.html#pyscope.observatory.PinpointWCS">PinpointWCS (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.pixel_scale">pixel_scale (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.PixelSizeX">PixelSizeX (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.PixelSizeX">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.PixelSizeY">PixelSizeY (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.PixelSizeY">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.plate_scale">plate_scale (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.plot_schedule_gantt.html#pyscope.telrun.plot_schedule_gantt">plot_schedule_gantt() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFilterWheel.html#pyscope.observatory.ASCOMFilterWheel.Position">Position (pyscope.observatory.ASCOMFilterWheel attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.Position">(pyscope.observatory.ASCOMFocuser attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.Position">(pyscope.observatory.ASCOMRotator attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.FilterWheel.html#pyscope.observatory.FilterWheel.Position">(pyscope.observatory.FilterWheel attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.Position">(pyscope.observatory.Focuser attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.Position">(pyscope.observatory.Rotator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.preslew_time">preslew_time (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.Pressure">Pressure (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.Pressure">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.Pressure">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.previous_block">previous_block (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.PulseGuide">PulseGuide() (pyscope.observatory.ASCOMCamera method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.PulseGuide">(pyscope.observatory.ASCOMTelescope method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.PulseGuide">(pyscope.observatory.Camera method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.PulseGuide">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.PWIAutofocus.html#pyscope.observatory.PWIAutofocus">PWIAutofocus (class in pyscope.observatory)</a>
+</li>
+      <li>
+    pyscope
+
+      <ul>
+        <li><a href="index.html#module-pyscope">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscope.analysis
+
+      <ul>
+        <li><a href="api/pyscope.analysis.html#module-pyscope.analysis">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscope.observatory
+
+      <ul>
+        <li><a href="api/pyscope.observatory.html#module-pyscope.observatory">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscope.reduction
+
+      <ul>
+        <li><a href="api/pyscope.reduction.html#module-pyscope.reduction">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscope.telrun
+
+      <ul>
+        <li><a href="api/pyscope.telrun.html#module-pyscope.telrun">module</a>
+</li>
+      </ul></li>
+      <li>
+    pyscope.utils
+
+      <ul>
+        <li><a href="api/pyscope.utils.html#module-pyscope.utils">module</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.utils.PyscopeException.html#pyscope.utils.PyscopeException">PyscopeException</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.RainRate">RainRate (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.RainRate">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.RainRate">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ReadoutMode">ReadoutMode (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ReadoutMode">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.ReadoutModes">ReadoutModes (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.ReadoutModes">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.recenter">recenter() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_check_and_refine">recenter_check_and_refine (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_exposure">recenter_exposure (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_filters">recenter_filters (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_initial_offset_dec">recenter_initial_offset_dec (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_max_attempts">recenter_max_attempts (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_save_images">recenter_save_images (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_save_path">recenter_save_path (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_sync_mount">recenter_sync_mount (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.recenter_tolerance">recenter_tolerance (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.Refresh">Refresh() (pyscope.observatory.ASCOMObservingConditions method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.Refresh">(pyscope.observatory.HTMLObservingConditions method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.Refresh">(pyscope.observatory.ObservingConditions method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.Reverse">Reverse (pyscope.observatory.ASCOMRotator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.Reverse">(pyscope.observatory.Rotator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.RightAscension">RightAscension (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.RightAscension">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.RightAscensionRate">RightAscensionRate (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.RightAscensionRate">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator">Rotator (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.rotator">rotator (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.rotator_driver">rotator_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.rotator_info">rotator_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.rotator_kwargs">rotator_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.rotator_max_angle">rotator_max_angle (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.rotator_min_angle">rotator_min_angle (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.rotator_reverse">rotator_reverse (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.rotator_status">rotator_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.rst.html#pyscope.telrun.rst">rst() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Autofocus.html#pyscope.observatory.Autofocus.Run">Run() (pyscope.observatory.Autofocus method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.PWIAutofocus.html#pyscope.observatory.PWIAutofocus.Run">(pyscope.observatory.PWIAutofocus method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.run_autofocus">run_autofocus() (pyscope.observatory.Observatory method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.safety_monitor">safety_monitor (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.safety_monitor_driver">safety_monitor_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.safety_monitor_info">safety_monitor_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.safety_monitor_kwargs">safety_monitor_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.safety_monitor_status">safety_monitor_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.safety_status">safety_status() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.SafetyMonitor.html#pyscope.observatory.SafetyMonitor">SafetyMonitor (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.save_config">save_config() (pyscope.observatory.Observatory method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.save_config">(pyscope.telrun.TelrunOperator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.save_last_image">save_last_image() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.schedtel.html#pyscope.telrun.schedtel">schedtel() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.SensorDescription">SensorDescription() (pyscope.observatory.ASCOMObservingConditions method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.SensorDescription">(pyscope.observatory.HTMLObservingConditions method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.SensorDescription">(pyscope.observatory.ObservingConditions method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.SensorName">SensorName (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.SensorName">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.SensorType">SensorType (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.SensorType">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.set_filter_offset_focuser">set_filter_offset_focuser() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.SetCCDTemperature">SetCCDTemperature (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.SetCCDTemperature">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.SetImageDataType">SetImageDataType() (pyscope.observatory.ASCOMCamera method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.SetPark">SetPark() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SetPark">(pyscope.observatory.ASCOMTelescope method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.SetPark">(pyscope.observatory.Dome method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SetPark">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.SetSwitch">SetSwitch() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.SetSwitch">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.SetSwitchName">SetSwitchName() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.SetSwitchName">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.SetSwitchValue">SetSwitchValue() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.SetSwitchValue">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.settle_time">settle_time (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.shutdown">shutdown() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.ShutterStatus">ShutterStatus (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.ShutterStatus">(pyscope.observatory.Dome attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SideOfPier">SideOfPier (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SideOfPier">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SiderealTime">SiderealTime (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SiderealTime">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.SimulatorServer.html#pyscope.observatory.SimulatorServer">SimulatorServer (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.site_name">site_name (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SiteElevation">SiteElevation (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SiteElevation">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SiteLatitude">SiteLatitude (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SiteLatitude">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SiteLongitude">SiteLongitude (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SiteLongitude">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.skipped_block_count">skipped_block_count (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.SkyBrightness">SkyBrightness (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.SkyBrightness">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.SkyBrightness">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.SkyQuality">SkyQuality (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.SkyQuality">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.SkyQuality">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.SkyTemperature">SkyTemperature (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.SkyTemperature">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.SkyTemperature">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.Slaved">Slaved (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.Slaved">(pyscope.observatory.Dome attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.slew_rate">slew_rate (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.slew_to_coordinates">slew_to_coordinates() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.Slewing">Slewing (pyscope.observatory.ASCOMDome attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.Slewing">(pyscope.observatory.ASCOMTelescope attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.Slewing">(pyscope.observatory.Dome attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.Slewing">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SlewSettleTime">SlewSettleTime (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SlewSettleTime">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SlewToAltAz">SlewToAltAz() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SlewToAltAz">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SlewToAltAzAsync">SlewToAltAzAsync() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SlewToAltAzAsync">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.SlewToAltitude">SlewToAltitude() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.SlewToAltitude">(pyscope.observatory.Dome method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.SlewToAzimuth">SlewToAzimuth() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.SlewToAzimuth">(pyscope.observatory.Dome method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SlewToCoordinates">SlewToCoordinates() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SlewToCoordinates">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SlewToCoordinatesAsync">SlewToCoordinatesAsync() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SlewToCoordinatesAsync">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SlewToTarget">SlewToTarget() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SlewToTarget">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SlewToTargetAsync">SlewToTargetAsync() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SlewToTargetAsync">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.AstrometryNetWCS.html#pyscope.observatory.AstrometryNetWCS.Solve">Solve() (pyscope.observatory.AstrometryNetWCS method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.PinpointWCS.html#pyscope.observatory.PinpointWCS.Solve">(pyscope.observatory.PinpointWCS method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.WCS.html#pyscope.observatory.WCS.Solve">(pyscope.observatory.WCS method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.StarFWHM">StarFWHM (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.StarFWHM">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.StarFWHM">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.start_derotation_thread">start_derotation_thread() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.start_observing_conditions_thread">start_observing_conditions_thread() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.start_safety_monitor_thread">start_safety_monitor_thread() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.start_syncfiles.html#pyscope.telrun.start_syncfiles">start_syncfiles() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.start_telrun.html#pyscope.telrun.start_telrun">start_telrun() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.StartExposure">StartExposure() (pyscope.observatory.ASCOMCamera method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.StartExposure">(pyscope.observatory.Camera method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.StartX">StartX (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.StartX">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.StartY">StartY (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.StartY">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.StepSize">StepSize (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.StepSize">(pyscope.observatory.ASCOMRotator attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.StepSize">(pyscope.observatory.Focuser attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.StepSize">(pyscope.observatory.Rotator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.stop_derotation_thread">stop_derotation_thread() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.stop_observing_conditions_thread">stop_observing_conditions_thread() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.stop_safety_monitor_thread">stop_safety_monitor_thread() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.StopExposure">StopExposure() (pyscope.observatory.ASCOMCamera method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.StopExposure">(pyscope.observatory.Camera method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMCamera.html#pyscope.observatory.ASCOMCamera.SubExposureDuration">SubExposureDuration (pyscope.observatory.ASCOMCamera attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Camera.html#pyscope.observatory.Camera.SubExposureDuration">(pyscope.observatory.Camera attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.sun_altaz">sun_altaz() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDevice.html#pyscope.observatory.ASCOMDevice.SupportedActions">SupportedActions (pyscope.observatory.ASCOMDevice attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch">Switch (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.switch">switch (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.switch_driver">switch_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.switch_info">switch_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.switch_kwargs">switch_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.switch_status">switch_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.switch_status">switch_status() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMSwitch.html#pyscope.observatory.ASCOMSwitch.SwitchStep">SwitchStep() (pyscope.observatory.ASCOMSwitch method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Switch.html#pyscope.observatory.Switch.SwitchStep">(pyscope.observatory.Switch method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.Sync">Sync() (pyscope.observatory.ASCOMRotator method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.Sync">(pyscope.observatory.Rotator method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.syncfiles.html#pyscope.telrun.syncfiles">syncfiles() (in module pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SyncToAltAz">SyncToAltAz() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SyncToAltAz">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMDome.html#pyscope.observatory.ASCOMDome.SyncToAzimuth">SyncToAzimuth() (pyscope.observatory.ASCOMDome method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Dome.html#pyscope.observatory.Dome.SyncToAzimuth">(pyscope.observatory.Dome method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SyncToCoordinates">SyncToCoordinates() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SyncToCoordinates">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.SyncToTarget">SyncToTarget() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.SyncToTarget">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.take_darks">take_darks() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.take_flats">take_flats() (pyscope.observatory.Observatory method)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.TargetDeclination">TargetDeclination (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.TargetDeclination">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMRotator.html#pyscope.observatory.ASCOMRotator.TargetPosition">TargetPosition (pyscope.observatory.ASCOMRotator attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Rotator.html#pyscope.observatory.Rotator.TargetPosition">(pyscope.observatory.Rotator attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.TargetRightAscension">TargetRightAscension (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.TargetRightAscension">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.tcp_ip">tcp_ip (pyscope.observatory.IPCoverCalibrator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.IPCoverCalibrator.html#pyscope.observatory.IPCoverCalibrator.tcp_port">tcp_port (pyscope.observatory.IPCoverCalibrator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope">Telescope (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.telescope">telescope (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.telescope_driver">telescope_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.telescope_info">telescope_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.telescope_kwargs">telescope_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.telescope_status">telescope_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.telpath">telpath (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunBlock.html#pyscope.telrun.TelrunBlock">TelrunBlock (class in pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunException.html#pyscope.telrun.TelrunException">TelrunException</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator">TelrunOperator (class in pyscope.telrun)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.TempComp">TempComp (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.TempComp">(pyscope.observatory.Focuser attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.TempCompAvailable">TempCompAvailable (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.TempCompAvailable">(pyscope.observatory.Focuser attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMFocuser.html#pyscope.observatory.ASCOMFocuser.Temperature">Temperature (pyscope.observatory.ASCOMFocuser attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.Temperature">(pyscope.observatory.ASCOMObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.Focuser.html#pyscope.observatory.Focuser.Temperature">(pyscope.observatory.Focuser attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.Temperature">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.Temperature">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.threads_info">threads_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.TimeSinceLastUpdate">TimeSinceLastUpdate() (pyscope.observatory.ASCOMObservingConditions method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.TimeSinceLastUpdate">(pyscope.observatory.HTMLObservingConditions method)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.TimeSinceLastUpdate">(pyscope.observatory.ObservingConditions method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.Tracking">Tracking (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.Tracking">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.TrackingRate">TrackingRate (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.TrackingRate">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.TrackingRates">TrackingRates (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.TrackingRates">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.Unpark">Unpark() (pyscope.observatory.ASCOMTelescope method)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.Unpark">(pyscope.observatory.Telescope method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.update_block_status">update_block_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMTelescope.html#pyscope.observatory.ASCOMTelescope.UTCDate">UTCDate (pyscope.observatory.ASCOMTelescope attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.Telescope.html#pyscope.observatory.Telescope.UTCDate">(pyscope.observatory.Telescope attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.wait_for_block_start_time">wait_for_block_start_time (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.wait_for_sun">wait_for_sun (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.WCS.html#pyscope.observatory.WCS">WCS (class in pyscope.observatory)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.wcs_driver">wcs_driver (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.wcs_filters">wcs_filters (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.wcs_info">wcs_info (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory.wcs_kwargs">wcs_kwargs (pyscope.observatory.Observatory attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.wcs_status">wcs_status (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.wcs_timeout">wcs_timeout (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.WindDirection">WindDirection (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.WindDirection">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.WindDirection">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.WindGust">WindGust (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.WindGust">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.WindGust">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.observatory.ASCOMObservingConditions.html#pyscope.observatory.ASCOMObservingConditions.WindSpeed">WindSpeed (pyscope.observatory.ASCOMObservingConditions attribute)</a>
+
+      <ul>
+        <li><a href="api/auto_api/pyscope.observatory.HTMLObservingConditions.html#pyscope.observatory.HTMLObservingConditions.WindSpeed">(pyscope.observatory.HTMLObservingConditions attribute)</a>
+</li>
+        <li><a href="api/auto_api/pyscope.observatory.ObservingConditions.html#pyscope.observatory.ObservingConditions.WindSpeed">(pyscope.observatory.ObservingConditions attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.write_to_schedule_log">write_to_schedule_log (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+      <li><a href="api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator.write_to_status_log">write_to_status_log (pyscope.telrun.TelrunOperator attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Walter Golay.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.5.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

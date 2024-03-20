@@ -1,0 +1,21 @@
+ASCOMFilterWheel
+================
+
+.. currentmodule:: pyscope.observatory
+
+.. autoclass:: ASCOMFilterWheel
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~ASCOMFilterWheel.FocusOffsets
+      ~ASCOMFilterWheel.Names
+      ~ASCOMFilterWheel.Position
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: FocusOffsets
+   .. autoattribute:: Names
+   .. autoattribute:: Position

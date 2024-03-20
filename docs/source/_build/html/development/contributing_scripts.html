@@ -1,0 +1,850 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <link href="../_static/logo16.png" sizes="16x16" rel="icon" type="image/png">
+    <link href="../_static/logo32.png" sizes="32x32" rel="icon" type="image/png">
+    <link href="../_static/logo48.png" sizes="48x48" rel="icon" type="image/png">
+    <link href="../_static/logo128.png" sizes="128x128" rel="icon" type="image/png">
+    <link href="../_static/logo256.png" sizes="256x256" rel="icon" type="image/png">
+    <link href="../_static/pyscopeIcon.svg" rel="icon" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../_static/logo180.png" sizes="180x180" type="image/png">
+    <title>Contributing scripts &#8212; pyscope 0.1.6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=79d558ae"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/contributing_scripts';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Citing pyscope" href="../cite.html" />
+    <link rel="prev" title="Contribution workflow" href="workflow.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyscope_logo_small_gray.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/pyscope_logo_small.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installation.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Development
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cite.html">
+                        Citing pyscope
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-external" href="https://github.com/WWGolay/pyscope/issues">
+                        Report an Issue
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../license.html">
+                        License
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/WWGolay/pyscope" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/pyscope/" title="PyPI" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-python"></i></span>
+            <label class="sr-only">PyPI</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://macroconsortium.org" title="macro" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-shuttle-space"></i></span>
+            <label class="sr-only">macro</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setting up your development environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Contribution workflow</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contributing scripts</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Development</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Contributing scripts</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="contributing-scripts">
+<span id="id1"></span><h1>Contributing scripts<a class="headerlink" href="#contributing-scripts" title="Link to this heading">#</a></h1>
+<p class="linemarker linemarker-6">If you have a script that you think would be useful to others, please
+consider contributing it to this repository. This page documents the
+procedure  for doing so.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p class="linemarker linemarker-12">The general outline is as follows:</p>
+<ol class="arabic simple">
+<li><p class="linemarker linemarker-14">Decide which module your script belongs in:</p>
+<ul class="simple">
+<li><p class="linemarker linemarker-16"><a class="reference internal" href="../api/pyscope.analysis.html#module-pyscope.analysis" title="pyscope.analysis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">analysis</span></code></a> is for scripts that analyze data that has
+already been acquired and calibrated.</p></li>
+<li><p class="linemarker linemarker-18"><a class="reference internal" href="../api/pyscope.reduction.html#module-pyscope.reduction" title="pyscope.reduction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduction</span></code></a> is best-suited for scripts that perform
+a type of calibration or modification to the data that is not intended
+to elucidate any conclusions about the data itself. For example, the
+<a class="reference internal" href="../api/auto_api/pyscope.reduction.ccd_calib.html#pyscope.reduction.ccd_calib" title="pyscope.reduction.ccd_calib"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ccd_calib</span></code></a> function applies a set of
+calibration frames to a raw image, but does not perform any analysis
+on the resulting image. Additionally, scripts in this module should
+not depend on any of the hardware modules.</p></li>
+<li><p class="linemarker linemarker-25"><a class="reference internal" href="../api/pyscope.observatory.html#module-pyscope.observatory" title="pyscope.observatory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observatory</span></code></a> is a good choice for automating repetitive
+functions of the complete telescope system, such as collecting a set of
+calibration frames or grid-searching a portion of the sky. Scripts in
+this module should at some point utilize the
+<a class="reference internal" href="../api/auto_api/pyscope.observatory.Observatory.html#pyscope.observatory.Observatory" title="pyscope.observatory.Observatory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Observatory</span></code></a> object.</p></li>
+<li><p class="linemarker linemarker-30"><a class="reference internal" href="../api/pyscope.telrun.html#module-pyscope.telrun" title="pyscope.telrun"><code class="xref py py-obj docutils literal notranslate"><span class="pre">telrun</span></code></a> support the configuration, setup, and
+execution of the <a class="reference internal" href="../api/auto_api/pyscope.telrun.TelrunOperator.html#pyscope.telrun.TelrunOperator" title="pyscope.telrun.TelrunOperator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TelrunOperator</span></code></a> class. These scripts
+should assist users as they are configuring the fully-robotic observing
+mode. In general, most user-contributed scripts will not fit into this
+module, however, there may be exceptions.</p></li>
+<li><p class="linemarker linemarker-35"><a class="reference internal" href="../api/pyscope.utils.html#module-pyscope.utils" title="pyscope.utils"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils</span></code></a> is for scripts that do not fit into any of the
+other modules. These scripts should be general-purpose and not depend
+on any of the other modules.</p></li>
+</ul>
+</li>
+<li><p class="linemarker linemarker-39">Turn your script into a function and isolate it in a single Python file.
+The function should be well-documented and should have a docstring that
+describes the function and its arguments. Your function should use the
+<a class="reference external" href="https://click.palletsprojects.com/">click</a> package to define its
+command-line interface behavior.</p></li>
+<li><p class="linemarker linemarker-45">Add your script to the appropriate module’s <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file.
+This will make your script available to users who import the module.
+You should also add your script to the <code class="file docutils literal notranslate"><span class="pre">setup.py</span></code> file so that
+it will be installed when users install the package.</p></li>
+</ol>
+<p class="linemarker linemarker-50">Congratulations! You have successfully contributed to <a class="reference internal" href="../index.html#module-pyscope" title="pyscope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyscope</span></code></a>!</p>
+</section>
+<section id="building-the-script-file">
+<h2>Building the script file<a class="headerlink" href="#building-the-script-file" title="Link to this heading">#</a></h2>
+<p class="linemarker linemarker-54">For a script to have the full functionality required of it by the
+<a class="reference internal" href="../index.html#module-pyscope" title="pyscope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyscope</span></code></a> package, it must be built using some specific tools
+and conventions. The <a class="reference internal" href="../index.html#module-pyscope" title="pyscope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyscope</span></code></a> package uses the
+<a class="reference external" href="https://click.palletsprojects.com/">click</a> package to define the
+command-line interface of each script. This allows the user to run the
+script from the command line with a set of options and arguments. For a
+function to retain its ability to be called as a importable function, the
+main function with the <a class="reference external" href="https://click.palletsprojects.com/en/8.1.x/api/#click.command" title="(in Click v8.1.x)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">click.command</span></code></a> decorator must
+have a different name. We recommend using the same name as the script file
+with the <code class="xref py py-obj docutils literal notranslate"><span class="pre">_cli</span></code> suffix. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_script_cli</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+   <span class="c1"># Do stuff here</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-68">The <a class="reference external" href="https://click.palletsprojects.com/en/8.1.x/api/#click.command" title="(in Click v8.1.x)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">click.command</span></code></a> should include an epilog that
+references this documentation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;Check out the documentation at</span>
+<span class="s1">             https://pyscope.readthedocs.io/ for more</span>
+<span class="s1">             information.&#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-75">You can also use the <a class="reference external" href="https://click.palletsprojects.com/en/8.1.x/api/#click.option" title="(in Click v8.1.x)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">click.option</span></code></a> and the
+<a class="reference external" href="https://click.palletsprojects.com/en/8.1.x/api/#click.argument" title="(in Click v8.1.x)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">click.argument</span></code></a> decorators to define the command-line
+options and arguments. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--option&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;An option&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;argument&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">my_script_cli</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+   <span class="c1"># Do stuff here</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-84">The script file should end in a line which sets the intended
+name of the script to the  defined function’s <code class="xref py py-obj docutils literal notranslate"><span class="pre">callback</span></code> attribute:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_script</span> <span class="o">=</span> <span class="n">my_script_cli</span><span class="o">.</span><span class="n">callback</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-89"><a class="reference internal" href="../index.html#module-pyscope" title="pyscope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyscope</span></code></a> also uses the Python <a class="reference external" href="https://docs.python.org/3/library/logging.html#module-logging" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logging</span></code></a> module to
+provide a consistent logging interface for all scripts. This allows
+the user to specify the verbosity of the script’s output and to
+redirect the output to a file. To use the logging module, you must
+first import it and create a logger object. The logger object should
+be the name of the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-99">We recommend using a <a class="reference external" href="https://click.palletsprojects.com/en/8.1.x/api/#click.option" title="(in Click v8.1.x)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">click.option</span></code></a> to set the
+verbosity level:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Increase verbosity&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-104">A user can then set the verbosity level by passing the <code class="xref py py-obj docutils literal notranslate"><span class="pre">-v</span></code> option multiple
+times on the CLI, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ my_script -vv
+</pre></div>
+</div>
+<p class="linemarker linemarker-109">We can connect the option to the logger level by adding the following
+line to the function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">verbose</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-114">At this point, the actual content of the function can be added. Once this
+is complete, you should write a docstring for the function that describes
+the function and its arguments. The docstring should be formatted using
+the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a>
+format. The docstring should also include a description of the command-line
+interface.</p>
+<p class="linemarker linemarker-121">Once you’ve completed these steps, your function should be complete.
+The outline of your function should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">click</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">epilog</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;Check out the documentation at</span>
+<span class="s1">               https://pyscope.readthedocs.io/en/latest/</span>
+<span class="s1">               for more information.&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--option&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;An option&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+             <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">IntRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># Range can be changed</span>
+             <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+             <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Increase verbosity&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;argument&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">version_option</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">my_script_cli</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="n">argument</span><span class="p">,</span>
+                  <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Distinguish from CLI callback</span>
+                  <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;A description of the function.\b</span>
+
+<span class="sd">    A longer descriptiou of the function. Note that the short description</span>
+<span class="sd">    is ended with `\b` to prevent the remainder of the docstring from</span>
+<span class="sd">    being included in the `--help` output.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    option : int</span>
+<span class="sd">        A description of the option.</span>
+<span class="sd">    argument : str</span>
+<span class="sd">        A description of the argument.</span>
+<span class="sd">    verbose : int, {-1, 0, 1}, default=-1</span>
+<span class="sd">        Increase verbosity.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    contributing-scripts</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This is a sample function. Refer to the Sphinx documentation for</span>
+<span class="sd">     more information on how to write docstrings that will parse</span>
+<span class="sd">     correctly.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    See https://www.sphinx-doc.org/en/master/usage/extensions/doctest.html</span>
+<span class="sd">     for more information on how to write doctests.</span>
+
+<span class="sd">    .. doctest::</span>
+
+<span class="sd">        &gt;&gt;&gt; my_script_cli(1, &#39;argument&#39;, 1)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">verbose</span><span class="p">)))</span> <span class="c1"># Change range via 2</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">())</span> <span class="c1"># Redirect to stdout</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Verbosity level set to </span><span class="si">{</span><span class="n">verbose</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;&#39;my_script_cli(option=</span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">                 argument=</span><span class="si">{</span><span class="n">argument</span><span class="si">}</span><span class="s1">, verbose=</span><span class="si">{</span><span class="n">verbose</span><span class="si">}</span><span class="s1">,</span>
+<span class="s1">                 args=</span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s1">, kwargs=</span><span class="si">{</span><span class="n">kwargs</span><span class="si">}</span><span class="s1">)&#39;&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting my_script&#39;</span><span class="p">)</span>
+    <span class="c1"># Do stuff here, logging output as needed</span>
+    <span class="c1"># using logger.debug, logger.info, logger.warning,</span>
+    <span class="c1"># logger.error, and logger.exception</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Finished my_script&#39;</span><span class="p">)</span>
+
+<span class="n">my_script</span> <span class="o">=</span> <span class="n">my_script_cli</span><span class="o">.</span><span class="n">callback</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p class="linemarker linemarker-204">The <a class="reference internal" href="../index.html#module-pyscope" title="pyscope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyscope</span></code></a> package uses the <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>
+package to generate documentation. Sphinx uses the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a>
+format to parse docstrings. For more information on the numpydoc format,
+see the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc documentation</a>.</p>
+</div>
+</section>
+<section id="preparing-the-script-for-distribution">
+<h2>Preparing the script for distribution<a class="headerlink" href="#preparing-the-script-for-distribution" title="Link to this heading">#</a></h2>
+<p class="linemarker linemarker-211">Once you have written your script, you must add it to the appropriate
+module’s <code class="file docutils literal notranslate"><span class="pre">__init__.py</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.my_script</span> <span class="kn">import</span> <span class="n">my_script</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-216">You should also add your script to the <code class="file docutils literal notranslate"><span class="pre">setup.cfg</span></code> file, referencing
+the <code class="xref py py-obj docutils literal notranslate"><span class="pre">_cli</span></code>-named version of the function and replacing underscores with
+dashes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">options</span><span class="o">.</span><span class="n">entry_points</span><span class="p">]</span>
+<span class="n">console_scripts</span> <span class="o">=</span>
+   <span class="o">...</span><span class="p">,</span>
+   <span class="n">my</span><span class="o">-</span><span class="n">script</span> <span class="o">=</span> <span class="n">pyscope</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">my_script</span><span class="p">:</span><span class="n">pyscope</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">my_script_cli</span>
+</pre></div>
+</div>
+<p class="linemarker linemarker-225">You can test your script by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --editable &quot;.[dev]&quot;
+</pre></div>
+</div>
+<p class="linemarker linemarker-229">in your repository, then running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ my-script --help
+</pre></div>
+</div>
+<p class="linemarker linemarker-233">which should return an automatically-generated help message for your
+script.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="workflow.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Contribution workflow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../cite.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Citing pyscope</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-script-file">Building the script file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-script-for-distribution">Preparing the script for distribution</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/development/contributing_scripts.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Walter Golay.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.5.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

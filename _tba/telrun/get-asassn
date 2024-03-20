@@ -6,62 +6,103 @@ import pandas as pd
 import requests as rs
 
 url = "https://docs.google.com/spreadsheets/d/1QdWCXJ0wRlNpTK0Ux4EfAybYJKKm9EXAa_wamQisajA/export?format=csv&id=1QdWCXJ0wRlNpTK0Ux4EfAybYJKKm9EXAa_wamQisajA&gid=0"
-email = 'tyler-roth@uiowa.edu'
-vers = '1.0'
+email = "tyler-roth@uiowa.edu"
+vers = "1.0"
+
+
 def get_args():
-        global parser
-        parser = OptionParser(description='%prog creates a schedule file for ASAS-SN observations', version = vers)
-        parser.add_option('-f', dest = 'output_filename', metavar='Output File Name'  , action = 'store', default = '', help = 'output file name')
-        return parser.parse_args()
+    global parser
+    parser = OptionParser(
+        description="%prog creates a schedule file for ASAS-SN observations",
+        version=vers,
+    )
+    parser.add_option(
+        "-f",
+        dest="output_filename",
+        metavar="Output File Name",
+        action="store",
+        default="",
+        help="output file name",
+    )
+    return parser.parse_args()
+
 
 write_file = False
 (opts, args) = get_args()
 output_filename = opts.output_filename
 if len(output_filename) > 0:
-   write_file = True
+    write_file = True
 
-res=rs.get(url=url)
-open('/tmp/asas-sn.csv', 'wb').write(res.content)
+res = rs.get(url=url)
+open("/tmp/asas-sn.csv", "wb").write(res.content)
 if write_file:
-    output = open(output_filename,'wb')
+    output = open(output_filename, "wb")
 if write_file:
-    output.write('Observer = "'+email+'"\n')
-print(('Observer = "'+email+'"'))
+    output.write('Observer = "' + email + '"\n')
+print(('Observer = "' + email + '"'))
 if write_file:
-    output.write('epoch 2000\n')
-print('epoch 2000')
+    output.write("epoch 2000\n")
+print("epoch 2000")
 if write_file:
-    output.write('\n')
-print('')
+    output.write("\n")
+print("")
 
-df = pd.read_csv('/tmp/asas-sn.csv',header=2)
+df = pd.read_csv("/tmp/asas-sn.csv", header=2)
+
 
 def calc_exp(mag):
-    #calculate and return an exposure time based on magnitude
-    dur = 300 #replace this line
+    # calculate and return an exposure time based on magnitude
+    dur = 300  # replace this line
     ###code here###
     return str(dur)
 
+
 for index, row in df.iterrows():
-    if not isinstance(row['Object'],str):
+    if not isinstance(row["Object"], str):
         continue
-    #if row['Active'] != 'TRUE':
-        #continue
-    #create string for duration
-    #needs to calculate exposure time based on magnitude from row['Last Mag']
-    duration = ''
-    for i in range(0,len(row['Filters'])):
-        duration += calc_exp(row['Last Mag']) + ','
-    #trim last comma
+    # if row['Active'] != 'TRUE':
+    # continue
+    # create string for duration
+    # needs to calculate exposure time based on magnitude from row['Last Mag']
+    duration = ""
+    for i in range(0, len(row["Filters"])):
+        duration += calc_exp(row["Last Mag"]) + ","
+    # trim last comma
     duration = duration[:-1]
-    #create string for filters
-    filter = ''
-    for i in row['Filters']:
-        filter += i+','
-    #trim last comma
+    # create string for filters
+    filter = ""
+    for i in row["Filters"]:
+        filter += i + ","
+    # trim last comma
     filter = filter[:-1]
-    print(('source '+row['Object']+ ' ra '+ row['RA']+ ' dec ' +row['Dec'] + ' filter ' + filter + ' dur ' + duration + ' /'))
+    print(
+        (
+            "source "
+            + row["Object"]
+            + " ra "
+            + row["RA"]
+            + " dec "
+            + row["Dec"]
+            + " filter "
+            + filter
+            + " dur "
+            + duration
+            + " /"
+        )
+    )
     if write_file:
-        output.write('source '+row['Object']+ ' ra '+ row['RA']+ ' dec ' +row['Dec'] + ' filter ' + filter + ' dur ' + duration + ' /\n')
+        output.write(
+            "source "
+            + row["Object"]
+            + " ra "
+            + row["RA"]
+            + " dec "
+            + row["Dec"]
+            + " filter "
+            + filter
+            + " dur "
+            + duration
+            + " /\n"
+        )
 if write_file:
     output.close()

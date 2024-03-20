@@ -1,0 +1,47 @@
+ASCOMRotator
+============
+
+.. currentmodule:: pyscope.observatory
+
+.. autoclass:: ASCOMRotator
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~ASCOMRotator.CanReverse
+      ~ASCOMRotator.IsMoving
+      ~ASCOMRotator.MechanicalPosition
+      ~ASCOMRotator.Position
+      ~ASCOMRotator.Reverse
+      ~ASCOMRotator.StepSize
+      ~ASCOMRotator.TargetPosition
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~ASCOMRotator.Halt
+      ~ASCOMRotator.Move
+      ~ASCOMRotator.MoveAbsolute
+      ~ASCOMRotator.MoveMechanical
+      ~ASCOMRotator.Sync
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: CanReverse
+   .. autoattribute:: IsMoving
+   .. autoattribute:: MechanicalPosition
+   .. autoattribute:: Position
+   .. autoattribute:: Reverse
+   .. autoattribute:: StepSize
+   .. autoattribute:: TargetPosition
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: Halt
+   .. automethod:: Move
+   .. automethod:: MoveAbsolute
+   .. automethod:: MoveMechanical
+   .. automethod:: Sync

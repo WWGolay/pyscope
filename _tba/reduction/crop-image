@@ -1,12 +1,12 @@
 #! /usr/bin/env python
 
-'''
+"""
 crop-image: Crops FITS images in place, according to user-specified boundaries, or 1/4 original (default)
 FITS filename can be wild-carded e.g. *.fts in current directory
 
 RLM 23 Oct 2014
 3 Nov 2014: Check if WCS solution exists before changing CRPIX1,CRPIX2
-'''
+"""
 
 import getopt
 import os
@@ -16,42 +16,49 @@ import astropy.io.fits as pyfits
 
 
 def usage():
-    print('Usage: crop-image [-X ] [-Y] [-W] [-H]  [-v verbose] [-h = help] FITS_file[s]')
+    print(
+        "Usage: crop-image [-X ] [-Y] [-W] [-H]  [-v verbose] [-h = help] FITS_file[s]"
+    )
     sys.exit(1)
 
+
 def help_usage():
-    print('crop-image crops FITS images in place, wildcard spec allowed')
-    print('(X,Y) lower left corner of crop, pixels')
-    print('W,H = width, height of cropped image, pixels')
-    print('Note: Defaults to inner 1/4 of image')
-    print('Warning: Crop is in place (overwrites original files)')
-    print('Example of usage: crop-image -X 100 -Y 100 -W 512 -H 512 *.fts')
+    print("crop-image crops FITS images in place, wildcard spec allowed")
+    print("(X,Y) lower left corner of crop, pixels")
+    print("W,H = width, height of cropped image, pixels")
+    print("Note: Defaults to inner 1/4 of image")
+    print("Warning: Crop is in place (overwrites original files)")
+    print("Example of usage: crop-image -X 100 -Y 100 -W 512 -H 512 *.fts")
     sys.exit(1)
+
 
 def getargs():
     # retrieves filenames and optional arguments from command line
     try:
         opts, arg = getopt.getopt(sys.argv[1:], "X:Y:W:H:vh")
     except getopt.GetoptError as err:
-        print(str(err)) # Prints  "option -a not recognized"
+        print(str(err))  # Prints  "option -a not recognized"
         usage()
-    if len(arg) == 0: usage()
-    verbose = False; fnames = arg
+    if len(arg) == 0:
+        usage()
+    verbose = False
+    fnames = arg
     X = Y = W = H = 0
     for opt in opts:
-        if opt[0] in ('-v','--verbose'):
-        	verbose = True
-        elif opt[0] in ('-X','--xstart'):
-        	X = int(opt[1])
-        elif opt[0] in ('-Y','--xstop'):
-        	Y = int(opt[1])
-        elif opt[0] in ('-W','--ystart'):
-        	W = int(opt[1])
-        elif opt[0] in ('-H','--ystop'):
-        	H = int(opt[1])
+        if opt[0] in ("-v", "--verbose"):
+            verbose = True
+        elif opt[0] in ("-X", "--xstart"):
+            X = int(opt[1])
+        elif opt[0] in ("-Y", "--xstop"):
+            Y = int(opt[1])
+        elif opt[0] in ("-W", "--ystart"):
+            W = int(opt[1])
+        elif opt[0] in ("-H", "--ystop"):
+            H = int(opt[1])
         elif opt[0] in ("-h", "--help"):
             help_usage()
     return verbose, X, Y, W, H, fnames
+
 
 # === MAIN ===
 # get params
@@ -59,18 +66,32 @@ verbose, X, Y, W, H, fnames = getargs()
 
 # crop images, overwrite original image, fixing CRPIX1 keywords
 for fn in fnames:
-	if verbose: print('Cropping %s' % fn)
-	HDU = pyfits.open(fn)
-	Im = HDU[0].data; Header= HDU[0].header
-	if W == 0:
-		Nx = Header['NAXIS1']; Ny = Header['NAXIS2']
-		X = Nx/4; Y = Ny/4; W = Nx/2; H = Nx/2
-	X0 = X; Y0 = Y; X1 = X0 + W -1; Y1 = Y0 + H - 1
-	if verbose: print('X0 = %i, YX1 = %i, Y0 = %i Y1 = %i' % (X0,X1,Y0,Y1))
-	Im = Im[int(X0):int(X1), int(Y0):int(Y1)]
-	HDU[0].data=Im
-	HDU[0].scale('int16',bzero = 32768)
-	if 'CRPIX1' in Header: Header['CRPIX1'] -= X; Header['CRPIX2'] -= Y
-	Header['Comment'] = 'Cropped image using crop-image'
-	os.remove(fn); HDU.writeto(fn)
-if verbose: print('Done')
+    if verbose:
+        print("Cropping %s" % fn)
+    HDU = pyfits.open(fn)
+    Im = HDU[0].data
+    Header = HDU[0].header
+    if W == 0:
+        Nx = Header["NAXIS1"]
+        Ny = Header["NAXIS2"]
+        X = Nx / 4
+        Y = Ny / 4
+        W = Nx / 2
+        H = Nx / 2
+    X0 = X
+    Y0 = Y
+    X1 = X0 + W - 1
+    Y1 = Y0 + H - 1
+    if verbose:
+        print("X0 = %i, YX1 = %i, Y0 = %i Y1 = %i" % (X0, X1, Y0, Y1))
+    Im = Im[int(X0) : int(X1), int(Y0) : int(Y1)]
+    HDU[0].data = Im
+    HDU[0].scale("int16", bzero=32768)
+    if "CRPIX1" in Header:
+        Header["CRPIX1"] -= X
+        Header["CRPIX2"] -= Y
+    Header["Comment"] = "Cropped image using crop-image"
+    os.remove(fn)
+    HDU.writeto(fn)
+if verbose:
+    print("Done")

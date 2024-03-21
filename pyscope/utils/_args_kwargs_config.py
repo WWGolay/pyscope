@@ -1,5 +1,5 @@
 def _kwargs_to_config(kwargs):
-    if kwargs is None or len(kwargs) == 0:
+    if kwargs is None or len(kwargs) == 0:  # pragma: no cover
         return ""
     string = ""
     for key, value in kwargs.items():

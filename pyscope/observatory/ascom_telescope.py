@@ -18,7 +18,7 @@ class ASCOMTelescope(ASCOMDevice, Telescope):
 
     def AbortSlew(self):
         logger.debug("ASCOMTelescope.AbortSlew() called")
-        self._device.AbortSlew()
+        self._device.AbortSlew
 
     def AxisRates(self, Axis):
         logger.debug(f"ASCOMTelescope.AxisRates({Axis}) called")
@@ -36,7 +36,7 @@ class ASCOMTelescope(ASCOMDevice, Telescope):
 
     def FindHome(self):
         logger.debug("ASCOMTelescope.FindHome() called")
-        self._device.FindHome()
+        self._device.FindHome
 
     def MoveAxis(self, Axis, Rate):
         logger.debug(f"ASCOMTelescope.MoveAxis({Axis}, {Rate}) called")
@@ -44,7 +44,7 @@ class ASCOMTelescope(ASCOMDevice, Telescope):
 
     def Park(self):
         logger.debug("ASCOMTelescope.Park() called")
-        self._device.Park()
+        self._device.Park
 
     def PulseGuide(self, Direction, Duration):
         logger.debug(f"ASCOMTelescope.PulseGuide({Direction}, {Duration}) called")
@@ -52,7 +52,7 @@ class ASCOMTelescope(ASCOMDevice, Telescope):
 
     def SetPark(self):
         logger.debug("ASCOMTelescope.SetPark() called")
-        self._device.SetPark()
+        self._device.SetPark
 
     def SlewToAltAz(self, Azimuth, Altitude):  # pragma: no cover
         """
@@ -88,11 +88,11 @@ class ASCOMTelescope(ASCOMDevice, Telescope):
             ASCOM is deprecating this method.
         """
         logger.debug("ASCOMTelescope.SlewToTarget() called")
-        self._device.SlewToTarget()
+        self._device.SlewToTarget
 
     def SlewToTargetAsync(self):
         logger.debug("ASCOMTelescope.SlewToTargetAsync() called")
-        self._device.SlewToTargetAsync()
+        self._device.SlewToTargetAsync
 
     def SyncToAltAz(self, Azimuth, Altitude):
         logger.debug(f"ASCOMTelescope.SyncToAltAz({Azimuth}, {Altitude}) called")
@@ -106,11 +106,11 @@ class ASCOMTelescope(ASCOMDevice, Telescope):
 
     def SyncToTarget(self):
         logger.debug("ASCOMTelescope.SyncToTarget() called")
-        self._device.SyncToTarget()
+        self._device.SyncToTarget
 
     def Unpark(self):
         logger.debug("ASCOMTelescope.Unpark() called")
-        self._device.Unpark()
+        self._device.Unpark
 
     @property
     def AlignmentMode(self):

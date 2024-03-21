@@ -197,11 +197,13 @@ def summary_report_cli(
             [hdr["MOONANGL"] for hdr in headers],
             [hdr["MOONPHAS"] for hdr in headers],
             [
-                coord.SkyCoord(
-                    hdr["OBJCTRA"], hdr["OBJCTDEC"], unit=("hourangle", "deg")
+                (
+                    coord.SkyCoord(
+                        hdr["OBJCTRA"], hdr["OBJCTDEC"], unit=("hourangle", "deg")
+                    )
+                    if None not in (hdr.get("OBJCTRA", None), hdr.get("OBJCTDEC", None))
+                    else None
                 )
-                if None not in (hdr.get("OBJCTRA", None), hdr.get("OBJCTDEC", None))
-                else None
                 for hdr in headers
             ],
         ],
@@ -267,17 +269,22 @@ def summary_report_cli(
     # Pointing errors in arcsec
     dra = np.array(
         [
-            (tbl["sched coords"][i].ra.deg - tbl["obj coords"][i].ra.deg) / u.arcsec
-            if tbl["obj coords"][i] is not None
-            else np.nan
+            (
+                (tbl["sched coords"][i].ra.deg - tbl["obj coords"][i].ra.deg) / u.arcsec
+                if tbl["obj coords"][i] is not None
+                else np.nan
+            )
             for i in range(len(tbl))
         ]
     )
     ddec = np.array(
         [
-            (tbl["sched coords"][i].dec.deg - tbl["obj coords"][i].dec.deg) / u.arcsec
-            if tbl["obj coords"][i] is not None
-            else np.nan
+            (
+                (tbl["sched coords"][i].dec.deg - tbl["obj coords"][i].dec.deg)
+                / u.arcsec
+                if tbl["obj coords"][i] is not None
+                else np.nan
+            )
             for i in range(len(tbl))
         ]
     )

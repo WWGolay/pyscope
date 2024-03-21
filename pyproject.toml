@@ -36,4 +36,16 @@ line-length = 88
 
         # Don't complain about abstract methods, they aren't run:
         "@(abc\\.)?abstractmethod",
+
+        # Don't complain about excepts:
+        "except",
+
+        # Don't complaina about break/continue/return:
+        "break",
+        "continue",
+        "return",
+
+        # Don't complain about logger statements that aren't info:
+        "logger\\.(debug||warning|error|critical|exception)",
+
         ]

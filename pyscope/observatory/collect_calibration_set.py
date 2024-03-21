@@ -1,8 +1,8 @@
 import logging
+import os
 
 import click
 import numpy as np
-import os
 
 from .. import reduction
 from .observatory import Observatory
@@ -109,7 +109,6 @@ TODO: make flag that allows user make masters or not
     show_default=True,
     help="Create master calibration files.",
 )
-
 @click.version_option()
 def collect_calibration_set_cli(
     observatory,
@@ -278,8 +277,9 @@ def collect_calibration_set_cli(
                             #         f"dark_{readout}_{int(binning[0])}x{int(binning[2])}_{exposure}__{i}.fts"
                             #     ),
                             # )
-                            
-                            save_folder + "/darks/" + f"dark_{int(binning[0])}x{int(binning[2])}_{exposure}s_{readout}__{i}.fts"
+                            save_folder
+                            + "/darks/"
+                            + f"dark_{int(binning[0])}x{int(binning[2])}_{exposure}s_{readout}__{i}.fts"
                         )
 
                     reduction.avg_fits(
@@ -308,7 +308,9 @@ def collect_calibration_set_cli(
                             #         % (readout, int(binning[0]), int(binning[2]), i)
                             #     ),
                             # )
-                            save_folder + "/biases/" + f"dark_{int(binning[0])}x{int(binning[2])}_0s_{readout}__{i}.fts"
+                            save_folder
+                            + "/biases/"
+                            + f"dark_{int(binning[0])}x{int(binning[2])}_0s_{readout}__{i}.fts"
                         )
 
                     reduction.avg_fits(
@@ -326,7 +328,7 @@ def collect_calibration_set_cli(
 
                 logger.info("Creating master flats...")
                 print("Creating master flats...")
-                # for filt, exposure, brightness in zip(obs.filters, filter_exposures, filter_brightness):  
+                # for filt, exposure, brightness in zip(obs.filters, filter_exposures, filter_brightness):
                 for filt, exposure in zip(obs.filters, filter_exposures):
                     flat_paths = []
                     for i in range(repeat):
@@ -338,7 +340,9 @@ def collect_calibration_set_cli(
                             #         % (filt, readout, int(binning[0]), int(binning[2]), exposure, i)
                             #     ),
                             # )
-                            save_folder + "/flats/" + f"flat_{filt}_{int(binning[0])}x{int(binning[2])}_{exposure}s_{readout}__{i}.fts"
+                            save_folder
+                            + "/flats/"
+                            + f"flat_{filt}_{int(binning[0])}x{int(binning[2])}_{exposure}s_{readout}__{i}.fts"
                         )
 
                     reduction.avg_fits(
@@ -355,7 +359,9 @@ def collect_calibration_set_cli(
                     )
 
                     if camera == "cmos":
-                        logger.info("CMOS camera selected, creating master flat-dark...")
+                        logger.info(
+                            "CMOS camera selected, creating master flat-dark..."
+                        )
                         print("CMOS camera selected, creating master flat-dark...")
                         flat_dark_paths = []
                         for i in range(repeat):
@@ -367,7 +373,9 @@ def collect_calibration_set_cli(
                                 #         % (readout, int(binning[0]), int(binning[2]), exposure, i)
                                 #     ),
                                 # )
-                                save_folder + "/flat_darks/" + f"dark_{int(binning[0])}x{int(binning[2])}_{exposure}s_{readout}__{i}.fts"
+                                save_folder
+                                + "/flat_darks/"
+                                + f"dark_{int(binning[0])}x{int(binning[2])}_{exposure}s_{readout}__{i}.fts"
                             )
 
                         reduction.avg_fits(

@@ -2,11 +2,15 @@ import os
 
 import click
 
-from .syncfiles import syncfiles
+from .synctools import sync_manager
 from .telrun_operator import TelrunOperator
 
 
-@click.command()
+@click.command(
+    epilog="""Check out the documentation at
+               https://pyscope.readthedocs.io/en/latest/
+               for more information."""
+)
 @click.argument(
     "path", type=click.Path(resolve_path=True), default="./", required=False
 )
@@ -14,21 +18,23 @@ from .telrun_operator import TelrunOperator
     "-g", "--gui", is_flag=True, default=True, show_default=True, help="Start the GUI"
 )
 @click.version_option()
-def start_telrun_cli(path, gui):
-    telrun = TelrunOperator(
-        config_path=os.path.join(path, "config/telrun.cfg"), gui=gui
-    )
+def start_telrun_operator_cli(path="./", gui=True):
+    telrun = TelrunOperator(config_path=path / "config/telrun.cfg", gui=gui)
     telrun.mainloop()
 
 
-@click.command()
+@click.command(
+    epilog="""Check out the documentation at
+               https://pyscope.readthedocs.io/en/latest/
+               for more information."""
+)
 @click.argument(
     "path", type=click.Path(resolve_path=True), default="./", required=False
 )
 @click.version_option()
-def start_syncfiles_cli(path):
-    syncfiles(config=os.path.join(path, "config/"))
+def start_sync_manager_cli(path="./", do_async=False):
+    sync_manager(config=path / "config/sync_manager.cfg", do_async=do_async)
 
 
-start_telrun = start_telrun_cli.callback
-start_syncfiles = start_syncfiles_cli.callback
+start_telrun_operator = start_telrun_operator_cli.callback
+start_sync_manager = start_sync_manager_cli.callback

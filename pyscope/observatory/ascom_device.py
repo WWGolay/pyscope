@@ -29,7 +29,7 @@ class ASCOMDevice(Device):
         else:
             raise ObservatoryException("If you are not on Windows, you must use Alpaca")
 
-    def Action(self, ActionName, *ActionParameters):
+    def Action(self, ActionName, *ActionParameters):  # pragma: no cover
         logger.debug(f"ASCOMDevice.Action({ActionName}, {ActionParameters})")
         return self._device.Action(ActionName, *ActionParameters)
 

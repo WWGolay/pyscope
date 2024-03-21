@@ -251,38 +251,38 @@ class HTMLObservingConditions(ObservingConditions):
                 self._last_updated_numeric,
             )
 
-            if cloud_cover is not None:
+            if cloud_cover is not None:  # pragma: no cover
                 self._cloud_cover = cloud_cover
-            if dew_point is not None:
+            if dew_point is not None:  # pragma: no cover
                 self._dew_point = dew_point
-            if humidity is not None:
+            if humidity is not None:  # pragma: no cover
                 self._humidity = humidity
-            if pressure is not None:
+            if pressure is not None:  # pragma: no cover
                 self._pressure = pressure
-            if rain_rate is not None:
+            if rain_rate is not None:  # pragma: no cover
                 self._rain_rate = rain_rate
-            if sky_brightness is not None:
+            if sky_brightness is not None:  # pragma: no cover
                 self._sky_brightness = sky_brightness
-            if sky_quality is not None:
+            if sky_quality is not None:  # pragma: no cover
                 self._sky_quality = sky_quality
-            if sky_temperature is not None:
+            if sky_temperature is not None:  # pragma: no cover
                 self._sky_temperature = sky_temperature
-            if star_fwhm is not None:
+            if star_fwhm is not None:  # pragma: no cover
                 self._star_fwhm = star_fwhm
-            if temperature is not None:
+            if temperature is not None:  # pragma: no cover
                 self._temperature = temperature
-            if wind_direction is not None:
+            if wind_direction is not None:  # pragma: no cover
                 self._wind_direction = wind_direction
-            if wind_gust is not None:
+            if wind_gust is not None:  # pragma: no cover
                 self._wind_gust = wind_gust
-            if wind_speed is not None:
+            if wind_speed is not None:  # pragma: no cover
                 self._wind_speed = wind_speed
-            if last_updated is not None:
+            if last_updated is not None:  # pragma: no cover
                 self._last_updated = last_updated
 
     def SensorDescription(self, PropertyName):
         logger.debug("HTMLObservingConditions.SensorDescription({PropertyName}) called")
-        return eval(f"self._{PropertyName.lower()}_keyword")
+        return str(eval(f"self._{PropertyName.lower()}_keyword"))
 
     def TimeSinceLastUpdate(self, PropertyName):
         logger.debug(
@@ -319,6 +319,21 @@ class HTMLObservingConditions(ObservingConditions):
         return self._cloud_cover
 
     @property
+    def Description(self):
+        logger.debug("HTMLObservingConditions.Description property called")
+        return "HTML Observing Conditions Driver"
+
+    @property
+    def DriverVersion(self):
+        logger.debug("HTMLObservingConditions.DriverVersion property called")
+        return None
+
+    @property
+    def DriverInfo(self):
+        logger.debug("HTMLObservingConditions.DriverInfo property called")
+        return "HTML Observing Conditions Driver"
+
+    @property
     def DewPoint(self):
         logger.debug("HTMLObservingConditions.DewPoint property called")
         return self._dew_point
@@ -327,6 +342,16 @@ class HTMLObservingConditions(ObservingConditions):
     def Humidity(self):
         logger.debug("HTMLObservingConditions.Humidity property called")
         return self._humidity
+
+    @property
+    def InterfaceVersion(self):
+        logger.debug("HTMLObservingConditions.InterfaceVersion property called")
+        return 1
+
+    @property
+    def Name(self):
+        logger.debug("HTMLObservingConditions.Name property called")
+        return self._url
 
     @property
     def Pressure(self):

@@ -123,6 +123,10 @@ class _MaximCamera(Camera):
         )
         raise NotImplementedError
 
+    def SaveImageAsFits(self, filename):
+        logger.debug(f"SaveImageAsFits called with filename={filename}")
+        self._com_object.SaveImage(filename)
+
     def StartExposure(self, Duration, Light):
         logger.debug(f"StartExposure called with Duration={Duration}, Light={Light}")
         self._last_exposure_duration = Duration
@@ -132,6 +136,44 @@ class _MaximCamera(Camera):
     def StopExposure(self):
         logger.debug("_MaximCameraStopExposure called")
         self._com_object.AbortExposure()
+
+    def VerifyLatestExposure(self):
+        """Verify that the last exposure is complete. \b
+
+        Make sure that the image that was returned by Maxim was in fact generated
+        by the most recent call to Expose(). I have seen cases where a camera
+        dropout occurs (e.g. if a USB cable gets unplugged and plugged back in)
+        where Maxim will claim that an exposure is complete but just return the
+        same (old) image over and over again.
+
+        Return without error if the image from Maxim appears to be newer than
+        the supplied UTC datetime object based on the DATE-OBS header.
+        Raise an exception if the image is older or if there is an error
+        accessing the image.
+        """
+        logger.debug("_MaximCameraVerifyLatestExposure called")
+
+        try:
+            # Change to document
+            image = self._com_object.Document
+        except Exception as e:
+            raise Exception(f"Unable to access MaxIm camera image: {e}")
+
+        if image is None:
+            raise Exception("No current image available from MaxIm")
+
+        # Get the DATE-OBS header
+        image_timestamp = image.GetFITSKey("DATE-OBS")
+        image_datetime = Time(image_timestamp, format="fits")
+
+        logger.debug(f"Image timestamp: {image_timestamp}")
+        logger.debug(f"Image timestamp UTC: {image_datetime}")
+        logger.debug(f"Exposure start time: {self._last_exposure_start_time}")
+
+        if image_datetime < self._last_exposure_start_time:
+            raise Exception(
+                "Image is too old; possibly the result of an earlier exposure. There may be a connection problem with the camera"
+            )
 
     @property
     def BayerOffsetX(self):
@@ -191,7 +233,8 @@ class _MaximCamera(Camera):
     @property
     def CanFastReadout(self):
         logger.debug("_MaximCameraCanFastReadout called")
-        raise NotImplementedError
+        # Not implemented, return False
+        return False
 
     @property
     def CanGetCoolerPower(self):
@@ -232,6 +275,21 @@ class _MaximCamera(Camera):
     def CoolerPower(self):
         logger.debug("_MaximCameraCoolerPower called")
         return self._com_object.CoolerPower
+
+    @property
+    def Description(self):
+        logger.debug("_MaximCameraDescription called")
+        return "MaxIm camera for pyscope"
+
+    @property
+    def DriverVersion(self):
+        logger.debug("_MaximCameraDriverVersion called")
+        return "Custom pyscope MaxIm driver"
+
+    @property
+    def DriverInfo(self):
+        logger.debug("_MaximCameraDriverInfo called")
+        return "Custom pyscope MaxIm driver"
 
     @property
     def ElectronsPerADU(self):
@@ -291,7 +349,12 @@ class _MaximCamera(Camera):
     @property
     def Gains(self):
         logger.debug("_MaximCameraGains called")
-        return self._com_object.Speeds
+        return self._com_object.Speeds.replace("(", "").replace(")", "")
+
+    @property
+    def HasFilterWheel(self):
+        logger.debug("_MaximCameraHasFilterWheel called")
+        return self._com_object.HasFilterWheel
 
     @property
     def HasShutter(self):
@@ -317,6 +380,11 @@ class _MaximCamera(Camera):
     def ImageReady(self):
         logger.debug("_MaximCameraImageReady called")
         return self._com_object.ImageReady
+
+    @property
+    def InterfaceVersion(self):
+        logger.debug("_MaximCameraInterfaceVersion called")
+        raise NotImplementedError
 
     @property
     def IsPulseGuiding(self):
@@ -492,7 +560,7 @@ class _MaximFilterWheel(FilterWheel):
     @property
     def Name(self):
         logger.debug("_MaximFilterWheelName called")
-        self.maxim_camera.FilterWheelName
+        return self.maxim_camera._com_object.FilterWheelName
 
     @property
     def FocusOffsets(self):
@@ -502,17 +570,17 @@ class _MaximFilterWheel(FilterWheel):
     @property
     def Names(self):
         logger.debug("_MaximFilterWheelNames called")
-        return self.maxim_camera.FilterNames
+        return self.maxim_camera._com_object.FilterNames
 
     @property
     def Position(self):
         logger.debug("_MaximFilterWheelPosition called")
-        return self.maxim_camera.Filter
+        return self.maxim_camera._com_object.Filter
 
     @Position.setter
     def Position(self, value):
         logger.debug(f"Position setter called with value={value}")
-        self.maxim_camera.Filter = value
+        self.maxim_camera._com_object.Filter = value
 
 
 class _MaximPinpointWCS(WCS):

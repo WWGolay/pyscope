@@ -2,8 +2,8 @@ import datetime
 import glob
 import logging
 import os
-import shutil
 import pathlib
+import shutil
 
 # i will be working on this
 import click
@@ -194,7 +194,6 @@ def calib_images_cli(
         except KeyError:
             readout = hdr["READOUT"].replace(" ", "")
 
-
         try:
             exptime = round(hdr["EXPTIME"], 3)
         except KeyError:
@@ -210,7 +209,6 @@ def calib_images_cli(
         except:
             ybin = hdr["YBIN"]
 
-
         observatory_home = os.getenv("observatory_home")
         masters_dir = pathlib.Path(observatory_home + "/images/masters")
         flat_frame = None
@@ -225,7 +223,8 @@ def calib_images_cli(
                     hdrf = h[0].header
                     # if the corresponding header values match, then set the appropriate frame
                     if (
-                        "master_flat" in filename and "master_flat_dark" not in filename
+                        "master_flat" in filename
+                        and "master_flat_dark" not in filename
                         and hdrf["FILTER"] == filt
                         and hdrf["READOUTM"] == readout
                         and hdrf["EXPTIME"] == exptime
@@ -239,7 +238,7 @@ def calib_images_cli(
                         and hdrf["EXPTIME"] == exptime
                         and hdrf["XBINNING"] == xbin
                         and hdrf["YBINNING"] == ybin
-                        ):
+                    ):
                         dark_frame = pathlib.Path(filename)
                     elif (
                         "master_bias" in filename
@@ -265,18 +264,22 @@ def calib_images_cli(
                 flat_dark_frame = flat_dark_frame
 
         else:  # use the calib_dir passed by the user
-            flat_frame = (
-                pathlib.Path(f"{calib_dir}/master_flat_{filt}_{readout}_{exptime}_{xbin}x{ybin}.fts")
+            flat_frame = pathlib.Path(
+                f"{calib_dir}/master_flat_{filt}_{readout}_{exptime}_{xbin}x{ybin}.fts"
             )
-            dark_frame = (
-                pathlib.Path(f"{calib_dir}/master_dark_{readout}_{exptime}_{xbin}x{ybin}.fts")
+            dark_frame = pathlib.Path(
+                f"{calib_dir}/master_dark_{readout}_{exptime}_{xbin}x{ybin}.fts"
             )
 
             # given a camera type, set the appropriate frame; bias for CCD, flat dark for CMOS
             if camera_type == "ccd":
-                bias_frame = pathlib.Path(f"{calib_dir}/master_bias_{readout}_{xbin}x{ybin}.fts")
+                bias_frame = pathlib.Path(
+                    f"{calib_dir}/master_bias_{readout}_{xbin}x{ybin}.fts"
+                )
             elif camera_type == "cmos":
-                flat_dark_frame = pathlib.Path(f"{calib_dir}/master_flat_dark_{readout}_{exptime}_{xbin}x{ybin}.fts")
+                flat_dark_frame = pathlib.Path(
+                    f"{calib_dir}/master_flat_dark_{readout}_{exptime}_{xbin}x{ybin}.fts"
+                )
 
         # for each image, print out the calibration frames being used
         logger.debug("Using calibration frames:")

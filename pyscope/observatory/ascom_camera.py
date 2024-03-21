@@ -257,6 +257,41 @@ class ASCOMCamera(ASCOMDevice, Camera):
 
     @property
     def ImageArray(self):
+        """Return the image array as a numpy array of the correct data type and in
+        standard FITS orientation. \b
+
+        Return the image array as a numpy array of the correct data type. The
+        data type is determined by the MaxADU property. If the MaxADU property
+        is not defined, or if it is less than or equal to 65535, the data type
+        will be numpy.uint16. If the MaxADU property is greater than 65535, the
+        data type will be numpy.uint32.
+
+        .. Note::
+            The image array is returned in the standard FITS orientation, which
+            deviates from the ASCOM standard (see below).
+
+        The image array is returned in the standard FITS orientation, with the
+        rows and columns transposed (if `_DoTranspose` is `True`). This is the same orientation as the
+        astropy.io.fits package. This is done because the ASCOM standard
+        specifies that the image array should be returned with the first index
+        being the column and the second index being the row. This is the
+        opposite of the FITS standard, which specifies that the first index
+        should be the row and the second index should be the column. The
+        astropy.io.fits package follows the FITS standard, so the image array
+        returned by the pyscope ASCOM driver is transposed to match the FITS
+        standard.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        numpy.ndarray
+            The image array as a numpy array of the correct data type.
+            Rows and columns are transposed to match the FITS standard.
+
+        """
         logger.debug(f"ASCOMCamera.ImageArray property called")
         img_array = self._device.ImageArray
         # Convert to numpy array and check if it is the correct data type

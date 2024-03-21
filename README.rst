@@ -6,7 +6,7 @@ pyscope
 
     |License| |Zenodo| |PyPI Version| |PyPI Python Versions| |PyPI Downloads| |Astropy| |GitHub CI| |Code Coverage| |Documentation Status| |Codespaces Status| |pre-commit| |Black| |isort| |Donate|
 
-.. image:: https://github.com/WWGolay/pyscope/blob/main/docs/source/images/pyscope_logo_white.png
+.. image:: https://github.com/WWGolay/pyscope/blob/main/docs/source/_static/pyscope_logo_white.png
     :alt: pyscope logo
 
 This is the repository for `pyscope <https://pyscope.readthedocs.io/en/latest/>`_,

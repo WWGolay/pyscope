@@ -50,9 +50,7 @@ def dmag(t, params):
     """Function to call from other scripts, houses the process of computing
     intensity over time"""
     p, b, v = params[:]
-    z = np.sqrt(
-        (v * t) ** 2 + b**2
-    )  # distance from center of star to center of planet
+    z = np.sqrt((v * t) ** 2 + b**2)  # distance from center of star to center of planet
     # print (p, z)
     f = dflux(p, z)
     mag = 2.5 * math.log(f)  # converts fractional intensity to magnitude change

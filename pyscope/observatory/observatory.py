@@ -1,19 +1,22 @@
 import configparser
+import datetime
 import importlib
 import json
 import logging
+import os
 import shutil
 import sys
 import tempfile
 import threading
 import time
-import os
 from ast import literal_eval
+from datetime import datetime
 
 import numpy as np
 from astropy import coordinates as coord
 from astropy import time as astrotime
 from astropy import units as u
+from astropy import wcs as astropywcs
 from astropy.io import fits
 from astroquery.mpc import MPC
 
@@ -23,7 +26,6 @@ from . import ObservatoryException
 from .ascom_device import ASCOMDevice
 from .device import Device
 from .wcs import WCS
-from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +36,7 @@ class Observatory:
         logger.debug("config_path: %s" % config_path)
         logger.debug("kwargs: %s" % kwargs)
 
+        # TODO: Add allowed_overwrite keys to config file and parser to check which keys can be overwritten (especially from MaxIm).
         self._config = configparser.ConfigParser()
         self._config["site"] = {}
         self._config["camera"] = {}
@@ -109,7 +112,7 @@ class Observatory:
         self._telescope = None
         self._telescope_driver = None
         self._telescope_kwargs = None
-        self._min_altitude = 10
+        self._min_altitude = 10 * u.deg
         self._settle_time = 5
 
         self._autofocus = None
@@ -234,7 +237,7 @@ class Observatory:
                         "MaxIm DL must be used as the camera driver when using MaxIm DL as the filter wheel driver."
                     )
                 logger.info("Using MaxIm DL as the filter wheel driver")
-                self._filter_wheel = self._maxim.filter_wheel
+                self._filter_wheel = self._maxim._filter_wheel
             else:
                 self._filter_wheel = _import_driver(
                     self.filter_wheel_driver,
@@ -505,9 +508,9 @@ class Observatory:
             self._config["cover_calibrator"][
                 "cover_calibrator_driver"
             ] = self._cover_calibrator_driver
-            self._config["cover_calibrator"][
-                "cover_calibrator_kwargs"
-            ] = _kwargs_to_config(self._cover_calibrator_kwargs)
+            self._config["cover_calibrator"]["cover_calibrator_kwargs"] = (
+                _kwargs_to_config(self._cover_calibrator_kwargs)
+            )
 
         # Dome
         self._dome = kwargs.get("dome", self._dome)
@@ -561,9 +564,9 @@ class Observatory:
             self._config["observing_conditions"][
                 "observing_conditions_driver"
             ] = self._observing_conditions_driver
-            self._config["observing_conditions"][
-                "observing_conditions_kwargs"
-            ] = _kwargs_to_config(self._observing_conditions_kwargs)
+            self._config["observing_conditions"]["observing_conditions_kwargs"] = (
+                _kwargs_to_config(self._observing_conditions_kwargs)
+            )
 
         # Rotator
         self._rotator = kwargs.get("rotator", self._rotator)
@@ -733,6 +736,8 @@ class Observatory:
             logger.warning("Camera failed to connect")
         if self.camera.CanSetCCDTemperature:
             self.cooler_setpoint = self._cooler_setpoint
+            print("Turning cooler on")
+            self.camera.CoolerOn = True
 
         if self.cover_calibrator is not None:
             self.cover_calibrator.Connected = True
@@ -806,7 +811,9 @@ class Observatory:
         """Disconnects from the observatory"""
 
         logger.debug("Observatory.disconnect_all() called")
-
+        # TODO: Implement safe warmup procedure
+        if self.camera.CoolerOn:
+            self.camera.CoolerOn = False
         self.camera.Connected = False
         if not self.camera.Connected:
             logger.info("Camera disconnected")
@@ -979,6 +986,8 @@ class Observatory:
 
         logger.info("Attempting to turn off telescope tracking...")
         try:
+            self.telescope.DeclinationRate = 0
+            self.telescope.RightAscensionRate = 0
             self.telescope.Tracking = False
             logger.info("Telescope tracking turned off")
         except:
@@ -1010,9 +1019,7 @@ class Observatory:
             t = self.observatory_time
         else:
             t = astrotime.Time(t)
-        return (
-            t.sidereal_time("apparent", self.observatory_location).to("hourangle").value
-        )
+        return t.sidereal_time("apparent", self.observatory_location).to("hourangle")
 
     def sun_altaz(self, t=None):
         """Returns the altitude of the sun"""
@@ -1022,7 +1029,7 @@ class Observatory:
         if t is None:
             t = self.observatory_time
         else:
-            t = Time(t)
+            t = astrotime.Time(t)
 
         sun = coord.get_sun(t).transform_to(
             coord.AltAz(obstime=t, location=self.observatory_location)
@@ -1038,7 +1045,7 @@ class Observatory:
         if t is None:
             t = self.observatory_time
         else:
-            t = Time(t)
+            t = astrotime.Time(t)
 
         moon = coord.get_body("moon", t).transform_to(
             coord.AltAz(obstime=t, location=self.observatory_location)
@@ -1150,6 +1157,109 @@ class Observatory:
             )
         return obj
 
+    def generate_header_dict(self):
+        """Generates the header information for the observatory as a dictionary
+
+        Returns
+        -------
+        dict
+            The header information
+        """
+        hdr_dict = {}
+        hdr_dict.update(self.observatory_info)
+        hdr_dict.update(self.camera_info)
+        hdr_dict.update(self.telescope_info)
+        hdr_dict.update(self.cover_calibrator_info)
+        hdr_dict.update(self.dome_info)
+        hdr_dict.update(self.filter_wheel_info)
+        hdr_dict.update(self.focuser_info)
+        hdr_dict.update(self.observing_conditions_info)
+        hdr_dict.update(self.rotator_info)
+        hdr_dict.update(self.safety_monitor_info)
+        hdr_dict.update(self.switch_info)
+        hdr_dict.update(self.threads_info)
+        hdr_dict.update(self.autofocus_info)
+        hdr_dict.update(self.wcs_info)
+
+        return hdr_dict
+
+    def generate_header_info(
+        self,
+        filename,
+        frametyp=None,
+        custom_header=None,
+        history=None,
+        maxim=False,
+        allowed_overwrite=[],
+    ):
+        """Generates the header information for the observatory"""
+        if not maxim:
+            hdr = fits.Header()
+        else:
+            logger.info("Getting header from MaxIm image")
+            hdr = fits.getheader(filename)
+
+        # The commented out part is unnecessary, as the fits header is automatically generated
+        # when the image is saved.
+        # hdr["SIMPLE"] = True
+        # hdr["BITPIX"] = (16, "8 unsigned int, 16 & 32 int, -32 & -64 real")
+        # hdr["NAXIS"] = (2, "number of axes")
+        # hdr["NAXIS1"] = (len(img_array), "fastest changing axis")
+        # hdr["NAXIS2"] = (
+        #     len(img_array[0]),
+        #     "next to fastest changing axis",
+        # )
+        hdr["BSCALE"] = (1, "physical=BZERO + BSCALE*array_value")
+        hdr["BZERO"] = (32768, "physical=BZERO + BSCALE*array_value")
+        if maxim:
+            hdr["SWUPDATE"] = ("pyscope", "Software used to update file")
+            hdr["SWVERSIO"] = (__version__, "Version of software used to update file")
+        else:
+            hdr["SWCREATE"] = ("pyscope", "Software used to create file")
+            hdr["SWVERSIO"] = (__version__, "Version of software used to create file")
+        hdr["ROWORDER"] = ("TOP-DOWN", "Row order of image")
+
+        if frametyp is not None:
+            hdr["FRAMETYP"] = (frametyp, "Frame type")
+        elif self.last_camera_shutter_status:
+            hdr["FRAMETYP"] = ("Light", "Frame type")
+        elif not self.last_camera_shutter_status:
+            hdr["FRAMETYP"] = ("Dark", "Frame type")
+
+        hdr_dict = self.generate_header_dict()
+
+        if custom_header is not None:
+            hdr_dict.update(custom_header)
+
+        self.safe_update_header(
+            hdr, hdr_dict, maxim=maxim, allowed_overwrite=allowed_overwrite
+        )
+
+        if history is not None:
+            if type(history) is str:
+                history = [history]
+            for hist in history:
+                hdr["HISTORY"] = hist
+
+        return hdr
+
+    def safe_update_header(self, hdr, hdr_dict, maxim=False, allowed_overwrite=[]):
+        """Safely updates the header information"""
+        logger.debug(f"Observatory.safe_update_header called")
+        if maxim:
+            # Only keep the allowed_overwrite keys in the hdr_dict
+            # First get keys in existing header
+            existing_keys = hdr.keys()
+            # If the key is in the existing header, and not in the allowed_overwrite list, remove it
+            for key in existing_keys:
+                if key not in allowed_overwrite:
+                    hdr_dict.pop(key, None)
+
+        # hdr_dict = {k: v for k, v in hdr_dict.items() if k in allowed_overwrite}
+        for key, value in hdr_dict.items():
+            print(key, value)
+        hdr.update(hdr_dict)
+
     def save_last_image(
         self,
         filename,
@@ -1159,6 +1269,7 @@ class Observatory:
         overwrite=False,
         custom_header=None,
         history=None,
+        allowed_overwrite=[],
         **kwargs,
     ):
         """Saves the current image"""
@@ -1171,59 +1282,87 @@ class Observatory:
             logger.exception("Image is not ready, cannot be saved")
             return False
 
-        # Read out the image array
-        img_array = self.camera.ImageArray
+        maxim = self.camera_driver.lower() in ("maxim", "maximdl", "_maximcamera")
+        # print(self.camera_driver.lower())
 
-        if img_array is None or len(img_array) == 0 or len(img_array) == 0:
-            logger.exception("Image array is empty, cannot be saved")
-            return False
+        # If camera driver is Maxim, use Maxim to save the image
+        # This is because Maxim does not pass some of the header information
+        # to the camera object, so it is not available to be saved.
+        if not maxim:
+            # Read out the image array
+            img_array = self.camera.ImageArray
 
-        hdr = fits.Header()
+            if img_array is None or len(img_array) == 0 or len(img_array) == 0:
+                logger.exception("Image array is empty, cannot be saved")
+                return False
+        else:
+            # print("Using Maxim to save image")
+            logger.info("Using Maxim to save image")
+            allowed_overwrite = [
+                "AIRMASS",
+                "OBJECT",
+                "TELESCOP",
+                "INSTRUME",
+                "OBSERVER",
+            ]
+            logger.info(f"Overwrite allowed for header keys {allowed_overwrite}")
+            self.camera.VerifyLatestExposure()
+            # TODO: Below should be updated to the filepath we want to save to
+            filepath = os.path.join(os.getcwd(), filename)
+            self.camera.SaveImageAsFits(filepath)
+            img_array = fits.getdata(filename)
 
-        hdr["SIMPLE"] = True
-        hdr["BITPIX"] = (16, "8 unsigned int, 16 & 32 int, -32 & -64 real")
-        hdr["NAXIS"] = (2, "number of axes")
-        hdr["NAXIS1"] = (len(img_array), "fastest changing axis")
-        hdr["NAXIS2"] = (
-            len(img_array[0]),
-            "next to fastest changing axis",
+        # Moved below to separate function
+        # hdr = fits.Header()
+
+        # hdr["SIMPLE"] = True
+        # hdr["BITPIX"] = (16, "8 unsigned int, 16 & 32 int, -32 & -64 real")
+        # hdr["NAXIS"] = (2, "number of axes")
+        # hdr["NAXIS1"] = (len(img_array), "fastest changing axis")
+        # hdr["NAXIS2"] = (
+        #     len(img_array[0]),
+        #     "next to fastest changing axis",
+        # )
+        # hdr["BSCALE"] = (1, "physical=BZERO + BSCALE*array_value")
+        # hdr["BZERO"] = (32768, "physical=BZERO + BSCALE*array_value")
+        # hdr["SWCREATE"] = ("pyscope", "Software used to create file")
+        # hdr["SWVERSIO"] = (__version__, "Version of software used to create file")
+        # hdr["ROWORDER"] = ("TOP-DOWN", "Row order of image")
+
+        # if frametyp is not None:
+        #     hdr["FRAMETYP"] = (frametyp, "Frame type")
+        # elif self.last_camera_shutter_status:
+        #     hdr["FRAMETYP"] = ("Light", "Frame type")
+        # elif not self.last_camera_shutter_status:
+        #     hdr["FRAMETYP"] = ("Dark", "Frame type")
+
+        # hdr.update(self.observatory_info)
+        # hdr.update(self.camera_info)
+        # hdr.update(self.telescope_info)
+        # hdr.update(self.cover_calibrator_info)
+        # hdr.update(self.dome_info)
+        # hdr.update(self.filter_wheel_info)
+        # hdr.update(self.focuser_info)
+        # hdr.update(self.observing_conditions_info)
+        # hdr.update(self.rotator_info)
+        # hdr.update(self.safety_monitor_info)
+        # hdr.update(self.switch_info)
+        # hdr.update(self.threads_info)
+        # hdr.update(self.autofocus_info)
+        # hdr.update(self.wcs_info)
+
+        # if custom_header is not None:
+        #     hdr.update(custom_header)
+
+        # if history is not None:
+        #     if type(history) is str:
+        #         history = [history]
+        #     for hist in history:
+        #         hdr["HISTORY"] = hist
+
+        hdr = self.generate_header_info(
+            filename, frametyp, custom_header, history, maxim, allowed_overwrite
         )
-        hdr["BSCALE"] = (1, "physical=BZERO + BSCALE*array_value")
-        hdr["BZERO"] = (32768, "physical=BZERO + BSCALE*array_value")
-        hdr["SWCREATE"] = ("pyscope", "Software used to create file")
-        hdr["SWVERSIO"] = (__version__, "Version of software used to create file")
-        hdr["ROWORDER"] = ("TOP-DOWN", "Row order of image")
-
-        if frametyp is not None:
-            hdr["FRAMETYP"] = (frametyp, "Frame type")
-        elif self.last_camera_shutter_status:
-            hdr["FRAMETYP"] = ("Light", "Frame type")
-        elif not self.last_camera_shutter_status:
-            hdr["FRAMETYP"] = ("Dark", "Frame type")
-
-        hdr.update(self.observatory_info)
-        hdr.update(self.camera_info)
-        hdr.update(self.telescope_info)
-        hdr.update(self.cover_calibrator_info)
-        hdr.update(self.dome_info)
-        hdr.update(self.filter_wheel_info)
-        hdr.update(self.focuser_info)
-        hdr.update(self.observing_conditions_info)
-        hdr.update(self.rotator_info)
-        hdr.update(self.safety_monitor_info)
-        hdr.update(self.switch_info)
-        hdr.update(self.threads_info)
-        hdr.update(self.autofocus_info)
-        hdr.update(self.wcs_info)
-
-        if custom_header is not None:
-            hdr.update(custom_header)
-
-        if history is not None:
-            if type(history) is str:
-                history = [history]
-            for hist in history:
-                hdr["HISTORY"] = hist
 
         hdu = fits.PrimaryHDU(img_array, header=hdr)
         hdu.writeto(filename, overwrite=overwrite)
@@ -1299,6 +1438,14 @@ class Observatory:
         if filter_name is None:
             try:
                 filter_name = self.filters[filter_index]
+                logger.info("Filter %s found at index %i" % (filter_name, filter_index))
+            except:
+                raise ObservatoryException(
+                    "Filter %s not found in filter list" % filter_name
+                )
+        elif filter_index is None:
+            try:
+                filter_index = self.filters.index(filter_name)
                 logger.info("Filter %s found at index %i" % (filter_name, filter_index))
             except:
                 raise ObservatoryException(
@@ -1396,7 +1543,7 @@ class Observatory:
         if not self.telescope.Connected:
             raise ObservatoryException("The telescope is not connected.")
 
-        if altaz_obj.alt.deg <= self.min_altitude:
+        if altaz_obj.alt <= self.min_altitude:
             logger.exception(
                 "Target is below the minimum altitude of %.2f degrees"
                 % self.min_altitude
@@ -1465,8 +1612,7 @@ class Observatory:
                     self.dome.SlewToAzimuth(altaz_obj.az.deg)
 
         if control_rotator and self.rotator is not None:
-            rotation_angle = (self.lst() - slew_obj.ra.hour) * 15
-
+            rotation_angle = (self.lst().value - slew_obj.ra.hourangle) * 15
             if (
                 self.rotator.MechanicalPosition + rotation_angle
                 >= self.rotator_max_angle
@@ -1917,7 +2063,7 @@ class Observatory:
             logger.info("Settling for %.2f seconds" % self.settle_time)
             time.sleep(self.settle_time)
 
-            if not check_and_refine and attempt_number > 0:
+            if not check_and_refine and attempt > 0:
                 logger.info(
                     "Check and recenter is off, single-shot recentering complete"
                 )
@@ -1939,7 +2085,7 @@ class Observatory:
             logger.info("Searching for a WCS solution...")
             if type(self._wcs) is WCS:
                 self._wcs.Solve(
-                    filename,
+                    temp_image,
                     ra_key="TELRAIC",
                     dec_key="TELDECIC",
                     ra_dec_units=("hour", "deg"),
@@ -1954,7 +2100,7 @@ class Observatory:
             else:
                 for i, wcs in enumerate(self._wcs):
                     solution_found = wcs.Solve(
-                        filename,
+                        temp_image,
                         ra_key="TELRAIC",
                         dec_key="TELDECIC",
                         ra_dec_units=("hour", "deg"),
@@ -1982,7 +2128,7 @@ class Observatory:
             )
             try:
                 hdulist = fits.open(temp_image)
-                w = astropy.wcs.WCS(hdulist[0].header)
+                w = astropywcs.WCS(hdulist[0].header)
 
                 center_coord = w.pixel_to_world(
                     int(self.camera.CameraXSize / 2), int(self.camera.CameraYSize / 2)
@@ -2037,7 +2183,7 @@ class Observatory:
             logger.debug("Error in x pixels is %.2f" % error_x_pixels)
             logger.debug("Error in y pixels is %.2f" % error_y_pixels)
 
-            if max(error_x_pixels, error_y_pixels) <= max_pixel_error:
+            if max(error_x_pixels, error_y_pixels) <= tolerance:
                 break
 
             logger.info("Offsetting next slew coordinates")
@@ -2159,7 +2305,10 @@ class Observatory:
                     self.camera.BinX = binning.split("x")[0]
                     self.camera.BinY = binning.split("x")[1]
                     for j in range(repeat):
-                        if self.camera.CanSetCCDTemperature:
+                        if (
+                            self.camera.CanSetCCDTemperature
+                            and self.cooler_setpoint is not None
+                        ):
                             while self.camera.CCDTemperature > (
                                 self.cooler_setpoint + self.cooler_tolerance
                             ):
@@ -2198,15 +2347,15 @@ class Observatory:
                                 j,
                             )
                         )
-                        
-                        print('-------------------')
+
+                        print("-------------------")
                         print()
                         print(save_string)
                         print(self.camera.ReadoutModes)
                         print(type(self.camera.ReadoutMode))
                         print(self.camera.ReadoutModes[self.camera.ReadoutMode])
                         print()
-                        print('-------------------')
+                        print("-------------------")
                         while not self.camera.ImageReady:
                             time.sleep(0.1)
                         self.save_last_image(save_string, frametyp="Flat")
@@ -2302,8 +2451,12 @@ class Observatory:
 
         return True
 
-    def save_config(self, filename):
+    def save_config(self, filename, overwrite=False):
         logger.debug("Saving observatory configuration to %s" % filename)
+        if os.path.exists(filename) and not overwrite:
+            raise ObservatoryException(
+                "The file %s already exists and overwrite is False" % filename
+            )
         with open(filename, "w") as configfile:
             self._config.write(configfile)
 
@@ -2369,7 +2522,7 @@ class Observatory:
         self.diameter = dictionary.get("diameter", self.diameter)
         self.focal_length = dictionary.get("focal_length", self.focal_length)
 
-        self._cooler_setpoint = dictionary.get("cooler_setpoint", self.cooler_setpoint)
+        self.cooler_setpoint = dictionary.get("cooler_setpoint", self.cooler_setpoint)
         self.cooler_tolerance = dictionary.get(
             "cooler_tolerance", self.cooler_tolerance
         )
@@ -2469,9 +2622,9 @@ class Observatory:
             "CAMERA": (self.camera.Name, "Name of camera"),
             "CAMDRVER": (self.camera.DriverVersion, "Camera driver version"),
             "CAMDRV": (self.camera.DriverInfo[0], "Camera driver info"),
-            "CAMINTF": (self.camera.InterfaceVersion, "Camera interface version"),
+            "CAMINTF": (None, "Camera interface version"),
             "CAMDESC": (self.camera.Description, "Camera description"),
-            "SENSOR": (self.camera.SensorName, "Name of sensor"),
+            "SENSOR": (None, "Name of sensor"),
             "WIDTH": (self.camera.CameraXSize, "Width of sensor in pixels"),
             "HEIGHT": (self.camera.CameraYSize, "Height of sensor in pixels"),
             "XPIXSIZE": (self.camera.PixelSizeX, "Pixel width in microns"),
@@ -2484,10 +2637,10 @@ class Observatory:
                 self.camera.HasShutter,
                 "Whether a camera mechanical shutter is present",
             ),
-            "MINEXP": (self.camera.ExposureMin, "Minimum exposure time [seconds]"),
-            "MAXEXP": (self.camera.ExposureMax, "Maximum exposure time [seconds]"),
+            "MINEXP": (None, "Minimum exposure time [seconds]"),
+            "MAXEXP": (None, "Maximum exposure time [seconds]"),
             "EXPRESL": (
-                self.camera.ExposureResolution,
+                None,
                 "Exposure time resolution [seconds]",
             ),
             "MAXBINSX": (self.camera.MaxBinX, "Maximum binning factor in width"),
@@ -2501,11 +2654,11 @@ class Observatory:
                 "Can camera set temperature",
             ),
             "CANPULSE": (self.camera.CanPulseGuide, "Can camera pulse guide"),
-            "FULLWELL": (self.camera.FullWellCapacity, "Full well capacity [e-]"),
-            "MAXADU": (self.camera.MaxADU, "Camera maximum ADU value possible"),
-            "E-ADU": (self.camera.ElectronsPerADU, "Gain [e- per ADU]"),
+            "FULLWELL": (None, "Full well capacity [e-]"),
+            "MAXADU": (None, "Camera maximum ADU value possible"),
+            "E-ADU": (None, "Gain [e- per ADU]"),
             "EGAIN": (None, "Electronic gain"),
-            "CANFASTR": (self.camera.CanFastReadout, "Can camera fast readout"),
+            "CANFASTR": (None, "Can camera fast readout"),
             "READMDS": (None, "Possible readout modes"),
             "GAINS": (None, "Possible electronic gains"),
             "GAINMIN": (None, "Minimum possible electronic gain"),
@@ -2513,7 +2666,7 @@ class Observatory:
             "OFFSETS": (None, "Possible offsets"),
             "OFFSETMN": (None, "Minimum possible offset"),
             "OFFSETMX": (None, "Maximum possible offset"),
-            "CAMSUPAC": (str(self.camera.SupportedActions), "Camera supported actions"),
+            "CAMSUPAC": (None, "Camera supported actions"),
         }
         try:
             info["PCNTCOMP"] = (self.camera.PercentCompleted, info["PCNTCOMP"][1])
@@ -2618,7 +2771,44 @@ class Observatory:
         except:
             pass
         try:
+            info["CANINTF"] = (self.camera.InterfaceVersion, info["CANINTF"][1])
+        except:
+            pass
+        try:
+            info["SENSOR"] = (self.camera.SensorName, info["SENSOR"][1])
+        except:
+            pass
+        try:
+            info["MINEXP"] = (self.camera.ExposureMin, info["MINEXP"][1])
+            info["MAXEXP"] = (self.camera.ExposureMax, info["MAXEXP"][1])
+        except:
+            pass
+        try:
+            info["EXPRESL"] = (self.camera.ExposureResolution, info["EXPRESL"][1])
+        except:
+            pass
+        try:
+            info["FULLWELL"] = (self.camera.FullWellCapacity, info["FULLWELL"][1])
+        except:
+            pass
+        try:
+            info["MAXADU"] = (self.camera.MaxADU, info["MAXADU"][1])
+        except:
+            pass
+        try:
+            info["E-ADU"] = (self.camera.ElectronsPerADU, info["E-ADU"][1])
+        except:
+            pass
+        try:
             info["EGAIN"] = (self.camera.Gain, info["EGAIN"][1])
+        except:
+            pass
+        try:
+            info["CANFASTR"] = (self.camera.CanFastReadout, info["CANFASTR"][1])
+        except:
+            pass
+        try:
+            info["CAMSUPAC"] = (str(self.camera.SupportedActions), info["CAMSUPAC"][1])
         except:
             pass
 
@@ -2755,33 +2945,82 @@ class Observatory:
                     "Filter name (from pyscope observatory object configuration)",
                 ),
                 "FOCOFFCG": (
-                    self.filter_wheel.FocusOffsets[self.filter_wheel.Position],
+                    None,
                     "Filter focus offset (from filter wheel object configuration)",
                 ),
                 "FWNAME": (self.filter_wheel.Name, "Filter wheel name"),
                 "FWDRVER": (
-                    self.filter_wheel.DriverVersion,
+                    None,
                     "Filter wheel driver version",
                 ),
                 "FWDRV": (
-                    str(self.filter_wheel.DriverInfo),
+                    None,
                     "Filter wheel driver info",
                 ),
                 "FWINTF": (
-                    self.filter_wheel.InterfaceVersion,
+                    None,
                     "Filter wheel interface version",
                 ),
-                "FWDESC": (self.filter_wheel.Description, "Filter wheel description"),
+                "FWDESC": (None, "Filter wheel description"),
                 "FWALLNAM": (str(self.filter_wheel.Names), "Filter wheel names"),
                 "FWALLOFF": (
-                    str(self.filter_wheel.FocusOffsets),
+                    None,
                     "Filter wheel focus offsets",
                 ),
                 "FWSUPAC": (
-                    str(self.filter_wheel.SupportedActions),
+                    None,
                     "Filter wheel supported actions",
                 ),
             }
+            try:
+                info["FOCOFFCG"] = (
+                    self.filter_wheel.FocusOffsets[self.filter_wheel.Position],
+                    info["FOCOFFCG"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWDRVER"] = (
+                    self.filter_wheel.DriverVersion,
+                    info["FWDRVER"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWDRV"] = (
+                    str(self.filter_wheel.DriverInfo),
+                    info["FWDRV"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWINTF"] = (
+                    self.filter_wheel.InterfaceVersion,
+                    info["FWINTF"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWDESC"] = (
+                    self.filter_wheel.Description,
+                    info["FWDESC"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWSUPAC"] = (
+                    str(self.filter_wheel.SupportedActions),
+                    info["FWSUPAC"][1],
+                )
+            except:
+                pass
+            try:
+                info["FWALLOFF"] = (
+                    str(self.filter_wheel.FocusOffsets),
+                    info["FWALLOFF"][1],
+                )
+            except:
+                pass
             return info
         else:
             return {"FWCONN": (False, "Filter wheel connected")}
@@ -3446,10 +3685,16 @@ class Observatory:
             ),
             "TELTRCKS": (str(self.telescope.TrackingRates), "Telescope tracking rates"),
             "TELSUPAC": (
-                str(self.telescope.SupportedActions),
+                None,
                 "Telescope supported actions",
             ),
         }
+        # Sometimes, TELDRV has /r or /n in it and it breaks
+        # This is a hack to fix that
+        info["TELDRV"] = (
+            info["TELDRV"][0].replace("\r", "\\r").replace("\n", "\\n"),
+            info["TELDRV"][1],
+        )
         try:
             info["TELALT"] = (self.telescope.Altitude, info["TELALT"][1])
         except:
@@ -3489,7 +3734,7 @@ class Observatory:
             .value,
             info["OBJCTAZ"][1],
         )
-        info["OBJCTHA"] = (np.abs(self.lst() - obj.ra.hour), info["OBJCTHA"][1])
+        info["OBJCTHA"] = ((self.lst() - obj.ra).value, info["OBJCTHA"][1])
         info["AIRMASS"] = (
             airmass(
                 obj.transform_to(
@@ -3610,6 +3855,13 @@ class Observatory:
             )
         except:
             pass
+        try:
+            info["TELSUPAC"] = (
+                str(self.telescope.SupportedActions),
+                info["TELSUPAC"][1],
+            )
+        except:
+            pass
         return info
 
     @property
@@ -3721,8 +3973,12 @@ class Observatory:
             coord.Latitude(value) if value is not None or value != "" else None
         )
         # If connected, set the telescope site latitude
-        if self.telescope.Connected:
-            self.telescope.SiteLatitude = self._latitude.deg
+        try:
+            if self.telescope.Connected:
+                self.telescope.SiteLatitude = self._latitude.deg
+        except:
+            logger.warning("Telescope not connected, cannot set the driver's latitude")
+
         self._config["site"]["latitude"] = (
             self._latitude.to_string(unit=u.degree, sep="dms", precision=5)
             if self._latitude is not None
@@ -3742,8 +3998,12 @@ class Observatory:
             if value is not None or value != ""
             else None
         )
-        if self.telescope.Connected:
-            self.telescope.SiteLongitude = self._longitude.deg
+        try:
+            if self.telescope.Connected:
+                self.telescope.SiteLongitude = self._longitude.deg
+        except:
+            logger.warning("Telescope not connected, cannot set the driver's longitude")
+
         self._config["site"]["longitude"] = (
             self._longitude.to_string(unit=u.degree, sep="dms", precision=5)
             if self._longitude is not None
@@ -3818,18 +4078,26 @@ class Observatory:
     @cooler_setpoint.setter
     def cooler_setpoint(self, value):
         logger.debug(f"Observatory.cooler_setpoint = {value} called")
-        self._cooler_setpoint = (
-            max(float(value), -273.15) if value is not None or value != "" else None
-        )
-        self._config["camera"]["cooler_setpoint"] = (
-            str(self._cooler_setpoint) if self._cooler_setpoint is not None else ""
-        )
-        if self.camera.CanSetCCDTemperature and self._cooler_setpoint is not None:
-            self.camera.SetCCDTemperature = self._cooler_setpoint
-        else:
-            raise ObservatoryException(
-                "Camera does not support setting the CCD temperature"
+        if value is not None:
+            self._cooler_setpoint = (
+                max(float(value), -273.15) if value is not None or value != "" else None
             )
+            self._config["camera"]["cooler_setpoint"] = (
+                str(self._cooler_setpoint) if self._cooler_setpoint is not None else ""
+            )
+        else:
+            self._cooler_setpoint = None
+            self._config["camera"]["cooler_setpoint"] = ""
+        try:
+            if self.camera.CanSetCCDTemperature and self._cooler_setpoint is not None:
+                self.camera.SetCCDTemperature = self._cooler_setpoint
+                logger.info(f"CCD Temp Set to {self._cooler_setpoint}")
+            else:
+                self._cooler_setpoint = None
+                self._config["camera"]["cooler_setpoint"] = ""
+                logger.warning("Camera does not support setting the CCD temperature")
+        except:
+            pass
 
     @property
     def cooler_tolerance(self):
@@ -3971,7 +4239,7 @@ class Observatory:
             )
         else:
             self._filters[position] = (
-                char(value) if value is not None or value != "" else None
+                chr(value) if value is not None or value != "" else None
             )
         self._config["filter_wheel"]["filters"] = (
             ", ".join(self._filters) if self._filters is not None else ""
@@ -4069,7 +4337,13 @@ class Observatory:
         self._config["rotator"]["rotator_reverse"] = (
             str(self._rotator_reverse) if self._rotator_reverse is not None else ""
         )
-        self.rotator.Reverse = self._rotator_reverse
+        try:
+            if self.rotator is not None:
+                self.rotator.Reverse = self._rotator_reverse
+        except:
+            logger.warning(
+                "Rotator not connected, you should reconnect to the rotator and then set the reverse property"
+            )
 
     @property
     def rotator_min_angle(self):
@@ -4154,11 +4428,18 @@ class Observatory:
     @min_altitude.setter
     def min_altitude(self, value):
         logger.debug(f"Observatory.min_altitude = {value} called")
-        self._min_altitude = (
-            min(max(float(value), 0), 90) if value is not None or value != "" else None
-        )
+        if type(value) is u.Quantity:
+            self._min_altitude = value
+        else:
+            self._min_altitude = (
+                min(max(float(value), 0), 90)
+                if value is not None or value != ""
+                else None
+            ) * u.deg
         self._config["telescope"]["min_altitude"] = (
-            str(self._min_altitude) if self._min_altitude is not None else ""
+            str(self._min_altitude.to(u.deg).value)
+            if self._min_altitude is not None
+            else ""
         )
 
     @property

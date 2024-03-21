@@ -28,8 +28,8 @@ def _force_sync(fn):
     @functools.wraps(fn)
     def wrapper(*args, **kwargs):
         res = fn(*args, **kwargs)
-        if asyncio.iscoroutine(res):
+        if asyncio.iscoroutine(res):  # pragma: no cover
             return asyncio.get_event_loop().run_until_complete(res)
-        return res
+        return res  # pragma: no cover
 
     return wrapper

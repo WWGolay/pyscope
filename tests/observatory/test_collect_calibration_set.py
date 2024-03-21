@@ -1,9 +1,10 @@
-import pytest
 import glob
-import shutil
 import os
-from pyscope.observatory import collect_calibration_set, Observatory
+import shutil
 
+import pytest
+
+from pyscope.observatory import Observatory, collect_calibration_set
 
 """Testing this:
 - look at test_observatory.py for a good example
@@ -19,6 +20,7 @@ File Naming Convention:
 {type}_{filter}_{binning}_{exposure}_{readout}__{repeat}.fts
 """
 
+
 def test_collect_calibration_set(tmp_path):
     """
     Tests the collect_calibration_set function by seeing if
@@ -32,16 +34,31 @@ def test_collect_calibration_set(tmp_path):
 
     collect_calibration_set(
         # user will input exposure and brightness for every filter
-        observatory=obs, 
-        camera='ccd',  # if cmos then flat_darks are done, only unique flat exposures
+        observatory=obs,
+        camera="ccd",  # if cmos then flat_darks are done, only unique flat exposures
         #  filters     [R,G,B,C,H,O]
-        dark_exposures=[1,2,3,4,5,6],  # len of list * repeat = num files in darks folder
-        filter_exposures=[1,2,3,4,5,6],  # flat exposures
-        filter_brightness=[1,1,1,1,1,1],  # corresponds to the filters in config file
+        dark_exposures=[
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+        ],  # len of list * repeat = num files in darks folder
+        filter_exposures=[1, 2, 3, 4, 5, 6],  # flat exposures
+        filter_brightness=[
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+        ],  # corresponds to the filters in config file
         repeat=1,
         save_path=tmp_path,
-        master=False)
-    
+        master=False,
+    )
+
     masters = glob.glob(f"{tmp_path}/calibration_set_*/masters/")
     flats = glob.glob(f"{tmp_path}/calibration_set_*/flats/")
     darks = glob.glob(f"{tmp_path}/calibration_set_*/darks/")
@@ -56,16 +73,33 @@ def test_collect_calibration_set(tmp_path):
 
     collect_calibration_set(
         # user will input exposure and brightness for every filter
-        observatory=obs, 
-        camera='cmos',  # if cmos then flat_darks are done, only unique flat exposures
+        observatory=obs,
+        camera="cmos",  # if cmos then flat_darks are done, only unique flat exposures
         #  filters     [R,G,B,C,H,O]
-        dark_exposures=[1,2,3,4,5,6],  # len of list * repeat = num files in darks folder
-        filter_exposures=[1,2,3,4,5,6],  # flat exposures
-        filter_brightness=[1,1,1,1,1,1],  # corresponds to the filters in config file
+        dark_exposures=[
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+        ],  # len of list * repeat = num files in darks folder
+        filter_exposures=[1, 2, 3, 4, 5, 6],  # flat exposures
+        filter_brightness=[
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+        ],  # corresponds to the filters in config file
         repeat=1,
-        save_path=tmp_path)
+        save_path=tmp_path,
+    )
 
-    master_flat_dark = glob.glob(f"{tmp_path}/calibration_set_*/masters/master_flat_dark*")
+    master_flat_dark = glob.glob(
+        f"{tmp_path}/calibration_set_*/masters/master_flat_dark*"
+    )
     flats = glob.glob(f"{tmp_path}/calibration_set_*/flats/")
     flat_darks = glob.glob(f"{tmp_path}/calibration_set_*/flat_darks/")
     darks = glob.glob(f"{tmp_path}/calibration_set_*/darks/")
@@ -73,31 +107,44 @@ def test_collect_calibration_set(tmp_path):
     assert flats != []
     assert flat_darks != []
     assert darks != []
-    
+
     cwd = os.getcwd()
     shutil.rmtree(os.path.join(cwd, tmp_path))
 
     collect_calibration_set(
         # user will input exposure and brightness for every filter
-        observatory=obs, 
-        camera='ccd',  # if cmos then flat_darks are done, only unique flat exposures
+        observatory=obs,
+        camera="ccd",  # if cmos then flat_darks are done, only unique flat exposures
         #  filters     [R,G,B,C,H,O]
-        dark_exposures=[1,2,3,4,5,6],  # len of list * repeat = num files in darks folder
-        filter_exposures=[1,2,3,4,5,6],  # flat exposures
-        filter_brightness=[1,1,1,1,1,1],  # corresponds to the filters in config file
+        dark_exposures=[
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+        ],  # len of list * repeat = num files in darks folder
+        filter_exposures=[1, 2, 3, 4, 5, 6],  # flat exposures
+        filter_brightness=[
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+        ],  # corresponds to the filters in config file
         repeat=1,
-        save_path=tmp_path)
-    
+        save_path=tmp_path,
+    )
+
     master_bias = glob.glob(f"{tmp_path}/calibration_set_*/masters/master_bias*")
     assert master_bias != []
     assert flats != []
     assert darks != []
     assert biases != []
-    
+
     print("passed all tests for ccd")
     print("passed all tests!")
-
-    
 
     obs.telescope.Park()
     obs.shutdown()
@@ -108,5 +155,4 @@ def test_collect_calibration_set(tmp_path):
 
 
 if __name__ == "__main__":
-    test_collect_calibration_set('./tmp_dir')
-
+    test_collect_calibration_set("./tmp_dir")

@@ -76,7 +76,7 @@ Features
 
 import logging
 
-__version__ = "0.1.6"
+__version__ = "0.2.0"
 
 from . import utils
 from . import observatory

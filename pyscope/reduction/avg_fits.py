@@ -13,6 +13,7 @@ TODO: use ccdproc to average FITS files
 - make a new file avg_fits_ccdproc.py
 """
 
+
 @click.command(
     epilog="""Check out the documentation at
                 https://pyscope.readthedocs.io/ for more
@@ -49,7 +50,7 @@ def avg_fits_cli(mode, outfile, fnames, verbose=False):
     Test
     asdf
     """
-    
+
     if verbose:
         logger.setLevel(logging.DEBUG)
 

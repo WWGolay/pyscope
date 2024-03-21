@@ -66,7 +66,7 @@ class PWIAutofocus(Autofocus):
 
     def _forward_autofocus_messages(self):
         while True:
-            log_line = _autofocus.NextLogMessage
+            log_line = self._com_object.NextLogMessage
             if log_line is None:
                 return
             logger.info(log_line)
